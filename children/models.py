@@ -1,3 +1,23 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
+class Child(models.Model):
+    """
+    Stores a Child entry related to
+    :model:`auth.User`
+    :model:`logs.FoodLog`
+    """
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="children")
+    name = models.CharField(max_length=30, unique=True)
+    birthdate = models.DateField()
+    # TODO
+    # profile_image = models.ImageField()
+    # profile_image = CloudinaryField('image', default='placeholder')
+
+    class Meta:
+        ordering = ["-birthdate"]
+
+    def __str__(self):
+        return f"{self.name} has been registered."
