@@ -21,10 +21,11 @@
     rel="stylesheet">
 </head>
 
-<body class="container">
+<body>
+    <div class="container">
     <section id="brand-home" class="row justify-content-center text-center">
-        <img id="hero-image-home" src="{% static '/images/Logo_No_Background.png' %}" alt="Hero Image for Little Foodie">
-        <div id="hero-text-home" class="text-start">
+        <img id="hero-image-home" src="{% static 'images/Logo_Centered_No_Background.png' %}" alt="Hero Image for Little Foodie">
+        <div id="hero-text-home" class="text-center">
             <h1 id="h1-home">Little
                 <br>
                 Foodie</h1>
@@ -35,32 +36,45 @@
             </div>
     </section>
 
-    <section id="buttons-home" class="row justify-content-around">
+    <section id="buttons-home" class="row justify-content-center text-center mt-2">
     {% if user.is_authenticated %}
-        <button type="button" class="btn btn-light shadow-sm col-3">
-            <a href="{% url 'children' %}" class="text-decoration-none">Children</a>
-        </button>
-        <button type="button" class="btn btn-light shadow-sm col-3">
-            <a href="{% url 'logs' %}" class="text-decoration-none">Food Log</a>
-        </button>
-        <button type="button" class="btn btn-light shadow-sm col-3">
-            <a href="{% url 'stats' %}" class="text-decoration-none">Stats</a>
-        </button>
-        <button type="button" class="btn btn-light shadow-sm col-3">
-            <a href="{% url 'account_logout' %}" class="text-decoration-none">Logout</a>
-        </button>
+            <a href="{% url 'children' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Children</button></a>
+            <a href="{% url 'logs' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Food Log</button></a>
+            <a href="{% url 'stats' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Stats</button></a>
+            <a href="{% url 'account_logout' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Logout</button></a>
     {% else %}
-        <button type="button" class="btn btn-light shadow-sm col-4">
-            <a href="{% url 'account_login' %}" class="text-decoration-none">Login</a>
-        </button>
-        <button type="button" class="btn btn-light shadow-sm col-4">
-            <a href="{% url 'account_signup' %}" class="text-decoration-none">Register</a>
-        </button>
+            <a href="{% url 'account_login' %}" class="col-5"><button type="button" class="btn btn-light shadow my-2">Login</button></a>
+            <a href="{% url 'account_signup' %}" class="col-5"><button type="button" class="btn btn-light shadow my-2">Register</button></a>
+    </section>
+    <section id="about-home" class="row text-center mt-3">
+        <p>
+            Little Foodie helps you track your baby's food journey, log meals, and monitor new tastes.
+            <br> 
+            <br> 
+            Sign in or create an account to get started and make every bite count!
+        </p>
     {% endif %}
     </section>
-    
-    <footer>
-        
+
+    </div>
+    <footer id="contact" class="footer d-flex justify-content-center text-center align-items-center">
+        <div class="container py-2">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <a class="footer-icon" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in a new tab)">
+                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>About this app</a>
+                </div>
+                <div id="copyright-home" class="col-4">
+                    {% block copyright %}
+                    Copyright 2025 - calculatedCode
+                    {% endblock %}
+                </div>
+                <div class="col-4">
+                    <a class="footer-icon" href="https://maps.app.goo.gl/TjEtaQj59vY42m9n8" target="_blank" rel="noopener" aria-label="Visit our Google Maps main training location page (opens in a new tab)">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>Contact Us</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
         <!-- Bootstrap JS -->
@@ -71,6 +85,3 @@
 </body>
 </html>
 
-{% comment %} {%block copyright%}
-Copyright 2025 - calculatedCode
-{%endblock%} {% endcomment %}
