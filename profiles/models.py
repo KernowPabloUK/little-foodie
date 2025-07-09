@@ -12,7 +12,8 @@ class Profile(models.Model):
         on_delete=models.CASCADE, 
         related_name="profile"
     )
-    location = models.CharField(max_length=30, blank=True)
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

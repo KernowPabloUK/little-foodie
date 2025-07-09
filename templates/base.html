@@ -1,4 +1,6 @@
 {% load static %}
+{% url 'logs' as logs_url %}
+{% url 'stats' as stats_url %}
 {% url 'profile' as profiles_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
@@ -45,15 +47,15 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-2">
-                        <a class="nav-link {% if request.path == logs_url %}active" aria-current="page{% endif %}"
+                        <a class="nav-link{% if request.path == logs_url %} active fw-bold{% endif %}" aria-current="page"
                             href="{% url 'logs' %}">Food Logs</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link {% if request.path == stats_url %}active" aria-current="page{% endif %}"
+                        <a class="nav-link{% if request.path == stats_url %} active fw-bold{% endif %}" aria-current="page"
                             href="{% url 'stats' %}">Stats</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link {% if request.path == profile_url %}active" aria-current="page{% endif %}"
+                        <a class="nav-link{% if request.path == profiles_url %} active fw-bold{% endif %}" aria-current="page"
                             href="{% url 'profile' %}">Profile</a>
                     </li>
                     <li class="nav-item mx-2">

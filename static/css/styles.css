@@ -39,6 +39,11 @@ body .container {
     font-size: 1.4rem;
 }
 
+#log-food-button-home button:hover{
+    background-color: #edcb9e;
+    font-weight: bold;
+}
+
 #buttons-home {
     gap: 10px 10px;
 }
@@ -47,6 +52,11 @@ body .container {
     color: black;
     min-width: 160px;
     font-size: 1.1rem;
+}
+
+#buttons-home button:hover {
+    background-color: #edcb9e;
+    font-weight: bold;
 }
 
 #about-home p {
@@ -81,4 +91,10 @@ footer a {
     background-color: #edcb9e;
     font-size: 2rem;
     margin-right: 1.8rem;
+}
+
+/* PROFILE URL */
+.h2-profile {
+    margin-top: 0.72rem;
+    margin-left: 1rem;
 }

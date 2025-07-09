@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
 
 
 # Create your models here.
@@ -21,3 +22,14 @@ class Child(models.Model):
 
     def __str__(self):
         return f"{self.name} has been registered."
+
+    @property
+    def age_in_months(self):
+        today = date.today()
+        years = today.year - self.birthdate.year
+        months = today.month - self.birthdate.month
+        days = today.day - self.birthdate.day
+        total_months = years * 12 + months
+        if days < 0:
+            total_months -= 1
+        return total_months
