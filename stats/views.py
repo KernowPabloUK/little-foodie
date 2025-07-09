@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def my_stats(request):
-    return HttpResponse("STATS")
+@login_required
+def statistics_view(request):
+    """
+    TODO
+    """
+    return render(request, 'stats/statistics.html')

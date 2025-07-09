@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def my_children(request):
-    return HttpResponse("CHILDREN")
+@login_required
+def child_view(request):
+    """
+    TODO
+    """
+    return render(request, 'children/child.html')

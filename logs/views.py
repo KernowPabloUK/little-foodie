@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def my_logs(request):
-    return HttpResponse("LOGS")
+@login_required
+def food_log_view(request):
+    """
+    TODO
+    """
+    return render(request, 'logs/food_log.html')
