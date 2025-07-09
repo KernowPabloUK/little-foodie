@@ -1,1 +1,1 @@
-web: gunicorn little-foodie.wsgi
+web: gunicorn little_foodie.wsgi
