@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
+from profiles import views
 
 urlpatterns = [
-    path('', views.child_view, name='children'),
+    path('add/', views.add_child, name='add_child'),
     ]

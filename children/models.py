@@ -10,7 +10,11 @@ class Child(models.Model):
     :model:`auth.User`
     :model:`logs.FoodLog`
     """
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="children")
+    user = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name="children"
+    )
     name = models.CharField(max_length=30, unique=True)
     birthdate = models.DateField()
     # TODO
