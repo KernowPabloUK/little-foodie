@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.shortcuts import redirect
 
 
-def redirect_to_home(request):
+def redirect_to_home(_request):
     """
     On login, user is redirected to the updated homepage
     """

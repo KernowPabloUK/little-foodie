@@ -24,7 +24,7 @@
 </head>
     <body class="d-flex flex-column h-100 main-bg">
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-md navbar-light bg-white">
+        <nav class="navbar navbar-expand-md w-100">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}"
                     ><span class="brand"><img id="navbar-logo-base" src="{% static 'images/Logo_No_Background.png' %}" alt="Little Foodie Logo"></span
@@ -44,29 +44,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'home' %}">Home</a>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link {% if request.path == logs_url %}active" aria-current="page{% endif %}"
+                            href="{% url 'logs' %}">Food Logs</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == about_url %}active" aria-current="page{% endif %}"
+                    <li class="nav-item mx-2">
+                        <a class="nav-link {% if request.path == stats_url %}active" aria-current="page{% endif %}"
+                            href="{% url 'stats' %}">Stats</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link {% if request.path == profile_url %}active" aria-current="page{% endif %}"
                             href="{% url 'profile' %}">Profile</a>
                     </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
+                    <li class="nav-item mx-2">
                         <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
                             href="{% url 'account_logout' %}">Logout</a>
                     </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'account_login' %}">Login</a>
-                    </li>
-                    {% endif %}
                 </ul>
                 </div>
                 </div>
@@ -76,6 +69,26 @@
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
+
+    <footer id="contact" class="footer d-flex mt-auto justify-content-center text-center align-items-center">
+        <div class="container py-2">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <a class="footer-icon" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in a new tab)">
+                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>About this app</a>
+                </div>
+                <div id="copyright-home" class="col-4">
+                    {% block copyright %}
+                    Copyright 2025 - calculatedCode
+                    {% endblock %}
+                </div>
+                <div class="col-4">
+                    <a class="footer-icon" href="https://maps.app.goo.gl/TjEtaQj59vY42m9n8" target="_blank" rel="noopener" aria-label="Visit our Google Maps main training location page (opens in a new tab)">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
         <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"

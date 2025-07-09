@@ -33,13 +33,20 @@ body .container {
     color: crimson;
 }
 
+#log-food-button-home button{
+    color: black;
+    min-width: 200px;
+    font-size: 1.4rem;
+}
+
 #buttons-home {
     gap: 10px 10px;
 }
 
 #buttons-home button {
     color: black;
-    min-width: 120px;
+    min-width: 160px;
+    font-size: 1.1rem;
 }
 
 #about-home p {
@@ -68,4 +75,10 @@ footer a {
 #navbar-logo-base {
     max-height: 10rem;
     max-width: 10rem;
+}
+
+.navbar {
+    background-color: #edcb9e;
+    font-size: 2rem;
+    margin-right: 1.8rem;
 }
