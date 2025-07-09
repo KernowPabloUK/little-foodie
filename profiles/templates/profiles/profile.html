@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <h1 class="text-center mt-2">Profile</h1>
@@ -7,14 +8,10 @@
         <div class="card my-2">
             <h2 class="h2-profile"> {{ user.username }}</h2>
             <div class="card-body">
-                <label for="first_name" class="form-label">First Name</label>
-                <input type="text" id="first_name" class="form-control card-title" value="{{ user.first_name|default:'' }}">
-                <label for="last_name" class="form-label">Last Name</label>
-                <input type="text" id="last_name" class="form-control card-title" value="{{ user.last_name|default:'' }}">
-                <label for="dob" class="form-label">Date Of Birth</label>
-                <input type="date" id="dob" class="form-control card-title" value="{{ user.profile.dob|default:'' }}">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" id="email" class="form-control card-title" value="{{ user.email|default:'' }}">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ profile_form|crispy }}
+                </form>
                 <p class="form-label my-2"><strong>Children:</strong> {{ user.profile.children|default:"None" }}</p>
                 <br>
                 <a href="#" class="btn btn-dark">Save changes</a>
