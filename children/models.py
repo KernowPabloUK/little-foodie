@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
+from profiles.models import Profile
 
 
 # Create your models here.
@@ -11,7 +12,7 @@ class Child(models.Model):
     :model:`logs.FoodLog`
     """
     user = models.ForeignKey(
-        User,
+        Profile,
         on_delete=models.PROTECT,
         related_name="children"
     )

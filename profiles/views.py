@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Profile
 from .forms import ProfileForm
+from children.forms import AddChildForm
 
 
 # Create your views here.
@@ -36,43 +37,49 @@ def profile_view(request):
     else:
         profile_form = ProfileForm(instance=profile)
 
+    add_child_form = AddChildForm()
+
     context = {
         'user': user,
         'profile': profile,
         'profile_form': profile_form,
+        'add_child_form': add_child_form,
     }
 
     return render(request, 'profiles/profile.html', context)
 
 
-# @login_required
-# def update_child(request, child_id):
-#     if request.method == 'POST':
-#         child = get_object_or_404(Child, id=child_id, parent=request.user.profile)
-#         form = ChildForm(request.POST, instance=child, parent=request.user.profile)
+@login_required
+def add_child(request):
+    user = request.user
 
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Child updated successfully!')
-#         else:
-#             messages.error(request, 'Please correct the errors below.')
+    try:
+        profile = user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=user)
 
-#         return redirect('profile')
+    if request.method == 'POST':
+        add_child_form = AddChildForm(request.POST)
 
-#     return redirect('profile')
+        if add_child_form.is_valid():
+            child = add_child_form.save(commit=False)
+            child.user = profile
+            child.save()
+            messages.success(
+                request,
+                f'Child {child.name} added successfully!'
+            )
+            return redirect('profile')  # Redirect after successful save
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        add_child_form = AddChildForm()
 
+    # Only render form page if GET request or form has errors
+    context = {
+        'user': user,
+        'profile': profile,
+        'add_child_form': add_child_form,
+    }
 
-# @login_required
-# def add_child(request):
-#     if request.method == 'POST':
-#         form = AddChildForm(request.POST, parent=request.user.profile)
-
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Child added successfully!')
-#         else:
-#             messages.error(request, 'Please correct the errors below.')
-
-#         return redirect('profile')
-
-#     return redirect('profile')
+    return render(request, 'children/add_child.html', context)

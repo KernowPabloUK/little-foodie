@@ -21,7 +21,7 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ profile_form|crispy }}
-                    <p class="form-label my-2"><strong>Children:</strong> {{ user.profile.children|default:"None" }}</p>
+                    <p class="form-label my-2"><strong>Children:</strong> {{ user.profile.children.count|default:'None' }}</p>
                     <br>
                     <button type="submit" class="btn btn-dark">Save changes</button>
                 </form>
@@ -35,13 +35,10 @@
                 <div class="card my-2">
                     <h2 class="h2-profile">{{ child.name }}</h2>
                     <div class="card-body">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" id="child_name_{{ child.id }}" class="form-control card-title" value="{{ child.name }}">
-                        <label for="dob" class="form-label">Date Of Birth</label>
-                        <input type="date" id="child_dob_{{ child.id }}" class="form-control card-title" value="{{ child.dateofbirth }}">
+                        <p class="form-label my-2"><strong>Date of Birth:</strong> {{ child.birthdate|date:'F j, Y' }}</p>
                         <p class="form-label my-2"><strong>Age in months:</strong> {{ child.age_in_months }}</p>
                         <br>
-                        <a href="#" class="btn btn-dark">Save changes</a>
+                        <button>Log Food for {{ child.name }}</button>
                     </div>
                 </div>   
             </section>
@@ -52,17 +49,12 @@
         <div class="card my-2">
             <h2 class="h2-profile">Add Child</h2>
             <div class="card-body">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="new_child_name" class="form-control card-title" value="">
-                <label for="dob" class="form-label">Date Of Birth</label>
-                <input type="date" id="new_child_dob" class="form-control card-title" value="">
-                <p class="form-label my-2"><strong>Age in months:</strong></p>
-                <br>
-            {% comment %} <form method="post">
-                {% csrf_token %}
-                {{ add_child_form|crispy }} {% endcomment %}
-                <button type="submit" class="btn btn-dark">Add Child</button>
-            {% comment %} </form> {% endcomment %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ add_child_form|crispy }}
+                    <br>
+                    <button type="submit" class="btn btn-dark">Add Child</button>
+                </form>
             </div>
         </div>   
     </section>

@@ -5,4 +5,4 @@ from .models import Child
 class AddChildForm(forms.ModelForm):
     class Meta:
         model = Child
-        fields = ('user', 'name', 'birthdate',)
+        fields = ('name', 'birthdate',)
