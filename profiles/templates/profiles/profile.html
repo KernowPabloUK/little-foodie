@@ -61,7 +61,7 @@
                         <p class="form-label my-2"><strong>Age in months:</strong> {{ child.age_in_months }}</p>
                         <br>
                         <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-dark">Log Food for {{ child.name }}</button>
+                            <a href="{% url 'logs' %}?child_id={{ child.id }}" class="btn btn-dark">Log Food for {{ child.name }}</a>
                             <div class="ms-auto">
                                 <form action="{% url 'confirm_delete_child' child.id %}" method="get" style="display:inline;">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete {{ child.name }}</button>
