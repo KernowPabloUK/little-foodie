@@ -18,7 +18,7 @@ class Consistency(models.Model):
     label = models.IntegerField(choices=CONSISTENCY, default=1)
 
     def __str__(self):
-        return self.label
+        return self.get_label_display()  # This will return the human-readable choice
 
 
 class Preparation(models.Model):
@@ -29,7 +29,7 @@ class Preparation(models.Model):
     label = models.IntegerField(choices=PREPARATION, default=1)
 
     def __str__(self):
-        return self.label
+        return self.get_label_display()
 
 
 class FeedingMethod(models.Model):
@@ -40,7 +40,7 @@ class FeedingMethod(models.Model):
     label = models.IntegerField(choices=FEED_METHOD, default=1)
 
     def __str__(self):
-        return self.label
+        return self.get_label_display()
 
 
 class SatisfactionLevel(models.Model):
@@ -51,7 +51,7 @@ class SatisfactionLevel(models.Model):
     label = models.IntegerField(choices=SATISFACTION, default=1)
 
     def __str__(self):
-        return self.label
+        return self.get_label_display()
 
 
 class FoodLog(models.Model):

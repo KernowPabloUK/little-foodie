@@ -2,6 +2,10 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block extra_js %}
+<script src="{% static 'javascript/food_log.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     {% if messages %}
@@ -41,7 +45,7 @@
         <!-- Food Logging Section -->
         {% if selected_child %}
             <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
-                <h1>{{ selected_child.name }}</h1>
+                
                 {% if children.count > 1 %}
                     <a href="{% url 'clear_child_selection' %}" class="btn btn-outline-dark btn-sm">Change Child</a>
                 {% endif %}
@@ -50,7 +54,7 @@
             <!-- Food Log Form -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h2 id="current-datetime" class="mb-0"></h2>
+                    <h1>{{ selected_child.name }}</h1>
                 </div>
                 <div class="card-body">
                     <form method="post" id="food-log-form">
@@ -60,7 +64,7 @@
                         <div class="row">
                             <!-- Date/Time Field -->
                             <div class="col-md-6 mb-3">
-                                <label for="{{ food_log_form.log_datetime.id_for_label }}" class="form-label">Date & Time</label>
+                                <label for="{{ food_log_form.log_datetime.id_for_label }}" class="form-label"><strong>When was {{ selected_child.name }} fed?</strong></label>
                                 {{ food_log_form.log_datetime }}
                             </div>
                         </div>
@@ -68,11 +72,11 @@
                         <!-- Food Selection -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="{{ food_log_form.food.id_for_label }}" class="form-label">Food</label>
+                                <label for="{{ food_log_form.food.id_for_label }}" class="form-label"><strong>Food</strong></label>
                                 {{ food_log_form.food }}
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Category</label>
+                            <div class="col-md-6 mb-3" style="display: none;">
+                                <label class="form-label"><strong>Category</strong></label>
                                 <input type="text" id="food-category" class="form-control" readonly placeholder="Select food first">
                             </div>
                         </div>
@@ -81,8 +85,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <div id="food-image-container" style="display: none;">
-                                    <label class="form-label">Food Image</label>
-                                    <div>
+                                    <div class="d-flex justify-content-center">
                                         <img id="food-image" src="" alt="Food image" class="img-fluid" style="max-height: 200px;">
                                     </div>
                                 </div>
@@ -93,69 +96,81 @@
                                         <strong>Recommended minimum age:</strong> <span id="min-age"></span> months
                                     </div>
                                     <div id="allergen-warning" class="alert alert-warning" style="display: none;">
-                                        <strong>⚠️ Allergen Alert:</strong> This food contains common allergens. Please consult with your pediatrician.
+                                        <strong>⚠️ Allergen Alert:</strong> The Food Standards Agency advises that this food contains common allergens. Please consult with your pediatrician.
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Preparation Details -->
-                        <div class="row">
+                        <div class="row" id="preparation-section" style="display: none;">
                             <div class="col-md-4 mb-3">
-                                <label for="{{ food_log_form.preparation.id_for_label }}" class="form-label">Preparation</label>
+                                <label for="{{ food_log_form.preparation.id_for_label }}" class="form-label"><strong>Preparation</strong></label>
                                 {{ food_log_form.preparation }}
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="{{ food_log_form.consistency.id_for_label }}" class="form-label">Consistency</label>
+                                <label for="{{ food_log_form.consistency.id_for_label }}" class="form-label"><strong>Consistency</strong></label>
                                 {{ food_log_form.consistency }}
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="{{ food_log_form.feeding_method.id_for_label }}" class="form-label">Feeding Method</label>
+                                <label for="{{ food_log_form.feeding_method.id_for_label }}" class="form-label"><strong>Feeding Method</strong></label>
                                 {{ food_log_form.feeding_method }}
                             </div>
                         </div>
 
                         <!-- Volume -->
-                        <div class="row">
+                        <div class="row" id="volume-section" style="display: none;">
                             <div class="col-md-6 mb-3">
-                                <label for="{{ food_log_form.volume.id_for_label }}" class="form-label">Volume (teaspoons)</label>
+                                <label for="{{ food_log_form.volume.id_for_label }}" class="form-label"><strong>Volume (teaspoons)</strong></label>
                                 {{ food_log_form.volume }}
                                 <div class="form-text">{{ food_log_form.volume.help_text }}</div>
                             </div>
                         </div>
 
                         <!-- Satisfaction Level -->
-                        <div class="mb-3">
-                            <label class="form-label">Satisfaction Level</label>
+                        <div class="mb-3" id="satisfaction-section" style="display: none;">
+                            <label class="form-label"><strong>Satisfaction Level</strong></label>
+                            <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="">
                             <div class="satisfaction-buttons">
-                                {% for choice in food_log_form.satisfaction_level %}
-                                    <div class="satisfaction-option">
-                                        {{ choice.tag }}
-                                        <label for="{{ choice.id_for_label }}" class="satisfaction-label">
-                                            {% if choice.choice_value == 3 %}❤️ LOVE
-                                            {% elif choice.choice_value == 2 %}😊 LIKE
-                                            {% elif choice.choice_value == 1 %}😐 OK
-                                            {% elif choice.choice_value == 0 %}😞 HATE
-                                            {% endif %}
-                                        </label>
+                                <div class="satisfaction-option" data-value="0">
+                                    <div class="satisfaction-label">
+                                        😞 HATE
                                     </div>
-                                {% endfor %}
+                                </div>
+                                <div class="satisfaction-option" data-value="1">
+                                    <div class="satisfaction-label">
+                                        😐 OK
+                                    </div>
+                                </div>
+                                <div class="satisfaction-option" data-value="2">
+                                    <div class="satisfaction-label">
+                                        😊 LIKE
+                                    </div>
+                                </div>
+                                <div class="satisfaction-option" data-value="3">
+                                    <div class="satisfaction-label">
+                                        ❤️ LOVE
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Favourite Toggle -->
-                        <div class="mb-3">
-                            <div class="form-check">
-                                {{ food_log_form.favourite }}
-                                <label class="form-check-label" for="{{ food_log_form.favourite.id_for_label }}">
-                                    ⭐ Mark as Favourite
-                                </label>
+                        <!-- Favourite -->
+                        <div class="mb-3" id="favourite-section" style="display: none;">
+                            <label class="form-label"><strong>Mark as Favourite</strong></label>
+                            <input type="hidden" name="favourite" id="favourite" value="false">
+                            <div class="favourite-buttons">
+                                <div class="favourite-toggle" data-selected="false">
+                                    <div class="favourite-label">
+                                        🌟 Favourite
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Notes -->
-                        <div class="mb-3">
-                            <label for="{{ food_log_form.notes.id_for_label }}" class="form-label">Notes</label>
+                        <div class="mb-3" id="notes-section" style="display: none;">
+                            <label for="{{ food_log_form.notes.id_for_label }}" class="form-label"><strong>Notes</strong></label>
                             {{ food_log_form.notes }}
                         </div>
 
@@ -196,122 +211,6 @@
         {% endif %}
     {% endif %}
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Update current datetime display
-    updateCurrentDateTime();
-    setInterval(updateCurrentDateTime, 60000); // Update every minute
-
-    // Handle food selection changes
-    const foodSelect = document.getElementById('food-select');
-    if (foodSelect) {
-        foodSelect.addEventListener('change', handleFoodSelection);
-    }
-});
-
-function updateCurrentDateTime() {
-    const now = new Date();
-    const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    document.getElementById('current-datetime').textContent = now.toLocaleDateString('en-US', options);
-}
-
-function handleFoodSelection() {
-    const foodSelect = document.getElementById('food-select');
-    const selectedOption = foodSelect.options[foodSelect.selectedIndex];
-    
-    if (selectedOption.value) {
-        // You'll need to add data attributes to the food options in the form
-        // For now, this is a placeholder for the AJAX call to get food details
-        
-        // Show food image container
-        document.getElementById('food-image-container').style.display = 'block';
-        document.getElementById('food-details').style.display = 'block';
-        
-        // This would typically be an AJAX call to get food details
-        // For now, using placeholder logic
-        fetch(`/foods/api/details/${selectedOption.value}/`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('food-category').value = data.category;
-                document.getElementById('min-age').textContent = data.min_age_months;
-                
-                if (data.image) {
-                    document.getElementById('food-image').src = data.image;
-                } else {
-                    document.getElementById('food-image-container').style.display = 'none';
-                }
-                
-                if (data.is_allergen) {
-                    document.getElementById('allergen-warning').style.display = 'block';
-                } else {
-                    document.getElementById('allergen-warning').style.display = 'none';
-                }
-            })
-            .catch(error => {
-                console.log('Error fetching food details:', error);
-            });
-    } else {
-        document.getElementById('food-image-container').style.display = 'none';
-        document.getElementById('food-details').style.display = 'none';
-        document.getElementById('food-category').value = '';
-    }
-}
-
-function clearForm() {
-    if (confirm('Are you sure you want to clear the form?')) {
-        document.getElementById('food-log-form').reset();
-        document.getElementById('food-image-container').style.display = 'none';
-        document.getElementById('food-details').style.display = 'none';
-        document.getElementById('food-category').value = '';
-    }
-}
-</script>
-
-<style>
-.satisfaction-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.satisfaction-option {
-    display: flex;
-    align-items: center;
-}
-
-.satisfaction-option input[type="radio"] {
-    margin-right: 8px;
-}
-
-.satisfaction-label {
-    padding: 8px 16px;
-    border: 2px solid #ddd;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-}
-
-.satisfaction-option input[type="radio"]:checked + .satisfaction-label {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
-}
-
-.food-log-entry:last-child {
-    border-bottom: none !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-}
-</style>
 {% endblock %}
 
 {%block copyright%}

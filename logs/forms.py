@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .models import FoodLog, Consistency, Preparation, FeedingMethod, SatisfactionLevel
+from .models import FoodLog, Consistency, Preparation, FeedingMethod, SatisfactionLevel, CONSISTENCY, PREPARATION, FEED_METHOD, SATISFACTION
 from children.models import Child
 from foods.models import Food
 
@@ -33,31 +33,34 @@ class FoodLogForm(forms.ModelForm):
     )
     
     food = forms.ModelChoiceField(
-        queryset=Food.objects.all(),
+        queryset=Food.objects.all().order_by('name'),
+        empty_label="Select a food...",
         widget=forms.Select(attrs={
             'class': 'form-select',
             'id': 'food-select'
         })
     )
     
-    consistency = forms.ModelChoiceField(
-        queryset=Consistency.objects.all(),
+    # Use ChoiceField with the constants instead of ModelChoiceField
+    consistency = forms.ChoiceField(
+        choices=[('', 'Select consistency...')] + list(CONSISTENCY),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     
-    preparation = forms.ModelChoiceField(
-        queryset=Preparation.objects.all(),
+    preparation = forms.ChoiceField(
+        choices=[('', 'Select preparation...')] + list(PREPARATION),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     
-    feeding_method = forms.ModelChoiceField(
-        queryset=FeedingMethod.objects.all(),
+    feeding_method = forms.ChoiceField(
+        choices=[('', 'Select feeding method...')] + list(FEED_METHOD),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     
-    satisfaction_level = forms.ModelChoiceField(
-        queryset=SatisfactionLevel.objects.all(),
-        widget=forms.RadioSelect(attrs={'class': 'satisfaction-radio'})
+    satisfaction_level = forms.ChoiceField(
+        choices=SATISFACTION,
+        widget=forms.HiddenInput(),  # Hidden input that gets updated by JavaScript
+        required=True
     )
     
     volume = forms.IntegerField(
@@ -71,7 +74,7 @@ class FoodLogForm(forms.ModelForm):
     
     favourite = forms.BooleanField(
         required=False,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+        widget=forms.HiddenInput()  # Hidden input that gets updated by JavaScript
     )
     
     notes = forms.CharField(
@@ -85,9 +88,7 @@ class FoodLogForm(forms.ModelForm):
 
     class Meta:
         model = FoodLog
-        fields = ['food', 'consistency', 'preparation', 
-                 'feeding_method', 'volume', 'satisfaction_level', 
-                 'favourite', 'notes']
+        fields = ['food', 'volume', 'favourite', 'notes']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

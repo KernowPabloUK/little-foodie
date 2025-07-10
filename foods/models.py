@@ -21,11 +21,11 @@ class Food(models.Model):
     category = models.IntegerField(choices=FOOD_CATEGORY, default=0)
     min_age_months = models.IntegerField(default=0)
     is_allergen = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='static/images/food_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='food_images/', blank=True, null=True)
     created_by_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="foods")
 
     class Meta:
         ordering = ["-name"]
 
     def __str__(self):
-        return f"{self.created_by_user} has created the food {self.name} within the category of {self.category}."
+        return self.name

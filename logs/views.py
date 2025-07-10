@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from children.models import Child
-from .models import FoodLog
+from .models import FoodLog, Consistency, Preparation, FeedingMethod, SatisfactionLevel
 from .forms import ChildSelectionForm, FoodLogForm
 
 
@@ -72,13 +72,30 @@ def food_log_view(request):
             
             # Handle the custom datetime field
             log_datetime = food_log_form.cleaned_data.get('log_datetime')
+            
+            # Get or create the related objects based on the choice values
+            consistency_value = food_log_form.cleaned_data.get('consistency')
+            preparation_value = food_log_form.cleaned_data.get('preparation')
+            feeding_method_value = food_log_form.cleaned_data.get('feeding_method')
+            satisfaction_value = food_log_form.cleaned_data.get('satisfaction_level')
+            
+            # Get or create the objects
+            consistency_obj, _ = Consistency.objects.get_or_create(label=consistency_value)
+            preparation_obj, _ = Preparation.objects.get_or_create(label=preparation_value)
+            feeding_method_obj, _ = FeedingMethod.objects.get_or_create(label=feeding_method_value)
+            satisfaction_obj, _ = SatisfactionLevel.objects.get_or_create(label=satisfaction_value)
+            
+            # Assign the objects to the food log
+            food_log.consistency = consistency_obj
+            food_log.preparation = preparation_obj
+            food_log.feeding_method = feeding_method_obj
+            food_log.satisfaction_level = satisfaction_obj
+            
+            food_log.save()
+            
+            # Update the logged_at field if custom datetime was provided
             if log_datetime:
-                # Since logged_at has auto_now=True, we need to save first then update
-                food_log.save()
-                # Update the logged_at field manually
                 FoodLog.objects.filter(id=food_log.id).update(logged_at=log_datetime)
-            else:
-                food_log.save()
                 
             messages.success(request, f'Food logged successfully for {selected_child.name}!')
             return redirect('logs')
@@ -88,7 +105,7 @@ def food_log_view(request):
         food_log_form = FoodLogForm()
     
     # Get existing food logs for the selected child
-    food_logs = FoodLog.objects.filter(child=selected_child) if selected_child else []
+    food_logs = FoodLog.objects.filter(child=selected_child).order_by('-logged_at') if selected_child else []
     
     context = {
         'selected_child': selected_child,
