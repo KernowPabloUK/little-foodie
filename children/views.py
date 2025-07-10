@@ -5,14 +5,13 @@ from .models import Child
 from .forms import AddChildForm
 
 
-# Create your views here.
 @login_required
 def add_child(request):
     user = request.user
 
     try:
         profile = user.profile
-    except:
+    except AttributeError:
         from profiles.models import Profile
         profile = Profile.objects.create(user=user)
 
@@ -43,11 +42,11 @@ def add_child(request):
 @login_required
 def confirm_delete_child(request, child_id):
     child = get_object_or_404(Child, id=child_id, user=request.user.profile)
-    
+
     if request.method == 'POST':
         child_name = child.name
         child.delete()
         messages.success(request, f'Child {child_name} has been deleted successfully.')
         return redirect('profile')
-    
+
     return render(request, 'children/confirm_delete_child.html', {'child': child})

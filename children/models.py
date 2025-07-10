@@ -1,7 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
 from datetime import date
 from profiles.models import Profile
+from django.core.exceptions import ValidationError
+
+
+def validate_birthdate(value):
+    """Validate that birthdate is not in the future"""
+    if value > date.today():
+        raise ValidationError('Birth date cannot be in the future.')
 
 
 # Create your models here.
@@ -17,7 +23,7 @@ class Child(models.Model):
         related_name="children"
     )
     name = models.CharField(max_length=30, unique=True)
-    birthdate = models.DateField()
+    birthdate = models.DateField(validators=[validate_birthdate])
 
     class Meta:
         ordering = ["-birthdate"]
