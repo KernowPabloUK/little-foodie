@@ -20,6 +20,7 @@ def profile_view(request):
     Loads the profile page - logged in users only
     """
     user = request.user
+    edit_mode = request.GET.get('edit', False)
 
     try:
         profile = user.profile
@@ -34,6 +35,7 @@ def profile_view(request):
             return redirect('profile')
         else:
             messages.error(request, 'Please correct the errors below.')
+            edit_mode = True
     else:
         profile_form = ProfileForm(instance=profile)
 
@@ -41,6 +43,7 @@ def profile_view(request):
         'user': user,
         'profile': profile,
         'profile_form': profile_form,
+        'edit_mode': edit_mode,
     }
 
     return render(request, 'profiles/profile.html', context)
@@ -62,7 +65,8 @@ def add_child(request):
             child = add_child_form.save(commit=False)
             child.user = profile
             child.save()
-            messages.success(request, f'Child {child.name} added successfully!')
+            messages.success(
+                request, f'Child {child.name} added successfully!')
             return redirect('profile')
         else:
             messages.error(request, 'Please correct the errors below.')
