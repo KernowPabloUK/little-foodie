@@ -38,7 +38,10 @@
                         <p class="form-label my-2"><strong>Date of Birth:</strong> {{ child.birthdate|date:'F j, Y' }}</p>
                         <p class="form-label my-2"><strong>Age in months:</strong> {{ child.age_in_months }}</p>
                         <br>
-                        <button>Log Food for {{ child.name }}</button>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-dark">Log Food for {{ child.name }}</button>
+                            <a class="btn btn-danger btn-sm">Delete {{ child.name }}</a>
+                        </div>
                     </div>
                 </div>   
             </section>
@@ -49,10 +52,8 @@
         <div class="card my-2">
             <h2 class="h2-profile">Add Child</h2>
             <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ add_child_form|crispy }}
-                    <br>
+                <p>Add a new child to your profile.</p>
+                <form action="{% url 'add_child' %}" method="get">
                     <button type="submit" class="btn btn-dark">Add Child</button>
                 </form>
             </div>

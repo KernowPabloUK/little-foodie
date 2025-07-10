@@ -37,13 +37,10 @@ def profile_view(request):
     else:
         profile_form = ProfileForm(instance=profile)
 
-    add_child_form = AddChildForm()
-
     context = {
         'user': user,
         'profile': profile,
         'profile_form': profile_form,
-        'add_child_form': add_child_form,
     }
 
     return render(request, 'profiles/profile.html', context)
@@ -65,17 +62,13 @@ def add_child(request):
             child = add_child_form.save(commit=False)
             child.user = profile
             child.save()
-            messages.success(
-                request,
-                f'Child {child.name} added successfully!'
-            )
-            return redirect('profile')  # Redirect after successful save
+            messages.success(request, f'Child {child.name} added successfully!')
+            return redirect('profile')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
         add_child_form = AddChildForm()
 
-    # Only render form page if GET request or form has errors
     context = {
         'user': user,
         'profile': profile,
