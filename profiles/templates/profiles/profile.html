@@ -62,7 +62,11 @@
                         <br>
                         <div class="d-flex gap-2">
                             <button type="button" class="btn btn-dark">Log Food for {{ child.name }}</button>
-                            <a class="btn btn-danger btn-sm">Delete {{ child.name }}</a>
+                            <div class="ms-auto">
+                                <form action="{% url 'confirm_delete_child' child.id %}" method="get" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete {{ child.name }}</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>   

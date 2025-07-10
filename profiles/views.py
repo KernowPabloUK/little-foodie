@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Profile
 from .forms import ProfileForm
-from children.forms import AddChildForm
 
 
 # Create your views here.
@@ -47,36 +46,3 @@ def profile_view(request):
     }
 
     return render(request, 'profiles/profile.html', context)
-
-
-@login_required
-def add_child(request):
-    user = request.user
-
-    try:
-        profile = user.profile
-    except Profile.DoesNotExist:
-        profile = Profile.objects.create(user=user)
-
-    if request.method == 'POST':
-        add_child_form = AddChildForm(request.POST)
-
-        if add_child_form.is_valid():
-            child = add_child_form.save(commit=False)
-            child.user = profile
-            child.save()
-            messages.success(
-                request, f'Child {child.name} added successfully!')
-            return redirect('profile')
-        else:
-            messages.error(request, 'Please correct the errors below.')
-    else:
-        add_child_form = AddChildForm()
-
-    context = {
-        'user': user,
-        'profile': profile,
-        'add_child_form': add_child_form,
-    }
-
-    return render(request, 'children/add_child.html', context)
