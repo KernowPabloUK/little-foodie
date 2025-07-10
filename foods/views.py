@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
 from .models import Food
+from logs.models import FoodLog
 
 
 # Create your views here.
@@ -13,36 +15,39 @@ def food_view(request):
     return render(request, 'foods/food.html')
 
 
-@login_required
+@require_http_methods(["GET"])
 def food_details_api(request, food_id):
     """
     API endpoint to get food details for the food log form
     """
-    food = get_object_or_404(Food, id=food_id)
+    try:
+        food = Food.objects.get(id=food_id)
 
-    # Handle different category field types
-    if hasattr(food, 'category'):
-        if hasattr(food.category, 'name'):
-            category_display = food.category.name
-        elif hasattr(food, 'get_category_display'):
-            category_display = food.get_category_display()
-        else:
-            category_display = str(food.category)
-    else:
-        category_display = 'Unknown'
+        is_favourite = False
+        if request.user.is_authenticated:
+            selected_child_id = request.session.get('selected_child_id')
+            if selected_child_id:
+                recent_favourite_log = FoodLog.objects.filter(
+                    food=food,
+                    child_id=selected_child_id,
+                    favourite=True
+                ).order_by('-logged_at').first()
 
-    # Get image URL from the database field
-    image_url = None
-    if hasattr(food, 'image') and food.image:
-        image_url = food.image.url
+                if recent_favourite_log:
+                    is_favourite = True
 
-    data = {
-        'id': food.id,
-        'name': food.name,
-        'category': category_display,
-        'min_age_months': food.min_age_months if food.min_age_months else 0,
-        'is_allergen': food.is_allergen,
-        'image': image_url
-    }
+        data = {
+            'id': food.id,
+            'name': food.name,
+            'category': food.category,
+            'min_age_months': food.min_age_months,
+            'is_allergen': food.is_allergen,
+            'is_favourite': is_favourite,
+        }
 
-    return JsonResponse(data)
+        if food.image:
+            data['image'] = food.image.url
+
+        return JsonResponse(data)
+    except Food.DoesNotExist:
+        return JsonResponse({'error': 'Food not found'}, status=404)

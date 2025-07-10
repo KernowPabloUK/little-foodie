@@ -1,7 +1,12 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.utils import timezone
-from .models import FoodLog, Consistency, Preparation, FeedingMethod, SatisfactionLevel, CONSISTENCY, PREPARATION, FEED_METHOD, SATISFACTION
+from .models import (
+    FoodLog,
+    CONSISTENCY,
+    PREPARATION,
+    FEED_METHOD,
+    SATISFACTION,
+)
 from children.models import Child
 from foods.models import Food
 
@@ -21,7 +26,6 @@ class ChildSelectionForm(forms.Form):
 
 class FoodLogForm(forms.ModelForm):
     """Form for logging food for a child"""
-    # Create a separate datetime field that's not tied to the model field
     log_datetime = forms.DateTimeField(
         label="Date & Time",
         widget=forms.DateTimeInput(attrs={
@@ -31,7 +35,7 @@ class FoodLogForm(forms.ModelForm):
         input_formats=['%Y-%m-%dT%H:%M'],
         initial=timezone.now
     )
-    
+
     food = forms.ModelChoiceField(
         queryset=Food.objects.all().order_by('name'),
         empty_label="Select a food...",
@@ -40,29 +44,28 @@ class FoodLogForm(forms.ModelForm):
             'id': 'food-select'
         })
     )
-    
-    # Use ChoiceField with the constants instead of ModelChoiceField
+
     consistency = forms.ChoiceField(
         choices=[('', 'Select consistency...')] + list(CONSISTENCY),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-    
+
     preparation = forms.ChoiceField(
         choices=[('', 'Select preparation...')] + list(PREPARATION),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-    
+
     feeding_method = forms.ChoiceField(
         choices=[('', 'Select feeding method...')] + list(FEED_METHOD),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-    
+
     satisfaction_level = forms.ChoiceField(
         choices=SATISFACTION,
-        widget=forms.HiddenInput(),  # Hidden input that gets updated by JavaScript
+        widget=forms.HiddenInput(),
         required=True
     )
-    
+
     volume = forms.IntegerField(
         widget=forms.NumberInput(attrs={
             'class': 'form-control',
@@ -71,12 +74,12 @@ class FoodLogForm(forms.ModelForm):
         }),
         help_text="Approximate volume in teaspoons"
     )
-    
+
     favourite = forms.BooleanField(
         required=False,
-        widget=forms.HiddenInput()  # Hidden input that gets updated by JavaScript
+        widget=forms.HiddenInput()
     )
-    
+
     notes = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={
@@ -89,8 +92,8 @@ class FoodLogForm(forms.ModelForm):
     class Meta:
         model = FoodLog
         fields = ['food', 'volume', 'favourite', 'notes']
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Set initial datetime to current time
-        self.fields['log_datetime'].initial = timezone.now().strftime('%Y-%m-%dT%H:%M')
+        initial_time = timezone.now().strftime('%Y-%m-%dT%H:%M')
+        self.fields['log_datetime'].initial = initial_time

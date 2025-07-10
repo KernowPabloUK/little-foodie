@@ -115,6 +115,17 @@ function handleFoodSelection() {
                     }
                 }
                 
+                const favouriteToggle = document.querySelector('.favourite-toggle');
+                if (favouriteToggle && data.is_favourite !== undefined) {
+                    const isFavourite = data.is_favourite;
+                    favouriteToggle.setAttribute('data-selected', isFavourite.toString());
+                    document.getElementById('favourite').value = isFavourite.toString();
+                    console.log('Setting favourite status from previous logs:', isFavourite);
+                } else if (favouriteToggle) {
+                    favouriteToggle.setAttribute('data-selected', 'false');
+                    document.getElementById('favourite').value = 'false';
+                }
+                
                 showFormSections();
             })
             .catch(error => {

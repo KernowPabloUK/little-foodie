@@ -33,13 +33,13 @@ body .container {
     color: crimson;
 }
 
-#log-food-button-home button{
+#log-food-button-home button {
     color: black;
     min-width: 200px;
     font-size: 1.4rem;
 }
 
-#log-food-button-home button:hover{
+#log-food-button-home button:hover {
     background-color: #edcb9e;
     font-weight: bold;
 }
@@ -67,7 +67,6 @@ footer {
     background-color: #edcb9e;
     min-height: 72px;
     color: black;
-    
 }
 
 #copyright-home {
@@ -79,7 +78,6 @@ footer a {
     color: black;
     font-size: clamp(0.6rem, 2.3vw, 1.5rem);
 }
-
 
 /* BASE URL */
 #navbar-logo-base {
@@ -123,11 +121,11 @@ footer a {
     font-weight: bold;
     font-size: 18px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.3); /* Translucent by default */
+    background-color: rgba(255, 255, 255, 0.3);
     min-width: 120px;
     transition: all 0.3s ease;
     user-select: none;
-    opacity: 0.6; /* Make unselected options translucent */
+    opacity: 0.6;
 }
 
 .satisfaction-option:hover .satisfaction-label,
@@ -138,43 +136,41 @@ footer a {
 }
 
 .satisfaction-option.selected .satisfaction-label {
-    background-color: rgba(0, 123, 255, 1); /* Fully opaque blue */
+    background-color: rgba(0, 123, 255, 1);
     color: white;
     border-color: #007bff;
-    opacity: 1; /* Fully opaque when selected */
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.6); /* Blue glow effect */
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
     transform: scale(1.1);
 }
 
-/* Individual colors for each satisfaction level */
 .satisfaction-option[data-value="0"].selected .satisfaction-label {
-    background-color: rgba(220, 53, 69, 1); /* Red for HATE */
+    background-color: rgba(220, 53, 69, 1);
     border-color: #dc3545;
     box-shadow: 0 0 20px rgba(220, 53, 69, 0.6);
 }
 
 .satisfaction-option[data-value="1"].selected .satisfaction-label {
-    background-color: rgba(255, 193, 7, 1); /* Yellow for OK */
+    background-color: rgba(255, 193, 7, 1);
     border-color: #ffc107;
     color: #000;
     box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
 }
 
 .satisfaction-option[data-value="2"].selected .satisfaction-label {
-    background-color: rgba(40, 167, 69, 1); /* Green for LIKE */
+    background-color: rgba(40, 167, 69, 1);
     border-color: #28a745;
     box-shadow: 0 0 20px rgba(40, 167, 69, 0.6);
 }
 
 .satisfaction-option[data-value="3"].selected .satisfaction-label {
-    background-color: rgba(220, 53, 69, 1); /* Red/Pink for LOVE */
+    background-color: rgba(220, 53, 69, 1);
     border-color: #e91e63;
     box-shadow: 0 0 20px rgba(233, 30, 99, 0.6);
 }
 
-/* Favourite toggle button */
 .favourite-toggle[data-selected="true"] .favourite-label {
-    background-color: rgba(255, 193, 7, 1); /* Gold when selected */
+    background-color: rgba(255, 193, 7, 1);
     border-color: #ffc107;
     color: #000;
     opacity: 1;
@@ -183,7 +179,7 @@ footer a {
 }
 
 .favourite-toggle[data-selected="false"] .favourite-label {
-    background-color: rgba(255, 255, 255, 0.3); /* Translucent when not selected */
+    background-color: rgba(255, 255, 255, 0.3);
     border-color: #ddd;
     color: #6c757d;
     opacity: 0.6;

@@ -20,7 +20,6 @@
     {% endif %}
 
     {% if show_child_selection %}
-        <!-- Child Selection Section -->
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-3">
@@ -42,7 +41,6 @@
             </div>
         </div>
     {% else %}
-        <!-- Food Logging Section -->
         {% if selected_child %}
             <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
                 
@@ -51,7 +49,6 @@
                 {% endif %}
             </div>
 
-            <!-- Food Log Form -->
             <div class="card mb-4">
                 <div class="card-header">
                     <h1>{{ selected_child.name }}</h1>
@@ -62,14 +59,12 @@
                         <input type="hidden" name="log_food" value="1">
                         
                         <div class="row">
-                            <!-- Date/Time Field -->
                             <div class="col-md-6 mb-3">
                                 <label for="{{ food_log_form.log_datetime.id_for_label }}" class="form-label"><strong>When was {{ selected_child.name }} fed?</strong></label>
                                 {{ food_log_form.log_datetime }}
                             </div>
                         </div>
 
-                        <!-- Food Selection -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="{{ food_log_form.food.id_for_label }}" class="form-label"><strong>Food</strong></label>
@@ -81,7 +76,6 @@
                             </div>
                         </div>
 
-                        <!-- Food Image and Details -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <div id="food-image-container" style="display: none;">
@@ -102,7 +96,6 @@
                             </div>
                         </div>
 
-                        <!-- Preparation Details -->
                         <div class="row" id="preparation-section" style="display: none;">
                             <div class="col-md-4 mb-3">
                                 <label for="{{ food_log_form.preparation.id_for_label }}" class="form-label"><strong>Preparation</strong></label>
@@ -118,7 +111,6 @@
                             </div>
                         </div>
 
-                        <!-- Volume -->
                         <div class="row" id="volume-section" style="display: none;">
                             <div class="col-md-6 mb-3">
                                 <label for="{{ food_log_form.volume.id_for_label }}" class="form-label"><strong>Volume (teaspoons)</strong></label>
@@ -127,7 +119,6 @@
                             </div>
                         </div>
 
-                        <!-- Satisfaction Level -->
                         <div class="mb-3" id="satisfaction-section" style="display: none;">
                             <label class="form-label"><strong>Satisfaction Level</strong></label>
                             <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="">
@@ -155,7 +146,6 @@
                             </div>
                         </div>
 
-                        <!-- Favourite -->
                         <div class="mb-3" id="favourite-section" style="display: none;">
                             <label class="form-label"><strong>Mark as Favourite</strong></label>
                             <input type="hidden" name="favourite" id="favourite" value="false">
@@ -168,13 +158,11 @@
                             </div>
                         </div>
 
-                        <!-- Notes -->
                         <div class="mb-3" id="notes-section" style="display: none;">
                             <label for="{{ food_log_form.notes.id_for_label }}" class="form-label"><strong>Notes</strong></label>
                             {{ food_log_form.notes }}
                         </div>
 
-                        <!-- Form Actions -->
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-dark">Save Food Log</button>
                             <button type="button" class="btn btn-outline-dark" onclick="clearForm()">Cancel</button>
@@ -183,7 +171,6 @@
                 </div>
             </div>
 
-            <!-- Existing Food Logs -->
             {% if food_logs %}
                 <div class="card">
                     <div class="card-header">
