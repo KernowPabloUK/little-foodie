@@ -18,9 +18,6 @@ class Child(models.Model):
     )
     name = models.CharField(max_length=30, unique=True)
     birthdate = models.DateField()
-    # TODO
-    # profile_image = models.ImageField()
-    # profile_image = CloudinaryField('image', default='placeholder')
 
     class Meta:
         ordering = ["-birthdate"]
