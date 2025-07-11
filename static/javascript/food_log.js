@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    clearForm;
     const foodSelect = document.getElementById('food-select');
     if (foodSelect) {
         foodSelect.addEventListener('change', handleFoodSelection);
@@ -22,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.setAttribute('data-selected', newState);
             document.getElementById('favourite').value = newState.toString();
         });
+    }
+
+    // Add event listener for Clear Form button
+    const clearFormBtn = document.getElementById('clear-form-btn');
+    if (clearFormBtn) {
+        clearFormBtn.addEventListener('click', clearForm);
     }
 });
 
@@ -157,17 +164,44 @@ function handleFoodSelection() {
 function clearForm() {
     if (confirm('Are you sure you want to clear the form?')) {
         document.getElementById('food-log-form').reset();
+        
+        // Explicitly reset the food select dropdown
+        const foodSelect = document.getElementById('food-select');
+        if (foodSelect) {
+            foodSelect.selectedIndex = 0; // Reset to first option (empty)
+        }
+        
+        // Clear specific field values by their actual input field IDs
         document.getElementById('food-category').value = '';
         
-        hideFormSections();
+        // Reset dropdown fields to their first option (empty)
+        const preparation = document.getElementById('id_preparation');
+        if (preparation) preparation.selectedIndex = 0;
         
-        document.querySelectorAll('.satisfaction-option').forEach(opt => opt.classList.remove('selected'));
+        const consistency = document.getElementById('id_consistency');
+        if (consistency) consistency.selectedIndex = 0;
+        
+        const feedingMethod = document.getElementById('id_feeding_method');
+        if (feedingMethod) feedingMethod.selectedIndex = 0;
+        
+        // Reset volume field (number input)
+        const volume = document.getElementById('id_volume');
+        volume.value = '';
+        
+        // Reset other fields
         document.getElementById('satisfaction_level').value = '';
+        document.getElementById('favourite').value = 'false';
         
+        // Reset satisfaction buttons
+        document.querySelectorAll('.satisfaction-option').forEach(opt => opt.classList.remove('selected'));
+        
+        // Reset favourite toggle
         const favouriteToggle = document.querySelector('.favourite-toggle');
         if (favouriteToggle) {
             favouriteToggle.setAttribute('data-selected', 'false');
-            document.getElementById('favourite').value = 'false';
         }
+        
+        // Hide form sections
+        hideFormSections();
     }
 }

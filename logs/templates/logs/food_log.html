@@ -127,15 +127,15 @@
 
                         <div class="mb-3" id="satisfaction-section" style="display: none;">
                             <label class="form-label"><strong>Satisfaction Level</strong></label>
-                            <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="">
+                            <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="2">
                             <div class="satisfaction-buttons">
-                                    <div class="satisfaction-option" data-value="3">
+                                <div class="satisfaction-option" data-value="3">
                                     <div class="satisfaction-label">
                                         <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="LOVE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
                                         <span class="satisfaction-fallback" style="display: none;">❤️ LOVE</span>
                                     </div>
                                 </div>
-                                <div class="satisfaction-option" data-value="2">
+                                <div class="satisfaction-option selected" data-value="2">
                                     <div class="satisfaction-label">
                                         <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="LIKE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
                                         <span class="satisfaction-fallback" style="display: none;">😊 LIKE</span>
@@ -174,9 +174,9 @@
                             {{ food_log_form.notes }}
                         </div>
 
-                        <div class="d-flex gap-2" id="form-buttons" style="display: none;">
+                        <div class="d-flex gap-2" id="form-buttons">
                             <button type="submit" class="btn btn-dark">Save Food Log</button>
-                            <button type="button" class="btn btn-outline-dark" onclick="clearForm()">Cancel</button>
+                            <button type="button" class="btn btn-outline-dark" id="clear-form-btn">Clear Form</button>
                         </div>
                     </form>
                 </div>
