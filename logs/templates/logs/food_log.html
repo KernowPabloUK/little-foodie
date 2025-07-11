@@ -70,7 +70,7 @@
                                 <label for="{{ food_log_form.food.id_for_label }}" class="form-label"><strong>Food</strong></label>
                                 {{ food_log_form.food }}
                             </div>
-                            <div class="col-md-6 mb-3" style="display: none;">
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label"><strong>Category</strong></label>
                                 <input type="text" id="food-category" class="form-control" readonly placeholder="Select food first">
                             </div>
@@ -184,10 +184,11 @@
                                     <small class="text-muted">{{ log.logged_at|date:"M d, Y H:i" }}</small>
                                 </div>
                                 <div class="text-muted">
-                                    {{ log.get_satisfaction_level_display }} | {{ log.volume }} tsp
+                                    {{ log.satisfaction_level }} | {{ log.volume }} tsp
                                     {% if log.favourite %} | ⭐ Favourite{% endif %}
                                 </div>
                                 {% if log.notes %}
+                                    <br>
                                     <div class="small">{{ log.notes }}</div>
                                 {% endif %}
                             </div>

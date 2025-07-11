@@ -39,7 +39,7 @@ def food_details_api(request, food_id):
         data = {
             'id': food.id,
             'name': food.name,
-            'category': food.category,
+            'category': food.get_category_display(),
             'min_age_months': food.min_age_months,
             'is_allergen': food.is_allergen,
             'is_favourite': is_favourite,
