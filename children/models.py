@@ -22,14 +22,15 @@ class Child(models.Model):
         on_delete=models.PROTECT,
         related_name="children"
     )
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=30)
     birthdate = models.DateField(validators=[validate_birthdate])
 
     class Meta:
         ordering = ["-birthdate"]
+        unique_together = ['user', 'name']
 
     def __str__(self):
-        return f"{self.name} has been registered."
+        return f"{self.name}"
 
     @property
     def age_in_months(self):
