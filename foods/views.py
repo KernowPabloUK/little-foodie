@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.templatetags.static import static
 from .models import Food
 from logs.models import FoodLog
 
@@ -35,6 +36,7 @@ def food_details_api(request, food_id):
 
                 if recent_favourite_log:
                     is_favourite = True
+                    is_favourite = True
 
         data = {
             'id': food.id,
@@ -42,11 +44,9 @@ def food_details_api(request, food_id):
             'category': food.get_category_display(),
             'min_age_months': food.min_age_months,
             'is_allergen': food.is_allergen,
+            'image': static(food.image) if food.image else None,  # Generates the full static URL
             'is_favourite': is_favourite,
         }
-
-        if food.image:
-            data['image'] = food.image.url
 
         return JsonResponse(data)
     except Food.DoesNotExist:
