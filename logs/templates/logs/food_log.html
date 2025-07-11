@@ -43,7 +43,7 @@
     {% else %}
         {% if selected_child %}
             <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
-                
+
                 {% if children.count > 1 %}
                     <a href="{% url 'clear_child_selection' %}" class="btn btn-outline-dark btn-sm">Change Child</a>
                 {% endif %}
@@ -57,7 +57,7 @@
                     <form method="post" id="food-log-form">
                         {% csrf_token %}
                         <input type="hidden" name="log_food" value="1">
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="{{ food_log_form.log_datetime.id_for_label }}" class="form-label"><strong>When was {{ selected_child.name }} fed?</strong></label>
@@ -123,24 +123,28 @@
                             <label class="form-label"><strong>Satisfaction Level</strong></label>
                             <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="">
                             <div class="satisfaction-buttons">
-                                <div class="satisfaction-option" data-value="0">
+                                    <div class="satisfaction-option" data-value="3">
                                     <div class="satisfaction-label">
-                                        😞 HATE
-                                    </div>
-                                </div>
-                                <div class="satisfaction-option" data-value="1">
-                                    <div class="satisfaction-label">
-                                        😐 OK
+                                        <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="LOVE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <span class="satisfaction-fallback" style="display: none;">❤️ LOVE</span>
                                     </div>
                                 </div>
                                 <div class="satisfaction-option" data-value="2">
                                     <div class="satisfaction-label">
-                                        😊 LIKE
+                                        <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="LIKE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <span class="satisfaction-fallback" style="display: none;">😊 LIKE</span>
                                     </div>
                                 </div>
-                                <div class="satisfaction-option" data-value="3">
+                                <div class="satisfaction-option" data-value="1">
                                     <div class="satisfaction-label">
-                                        ❤️ LOVE
+                                        <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="INDIFFERENT" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <span class="satisfaction-fallback" style="display: none;">😐 OK</span>
+                                    </div>
+                                </div>
+                                <div class="satisfaction-option" data-value="0">
+                                    <div class="satisfaction-label">
+                                        <img src="{% static 'images/satisfaction_images/Niblet_Hate.png' %}" alt="HATE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <span class="satisfaction-fallback" style="display: none;">😞 HATE</span>
                                     </div>
                                 </div>
                             </div>

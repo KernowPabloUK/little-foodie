@@ -80,7 +80,7 @@ function handleFoodSelection() {
             })
             .then(data => {
                 console.log('Food data received:', data);
-                document.getElementById('food-category').value = data.category || 'Unknown';
+                document.getElementById('food-category').value = data.category_name || 'Unknown';
                 
                 const minAgeElement = document.getElementById('min-age');
                 if (minAgeElement) {
