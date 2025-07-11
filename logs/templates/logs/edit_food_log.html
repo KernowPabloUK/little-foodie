@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Food Log{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3 class="mb-0">Edit Food Log</h3>
+            <small class="text-muted">Editing {{ log.food.name }} for {{ log.child.name }}</small>
+        </div>
+        <div class="card-body">
+            <form method="post" id="edit-food-log-form">
+                {% csrf_token %}
+                
+                <!-- Food Selection (Read-only) -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="food-select" class="form-label"><strong>Food</strong></label>
+                        <input type="text" class="form-control" value="{{ log.food.name }}" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.log_datetime.id_for_label }}" class="form-label"><strong>Date & Time</strong></label>
+                        {{ form.log_datetime }}
+                    </div>
+                </div>
+
+                <!-- Preparation Section -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="{{ form.preparation.id_for_label }}" class="form-label"><strong>Preparation</strong></label>
+                        {{ form.preparation }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="{{ form.consistency.id_for_label }}" class="form-label"><strong>Consistency</strong></label>
+                        {{ form.consistency }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="{{ form.feeding_method.id_for_label }}" class="form-label"><strong>Feeding Method</strong></label>
+                        {{ form.feeding_method }}
+                    </div>
+                </div>
+
+                <!-- Volume Section -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.volume.id_for_label }}" class="form-label"><strong>Volume (teaspoons)</strong></label>
+                        {{ form.volume }}
+                        <div class="form-text">{{ form.volume.help_text }}</div>
+                    </div>
+                </div>
+
+                <!-- Satisfaction Level Section -->
+                <div class="mb-3">
+                    <label class="form-label"><strong>Satisfaction Level</strong></label>
+                    <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="{{ log.satisfaction_level }}">
+                    <div class="satisfaction-buttons">
+                        <div class="satisfaction-option {% if log.satisfaction_level == 3 %}selected{% endif %}" data-value="3" title="❤️ LOVE">
+                            <div class="satisfaction-label">
+                                <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="LOVE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                <span class="satisfaction-fallback" style="display: none;">❤️ LOVE</span>
+                            </div>
+                        </div>
+                        <div class="satisfaction-option {% if log.satisfaction_level == 2 %}selected{% endif %}" data-value="2" title="😊 LIKE">
+                            <div class="satisfaction-label">
+                                <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="LIKE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                <span class="satisfaction-fallback" style="display: none;">😊 LIKE</span>
+                            </div>
+                        </div>
+                        <div class="satisfaction-option {% if log.satisfaction_level == 1 %}selected{% endif %}" data-value="1" title="😐 OK">
+                            <div class="satisfaction-label">
+                                <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="INDIFFERENT" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                <span class="satisfaction-fallback" style="display: none;">😐 OK</span>
+                            </div>
+                        </div>
+                        <div class="satisfaction-option {% if log.satisfaction_level == 0 %}selected{% endif %}" data-value="0" title="😞 HATE">
+                            <div class="satisfaction-label">
+                                <img src="{% static 'images/satisfaction_images/Niblet_Hate.png' %}" alt="HATE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                <span class="satisfaction-fallback" style="display: none;">😞 HATE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Favourite Section -->
+                <div class="mb-3">
+                    <label class="form-label"><strong>Mark as Favourite</strong></label>
+                    <input type="hidden" name="favourite" id="favourite" value="{{ log.favourite|yesno:'true,false' }}">
+                    <div class="favourite-buttons">
+                        <div class="favourite-toggle" data-selected="{{ log.favourite|yesno:'true,false' }}" title="⭐ Favourite">
+                            <div class="favourite-label">
+                                <img src="{% static 'images/satisfaction_images/Favourite.png' %}" alt="FAVOURITE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                <span class="satisfaction-fallback" style="display: none;">⭐ Favourite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes Section -->
+                <div class="mb-3">
+                    <label for="{{ form.notes.id_for_label }}" class="form-label"><strong>Notes</strong></label>
+                    {{ form.notes }}
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-dark">Update Food Log</button>
+                    <a href="{% url 'logs' %}" class="btn btn-outline-dark">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Auto-close alerts after 3 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            setTimeout(function() {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }, 3000);
+        });
+
+        // Satisfaction buttons functionality
+        const satisfactionOptions = document.querySelectorAll('.satisfaction-option');
+        satisfactionOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                satisfactionOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                const value = this.getAttribute('data-value');
+                document.getElementById('satisfaction_level').value = value;
+            });
+        });
+
+        // Favourite toggle functionality
+        const favouriteToggle = document.querySelector('.favourite-toggle');
+        if (favouriteToggle) {
+            favouriteToggle.addEventListener('click', function() {
+                const isSelected = this.getAttribute('data-selected') === 'true';
+                const newState = !isSelected;
+                this.setAttribute('data-selected', newState);
+                document.getElementById('favourite').value = newState.toString();
+            });
+        }
+    });
+</script>
+{% endblock %}

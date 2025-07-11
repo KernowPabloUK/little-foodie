@@ -129,28 +129,28 @@
                             <label class="form-label"><strong>Satisfaction Level</strong></label>
                             <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="2">
                             <div class="satisfaction-buttons">
-                                <div class="satisfaction-option" data-value="3">
+                                <div class="satisfaction-option" data-value="3" title="LOVE">
                                     <div class="satisfaction-label">
                                         <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="LOVE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                        <span class="satisfaction-fallback" style="display: none;">❤️ LOVE</span>
+                                        <span class="satisfaction-fallback" style="display: none;">LOVE</span>
                                     </div>
                                 </div>
-                                <div class="satisfaction-option selected" data-value="2">
+                                <div class="satisfaction-option selected" data-value="2" title="LIKE">
                                     <div class="satisfaction-label">
                                         <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="LIKE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                        <span class="satisfaction-fallback" style="display: none;">😊 LIKE</span>
+                                        <span class="satisfaction-fallback" style="display: none;">LIKE</span>
                                     </div>
                                 </div>
-                                <div class="satisfaction-option" data-value="1">
+                                <div class="satisfaction-option" data-value="1" title="INDIFFERENT">
                                     <div class="satisfaction-label">
                                         <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="INDIFFERENT" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                        <span class="satisfaction-fallback" style="display: none;">😐 OK</span>
+                                        <span class="satisfaction-fallback" style="display: none;">INDIFFERENT</span>
                                     </div>
                                 </div>
-                                <div class="satisfaction-option" data-value="0">
+                                <div class="satisfaction-option" data-value="0" title="HATE">
                                     <div class="satisfaction-label">
                                         <img src="{% static 'images/satisfaction_images/Niblet_Hate.png' %}" alt="HATE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                        <span class="satisfaction-fallback" style="display: none;">😞 HATE</span>
+                                        <span class="satisfaction-fallback" style="display: none;">HATE</span>
                                     </div>
                                 </div>
                             </div>
@@ -160,10 +160,10 @@
                             <label class="form-label"><strong>Mark as Favourite</strong></label>
                             <input type="hidden" name="favourite" id="favourite" value="false">
                             <div class="favourite-buttons">
-                                <div class="favourite-toggle" data-selected="false">
+                                <div class="favourite-toggle" data-selected="false" title="FAVOURITE">
                                     <div class="favourite-label">
-                                        <img src="{% static 'images/satisfaction_images/Favourite.png' %}" alt="LOVE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                        <span class="satisfaction-fallback" style="display: none;">⭐ Favourite</span>
+                                        <img src="{% static 'images/satisfaction_images/Favourite.png' %}" alt="FAVOURITE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <span class="satisfaction-fallback" style="display: none;">FAVOURITE</span>
                                     </div>
                                 </div>
                             </div>
@@ -190,18 +190,26 @@
                     <div class="card-body">
                         {% for log in food_logs %}
                             <div class="food-log-entry border-bottom pb-2 mb-2">
-                                <div class="d-flex justify-content-between">
-                                    <strong>{{ log.food.name }}</strong>
-                                    <small class="text-muted">{{ log.logged_at|date:"M d, Y H:i" }}</small>
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between">
+                                            <strong>{{ log.food.name }}</strong>
+                                            <small class="text-muted">{{ log.logged_at|date:"M d, Y H:i" }}</small>
+                                        </div>
+                                        <div class="text-muted">
+                                            {{ log.satisfaction_level }} | {{ log.volume }} tsp
+                                            {% if log.favourite %} | ⭐{% endif %}
+                                        </div>
+                                        {% if log.notes %}
+                                            <div class="small mt-1">{{ log.notes }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="ms-2">
+                                        <a href="{% url 'edit_food_log' log.id %}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="text-muted">
-                                    {{ log.satisfaction_level }} | {{ log.volume }} tsp
-                                    {% if log.favourite %} | ⭐{% endif %}
-                                </div>
-                                {% if log.notes %}
-                                    <br>
-                                    <div class="small">{{ log.notes }}</div>
-                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>

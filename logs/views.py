@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from children.models import Child
@@ -141,3 +141,29 @@ def clear_child_selection(request):
     if 'selected_child_id' in request.session:
         del request.session['selected_child_id']
     return redirect('logs')
+
+
+@login_required
+def edit_food_log(request, log_id):
+    # Get the user's profile first
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        from profiles.models import Profile
+        profile = Profile.objects.create(user=request.user)
+
+    log = get_object_or_404(FoodLog, id=log_id, user=request.user)
+
+    if request.method == 'POST':
+        form = FoodLogForm(request.POST, instance=log)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Food log updated successfully!')
+            return redirect('logs')
+    else:
+        form = FoodLogForm(instance=log)
+
+    return render(request, 'logs/edit_food_log.html', {
+        'form': form,
+        'log': log
+    })
