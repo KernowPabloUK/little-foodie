@@ -131,8 +131,7 @@ footer a {
 .satisfaction-option:hover .satisfaction-label,
 .favourite-toggle:hover .favourite-label {
     opacity: 0.8;
-    transform: scale(1.05);
-    border-color: #ffc107;
+    transform: scale(1.1);
 }
 
 .satisfaction-option.selected .satisfaction-label {
@@ -140,7 +139,7 @@ footer a {
     border-color: #ffc107;
     color: #000;
     box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
-    transform: scale(1.05);
+    transform: scale(1.1);
     opacity: 0.8;
 
 }
@@ -168,6 +167,6 @@ footer a {
 }
 
 .satisfaction-image {
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 80px;
+    max-height: 80px;
 }

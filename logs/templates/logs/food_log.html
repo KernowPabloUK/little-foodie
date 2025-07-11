@@ -57,6 +57,7 @@
                     <form method="post" id="food-log-form">
                         {% csrf_token %}
                         <input type="hidden" name="log_food" value="1">
+                        <input type="hidden" id="child-age-months" value="{{ selected_child.age_in_months }}">
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -88,9 +89,14 @@
                                 <div id="food-details" style="display: none;">
                                     <div class="mb-2">
                                         <strong>Recommended minimum age:</strong> <span id="min-age"></span> months
+                                        <small id="age-warning" class="alert alert-danger py-1 px-2 mt-2" style="display: none;">
+                                            ⚠️ {{ selected_child.name }} is younger than the recommended age for this food.
+                                        </small>
                                     </div>
                                     <div id="allergen-warning" class="alert alert-warning" style="display: none;">
-                                        <strong>⚠️ Allergen Alert:</strong> The Food Standards Agency advises that this food contains common allergens. Please consult with your pediatrician.
+                                        <strong>⚠️ Allergen Alert:</strong> This food contains common allergens. Please consult with your pediatrician. Further info can also be found at 
+                                        <a href="https://www.food.gov.uk/sites/default/files/media/document/top-allergy-types.pdf" target="_blank" rel="noopener">
+                                            Food.gov.uk</a>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +162,8 @@
                             <div class="favourite-buttons">
                                 <div class="favourite-toggle" data-selected="false">
                                     <div class="favourite-label">
-                                        🌟 Favourite
+                                        <img src="{% static 'images/satisfaction_images/Favourite.png' %}" alt="LOVE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <span class="satisfaction-fallback" style="display: none;">⭐ Favourite</span>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +174,7 @@
                             {{ food_log_form.notes }}
                         </div>
 
-                        <div class="d-flex gap-2">
+                        <div class="d-flex gap-2" id="form-buttons" style="display: none;">
                             <button type="submit" class="btn btn-dark">Save Food Log</button>
                             <button type="button" class="btn btn-outline-dark" onclick="clearForm()">Cancel</button>
                         </div>
@@ -189,7 +196,7 @@
                                 </div>
                                 <div class="text-muted">
                                     {{ log.satisfaction_level }} | {{ log.volume }} tsp
-                                    {% if log.favourite %} | ⭐ Favourite{% endif %}
+                                    {% if log.favourite %} | ⭐{% endif %}
                                 </div>
                                 {% if log.notes %}
                                     <br>

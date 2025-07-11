@@ -80,11 +80,24 @@ function handleFoodSelection() {
             })
             .then(data => {
                 console.log('Food data received:', data);
-                document.getElementById('food-category').value = data.category_name || 'Unknown';
+                document.getElementById('food-category').value = data.category || 'Unknown';
                 
                 const minAgeElement = document.getElementById('min-age');
                 if (minAgeElement) {
                     minAgeElement.textContent = data.min_age_months || 'Not specified';
+                }
+                
+                const ageWarning = document.getElementById('age-warning');
+                const childAgeInput = document.getElementById('child-age-months');
+                if (ageWarning && childAgeInput && data.min_age_months) {
+                    const childAgeMonths = parseInt(childAgeInput.value, 10);
+                    if (childAgeMonths < data.min_age_months) {
+                        ageWarning.style.display = 'block';
+                    } else {
+                        ageWarning.style.display = 'none';
+                    }
+                } else if (ageWarning) {
+                    ageWarning.style.display = 'none';
                 }
                 
                 const foodImageContainer = document.getElementById('food-image-container');
