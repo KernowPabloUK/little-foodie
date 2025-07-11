@@ -1,0 +1,207 @@
+[
+{
+  "model": "foods.food",
+  "pk": 1,
+  "fields": {
+    "name": "Strawberry",
+    "category": 0,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/strawberry.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 2,
+  "fields": {
+    "name": "Cows Milk",
+    "category": 3,
+    "min_age_months": 12,
+    "is_allergen": true,
+    "image": "food_images/cows_milk.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 3,
+  "fields": {
+    "name": "Banana",
+    "category": 0,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/banana.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 4,
+  "fields": {
+    "name": "Carrot",
+    "category": 1,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/carrot.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 5,
+  "fields": {
+    "name": "Sweet Potato",
+    "category": 1,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/sweet_potato.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 6,
+  "fields": {
+    "name": "Apple",
+    "category": 0,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/apple.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 7,
+  "fields": {
+    "name": "Pear",
+    "category": 0,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/pear.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 8,
+  "fields": {
+    "name": "Peas",
+    "category": 1,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/peas.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 9,
+  "fields": {
+    "name": "Plain Yoghurt (unsweetened)",
+    "category": 3,
+    "min_age_months": 6,
+    "is_allergen": true,
+    "image": "food_images/plain_yoghurt.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 10,
+  "fields": {
+    "name": "Lentils",
+    "category": 2,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/lentil.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 11,
+  "fields": {
+    "name": "Chicken",
+    "category": 4,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/chicken.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 12,
+  "fields": {
+    "name": "Turkey",
+    "category": 4,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/turkey.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 13,
+  "fields": {
+    "name": "Tofu",
+    "category": 4,
+    "min_age_months": 6,
+    "is_allergen": true,
+    "image": "food_images/tofu.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 14,
+  "fields": {
+    "name": "Egg",
+    "category": 4,
+    "min_age_months": 9,
+    "is_allergen": true,
+    "image": "food_images/egg.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 15,
+  "fields": {
+    "name": "Pasta",
+    "category": 2,
+    "min_age_months": 9,
+    "is_allergen": true,
+    "image": "food_images/pasta.png",
+    "created_by_user": 1
+  }
+},
+{
+  "model": "foods.food",
+  "pk": 16,
+  "fields": {
+    "name": "Blueberry",
+    "category": 0,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/blueberry.png",
+    "created_by_user": 1
+  }
+}
+,
+{
+  "model": "foods.food",
+  "pk": 17,
+  "fields": {
+    "name": "Rice",
+    "category": 2,
+    "min_age_months": 6,
+    "is_allergen": false,
+    "image": "food_images/rice.png",
+    "created_by_user": 1
+  }
+}
+]
