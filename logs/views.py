@@ -145,7 +145,6 @@ def clear_child_selection(request):
 
 @login_required
 def edit_food_log(request, log_id):
-    # Get the user's profile first
     try:
         profile = request.user.profile
     except AttributeError:
@@ -157,11 +156,52 @@ def edit_food_log(request, log_id):
     if request.method == 'POST':
         form = FoodLogForm(request.POST, instance=log)
         if form.is_valid():
-            form.save()
+            food_log = form.save(commit=False)
+            log_datetime = form.cleaned_data.get('log_datetime')
+            consistency_value = form.cleaned_data.get('consistency')
+            preparation_value = form.cleaned_data.get('preparation')
+            feeding_method_value = form.cleaned_data.get('feeding_method')
+            satisfaction_value = form.cleaned_data.get('satisfaction_level')
+
+            if consistency_value:
+                consistency_obj, _ = Consistency.objects.get_or_create(label=consistency_value)
+                food_log.consistency = consistency_obj
+
+            if preparation_value:
+                preparation_obj, _ = Preparation.objects.get_or_create(label=preparation_value)
+                food_log.preparation = preparation_obj
+
+            if feeding_method_value:
+                feeding_method_obj, _ = FeedingMethod.objects.get_or_create(label=feeding_method_value)
+                food_log.feeding_method = feeding_method_obj
+
+            if satisfaction_value:
+                satisfaction_obj, _ = SatisfactionLevel.objects.get_or_create(label=satisfaction_value)
+                food_log.satisfaction_level = satisfaction_obj
+
+            food_log.save()
+
+            # Update the logged_at field with the form datetime
+            if log_datetime:
+                FoodLog.objects.filter(id=food_log.id).update(logged_at=log_datetime)
+
             messages.success(request, 'Food log updated successfully!')
             return redirect('logs')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
-        form = FoodLogForm(instance=log)
+        initial_data = {
+            'food': log.food,
+            'log_datetime': log.logged_at,
+            'preparation': log.preparation.label if log.preparation else '',
+            'consistency': log.consistency.label if log.consistency else '',
+            'feeding_method': log.feeding_method.label if log.feeding_method else '',
+            'volume': log.volume,
+            'satisfaction_level': log.satisfaction_level.label if log.satisfaction_level else '',
+            'favourite': log.favourite,
+            'notes': log.notes,
+        }
+        form = FoodLogForm(instance=log, initial=initial_data)
 
     return render(request, 'logs/edit_food_log.html', {
         'form': form,

@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     clearForm;
+    
+    const alerts = document.querySelectorAll(".alert");
+    alerts.forEach(function (alert) {
+        setTimeout(function () {
+            const bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        }, 3000);
+    });
+
     const foodSelect = document.getElementById('food-select');
     if (foodSelect) {
         foodSelect.addEventListener('change', handleFoodSelection);
@@ -25,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add event listener for Clear Form button
     const clearFormBtn = document.getElementById('clear-form-btn');
     if (clearFormBtn) {
         clearFormBtn.addEventListener('click', clearForm);
@@ -72,8 +80,6 @@ function hideFormSections() {
 function handleFoodSelection() {
     const foodSelect = document.getElementById('food-select');
     const selectedOption = foodSelect.options[foodSelect.selectedIndex];
-    
-    console.log('Food selected:', selectedOption.value, selectedOption.text);
     
     if (selectedOption.value) {
         document.getElementById('food-category').value = 'Loading...';
@@ -165,16 +171,13 @@ function clearForm() {
     if (confirm('Are you sure you want to clear the form?')) {
         document.getElementById('food-log-form').reset();
         
-        // Explicitly reset the food select dropdown
         const foodSelect = document.getElementById('food-select');
         if (foodSelect) {
-            foodSelect.selectedIndex = 0; // Reset to first option (empty)
+            foodSelect.selectedIndex = 0;
         }
         
-        // Clear specific field values by their actual input field IDs
         document.getElementById('food-category').value = '';
         
-        // Reset dropdown fields to their first option (empty)
         const preparation = document.getElementById('id_preparation');
         if (preparation) preparation.selectedIndex = 0;
         
@@ -184,24 +187,16 @@ function clearForm() {
         const feedingMethod = document.getElementById('id_feeding_method');
         if (feedingMethod) feedingMethod.selectedIndex = 0;
         
-        // Reset volume field (number input)
-        const volume = document.getElementById('id_volume');
-        volume.value = '';
-        
-        // Reset other fields
+        document.getElementById('id_volume').value = '';
         document.getElementById('satisfaction_level').value = '';
         document.getElementById('favourite').value = 'false';
-        
-        // Reset satisfaction buttons
         document.querySelectorAll('.satisfaction-option').forEach(opt => opt.classList.remove('selected'));
         
-        // Reset favourite toggle
         const favouriteToggle = document.querySelector('.favourite-toggle');
         if (favouriteToggle) {
             favouriteToggle.setAttribute('data-selected', 'false');
         }
         
-        // Hide form sections
         hideFormSections();
     }
 }
