@@ -128,6 +128,9 @@ def food_log_view(request):
         if selected_child else []
     )
 
+    # Make sure this gets ALL foods, not just user-created ones
+    foods = Food.objects.all().order_by('name')
+
     create_food_form = CreateFoodForm()
     context = {
         'selected_child': selected_child,
