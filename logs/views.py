@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
+
 from children.models import Child
 from .models import (
     FoodLog,
@@ -8,8 +11,9 @@ from .models import (
     Preparation,
     FeedingMethod,
     SatisfactionLevel,
+    Food,
 )
-from .forms import ChildSelectionForm, FoodLogForm
+from .forms import ChildSelectionForm, FoodLogForm, CreateFoodForm
 
 
 @login_required
@@ -124,10 +128,12 @@ def food_log_view(request):
         if selected_child else []
     )
 
+    create_food_form = CreateFoodForm()
     context = {
         'selected_child': selected_child,
         'children': children,
         'food_log_form': food_log_form,
+        'create_food_form': create_food_form,
         'food_logs': food_logs,
         'show_child_selection': False
     }
@@ -181,7 +187,6 @@ def edit_food_log(request, log_id):
 
             food_log.save()
 
-            # Update the logged_at field with the form datetime
             if log_datetime:
                 FoodLog.objects.filter(id=food_log.id).update(logged_at=log_datetime)
 
@@ -207,3 +212,43 @@ def edit_food_log(request, log_id):
         'form': form,
         'log': log
     })
+
+
+@login_required
+@require_http_methods(["POST"])
+def create_food_ajax(request):
+    try:
+        name = request.POST.get('name', '').strip()
+        category = request.POST.get('category', '').strip()
+        min_age = request.POST.get('min_age_months')
+        is_allergen = request.POST.get('is_allergen') == 'on'
+        
+        if not name or not category or not min_age:
+            return JsonResponse({'success': False, 'error': 'All required fields must be filled'})
+        
+        if Food.objects.filter(name__iexact=name).exists():
+            return JsonResponse({'success': False, 'error': f'A food with the name "{name}" already exists. Please choose a different name.'})
+        
+        food = Food.objects.create(
+            name=name,
+            category=int(category),
+            min_age_months=int(min_age),
+            is_allergen=is_allergen,
+            created_by_user=request.user
+        )
+        
+        return JsonResponse({
+            'success': True,
+            'food': {
+                'id': food.id,
+                'name': food.name,
+                'category': food.get_category_display(),
+                'min_age_months': food.min_age_months,
+                'is_allergen': food.is_allergen
+            }
+        })
+        
+    except Exception as e:
+        if 'duplicate key value' in str(e).lower() or 'unique constraint' in str(e).lower():
+            return JsonResponse({'success': False, 'error': f'A food with the name "{name}" already exists. Please choose a different name.'})
+        return JsonResponse({'success': False, 'error': 'An unexpected error occurred. Please try again.'})

@@ -97,3 +97,28 @@ class FoodLogForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         initial_time = timezone.now().strftime('%Y-%m-%dT%H:%M')
         self.fields['log_datetime'].initial = initial_time
+
+
+class CreateFoodForm(forms.ModelForm):
+    class Meta:
+        model = Food
+        fields = ['name', 'category', 'min_age_months', 'is_allergen']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'newFoodName'}),
+            'category': forms.Select(attrs={'class': 'form-select', 'id': 'newFoodCategory'}, choices=[
+                ('', 'Select a category'),
+                (0, 'Fruit'),
+                (1, 'Vegetable'),
+                (2, 'Starch'),
+                (3, 'Dairy'),
+                (4, 'Protein'),
+            ]),
+            'min_age_months': forms.NumberInput(attrs={'class': 'form-control', 'id': 'newFoodMinAge', 'min': 0, 'max': 24}),
+            'is_allergen': forms.CheckboxInput(attrs={'class': 'form-check-input', 'id': 'newFoodAllergen'}),
+        }
+        labels = {
+            'name': 'Food Name',
+            'category': 'Category',
+            'min_age_months': 'Minimum Age (months)',
+            'is_allergen': 'Contains common allergens',
+        }

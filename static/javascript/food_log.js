@@ -38,6 +38,77 @@ document.addEventListener('DOMContentLoaded', function() {
     if (clearFormBtn) {
         clearFormBtn.addEventListener('click', clearForm);
     }
+
+    const saveFoodBtn = document.getElementById('saveFoodBtn');
+    const newFoodForm = document.getElementById('newFoodForm');
+    
+    if (saveFoodBtn) {
+        saveFoodBtn.addEventListener('click', function() {
+            const formData = new FormData(newFoodForm);
+            
+            const name = formData.get('name');
+            const category = formData.get('category');
+            const minAge = formData.get('min_age_months');
+            
+            if (!name || name.trim() === '' || !category || category === '' || !minAge || minAge === '') {
+                let missingFields = [];
+                if (!name || name.trim() === '') missingFields.push('Food Name');
+                if (!category || category === '') missingFields.push('Category');
+                if (!minAge || minAge === '') missingFields.push('Minimum Age');
+                
+                alert('Please fill in all required fields: ' + missingFields.join(', '));
+                return;
+            }
+            
+            // Send AJAX request to create new food
+            fetch('/logs/foods/create/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const foodSelect = document.getElementById('food-select');
+                    const newOption = new Option(data.food.name, data.food.id, true, true);
+                    foodSelect.add(newOption);
+                    
+                    foodSelect.value = data.food.id;
+                    foodSelect.dispatchEvent(new Event('change'));                      
+                    
+                    const newFoodModal = bootstrap.Modal.getInstance(document.getElementById('newFoodModal'));
+                    newFoodModal.hide();
+                    newFoodForm.reset();
+                    
+                    showAlert('Food created successfully!', 'success');
+                } else {
+                    alert('Error creating food: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                alert('Error creating food. Please try again.');
+            });
+        });
+    }
+    
+    function showAlert(message, type) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        
+        const container = document.querySelector('.container');
+        container.insertBefore(alertDiv, container.firstChild);
+        
+        setTimeout(() => {
+            const bsAlert = new bootstrap.Alert(alertDiv);
+            bsAlert.close();
+        }, 3000);
+    }
 });
 
 function showFormSections() {
