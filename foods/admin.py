@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import Q
 from .models import Food
 
 
@@ -16,7 +17,7 @@ class HasImageFilter(admin.SimpleListFilter):
         if self.value() == 'yes':
             return queryset.exclude(image__exact='').exclude(image__isnull=True)
         if self.value() == 'no':
-            return queryset.filter(image__exact='').union(queryset.filter(image__isnull=True))
+            return queryset.filter(Q(image__exact='') | Q(image__isnull=True))
         return queryset
 
 

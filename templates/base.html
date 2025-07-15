@@ -2,6 +2,7 @@
 {% url 'logs' as logs_url %}
 {% url 'stats' as stats_url %}
 {% url 'profile' as profiles_url %}
+{% url 'admin:index' as admin_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -46,6 +47,12 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                        <li class="nav-item mx-2">
+                            <a class="nav-link{% if request.path == admin_url %} active fw-bold{% endif %}" aria-current="page"
+                                href="{% url 'admin:index' %}">Admin Panel</a>
+                        </li>
+                        {% endif %}
                         <li class="nav-item mx-2">
                             <a class="nav-link{% if request.path == logs_url %} active fw-bold{% endif %}" aria-current="page"
                                 href="{% url 'logs' %}">Food Logs</a>
