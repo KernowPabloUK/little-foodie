@@ -45,22 +45,33 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link{% if request.path == logs_url %} active fw-bold{% endif %}" aria-current="page"
-                            href="{% url 'logs' %}">Food Logs</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link{% if request.path == stats_url %} active fw-bold{% endif %}" aria-current="page"
-                            href="{% url 'stats' %}">Stats</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link{% if request.path == profiles_url %} active fw-bold{% endif %}" aria-current="page"
-                            href="{% url 'profile' %}">Profile</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'account_logout' %}">Logout</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item mx-2">
+                            <a class="nav-link{% if request.path == logs_url %} active fw-bold{% endif %}" aria-current="page"
+                                href="{% url 'logs' %}">Food Logs</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link{% if request.path == stats_url %} active fw-bold{% endif %}" aria-current="page"
+                                href="{% url 'stats' %}">Stats</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link{% if request.path == profiles_url %} active fw-bold{% endif %}" aria-current="page"
+                                href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
+                                href="{% url 'account_logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item mx-2">
+                            <a class="nav-link{% if request.path == login_url %} active fw-bold{% endif %}" aria-current="page"
+                                href="{% url 'account_login' %}">Login</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link{% if request.path == signup_url %} active fw-bold{% endif %}" aria-current="page"
+                                href="{% url 'account_signup' %}">Sign Up</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 </div>
                 </div>
