@@ -1,9 +1,10 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
 {% block content %}
+<div class="d-flex justify-content-center align-items-center flex-column mt-2">
     {% element h1 %}
         {% trans "Sign Up" %}
     {% endelement %}
@@ -26,9 +27,11 @@
                 {{ redirect_field }}
             {% endslot %}
             {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
+                <div class="d-flex justify-content-center">
+                    {% element button tags="prominent,signup" type="submit" %}
+                        {% trans "Sign Up" %}
+                    {% endelement %}
+                </div>
             {% endslot %}
         {% endelement %}
     {% endif %}
@@ -42,4 +45,5 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+</div>
 {% endblock content %}

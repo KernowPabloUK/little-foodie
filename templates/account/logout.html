@@ -1,9 +1,10 @@
-{% extends "account/base_manage.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
 {% block content %}
+<div class="d-flex justify-content-center align-items-center flex-column mt-2">
     {% element h1 %}
         {% trans "Sign Out" %}
     {% endelement %}
@@ -22,4 +23,5 @@
             {% endelement %}
         {% endslot %}
     {% endelement %}
+</div>
 {% endblock content %}
