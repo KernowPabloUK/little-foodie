@@ -222,16 +222,16 @@ def edit_food_log(request, log_id):
 def create_food_ajax(request):
     try:
         name = request.POST.get('name', '').strip()
+        name = name.title()
         category = request.POST.get('category', '').strip()
         min_age = request.POST.get('min_age_months')
         is_allergen = request.POST.get('is_allergen') == 'on'
-        
         if not name or not category or not min_age:
             return JsonResponse({'success': False, 'error': 'All required fields must be filled'})
-        
+
         if Food.objects.filter(name__iexact=name).exists():
             return JsonResponse({'success': False, 'error': f'A food with the name "{name}" already exists. Please choose a different name.'})
-        
+
         food = Food.objects.create(
             name=name,
             category=int(category),
@@ -240,7 +240,7 @@ def create_food_ajax(request):
             created_by_user=request.user,
             is_authorised=False
         )
-        
+
         return JsonResponse({
             'success': True,
             'food': {
