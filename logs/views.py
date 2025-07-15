@@ -248,7 +248,8 @@ def create_food_ajax(request):
                 'name': food.name,
                 'category': food.get_category_display(),
                 'min_age_months': food.min_age_months,
-                'is_allergen': food.is_allergen
+                'is_allergen': food.is_allergen,
+                'is_authorised': food.is_authorised,
             }
         })
         

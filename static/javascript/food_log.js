@@ -223,6 +223,15 @@ function handleFoodSelection() {
                     document.getElementById('favourite').value = 'false';
                 }
                 
+                const authorisationWarning = document.getElementById('authorisation-warning');
+                if (authorisationWarning) {
+                    if (data.is_authorised === false || data.is_authorised === "false") {
+                        authorisationWarning.style.display = 'block';
+                    } else {
+                        authorisationWarning.style.display = 'none';
+                    }
+                }
+                
                 showFormSections();
             })
             .catch(error => {
