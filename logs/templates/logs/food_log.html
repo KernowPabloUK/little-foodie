@@ -97,14 +97,15 @@
                                 <div id="food-details" style="display: none;">
                                     <div class="mb-2">
                                         <strong>Recommended minimum age:</strong> <span id="min-age"></span> months
-                                        <small id="age-warning" class="alert alert-warning py-1 px-2 mt-2" style="display: none;">
+                                        <small id="age-warning" class="alert food-warning alert-warning py-1 px-2 mt-2" style="display: none;">
                                             ⚠️ {{ selected_child.name }} is younger than the recommended age for this food.
                                         </small>
-                                    </div>
-                                    <div id="allergen-warning" class="alert alert-danger" style="display: none;">
-                                        <strong>⚠️ Allergen Alert:</strong> This food contains common allergens. Please consult with your pediatrician. Further info can also be found at 
-                                        <a href="https://www.food.gov.uk/sites/default/files/media/document/top-allergy-types.pdf" target="_blank" rel="noopener">
-                                            Food.gov.uk</a>
+                                        <div id="allergen-warning" class="alert food-warning alert-danger" style="display: none;">
+                                            <strong>⚠️ Allergen Alert:</strong> This food contains common allergens. Please consult with your pediatrician.
+                                            Further info can also be found at 
+                                            <a href="https://www.food.gov.uk/sites/default/files/media/document/top-allergy-types.pdf" target="_blank" rel="noopener">
+                                                Food.gov.uk</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

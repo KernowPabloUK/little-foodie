@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     clearForm;
     
-    const alerts = document.querySelectorAll(".alert");
+    // Only auto-dismiss alerts with the .alert class, not .food-warning
+    const alerts = document.querySelectorAll(".alert:not(.food-warning)");
     alerts.forEach(function (alert) {
         setTimeout(function () {
             const bsAlert = new bootstrap.Alert(alert);
