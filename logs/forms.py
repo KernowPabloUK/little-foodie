@@ -97,6 +97,9 @@ class FoodLogForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         initial_time = timezone.now().strftime('%Y-%m-%dT%H:%M')
         self.fields['log_datetime'].initial = initial_time
+        self.fields['food'].label_from_instance = (
+            lambda obj: f"{obj.name}    [{obj.get_category_display()}] [{obj.min_age_months}m +]"
+        )
 
 
 class CreateFoodForm(forms.ModelForm):
