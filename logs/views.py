@@ -237,7 +237,8 @@ def create_food_ajax(request):
             category=int(category),
             min_age_months=int(min_age),
             is_allergen=is_allergen,
-            created_by_user=request.user
+            created_by_user=request.user,
+            is_authorised=False
         )
         
         return JsonResponse({

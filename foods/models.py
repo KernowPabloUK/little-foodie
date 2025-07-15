@@ -22,11 +22,13 @@ class Food(models.Model):
     min_age_months = models.IntegerField(default=0)
     is_allergen = models.BooleanField(default=False)
     image = models.ImageField(upload_to='food_images/', blank=True, null=True)
+    is_authorised = models.BooleanField(default=False)
     created_by_user = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
         related_name="foods"
     )
+
 
     class Meta:
         ordering = ["-name"]

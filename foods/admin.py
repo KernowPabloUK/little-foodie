@@ -1,5 +1,44 @@
-from .models import Food
 from django.contrib import admin
+from .models import Food
 
-# Register your models here.
-admin.site.register(Food)
+
+class HasImageFilter(admin.SimpleListFilter):
+    title = 'has image'
+    parameter_name = 'has_image'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('yes', 'Has Image'),
+            ('no', 'No Image'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'yes':
+            return queryset.exclude(image__exact='').exclude(image__isnull=True)
+        if self.value() == 'no':
+            return queryset.filter(image__exact='').union(queryset.filter(image__isnull=True))
+        return queryset
+
+
+@admin.register(Food)
+class FoodAdmin(admin.ModelAdmin):
+    def has_image(self, obj):
+        return bool(obj.image)
+    has_image.boolean = True
+    has_image.short_description = 'Has Image'
+
+    list_display = (
+        'name',
+        'category',
+        'min_age_months',
+        'is_allergen',
+        'is_authorised',
+        'has_image',
+        'created_by_user',
+    )
+    list_filter = (
+        'is_authorised',
+        'category',
+        'is_allergen',
+        HasImageFilter,
+    )

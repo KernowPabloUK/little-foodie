@@ -8,6 +8,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/strawberry.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -20,6 +21,7 @@
     "min_age_months": 12,
     "is_allergen": true,
     "image": "images/food_images/cows_milk.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -32,6 +34,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/banana.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -44,6 +47,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/carrot.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -56,6 +60,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/sweet_potato.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -68,6 +73,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/apple.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -80,6 +86,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/pear.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -92,6 +99,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/peas.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -104,6 +112,7 @@
     "min_age_months": 6,
     "is_allergen": true,
     "image": "images/food_images/plain_yoghurt.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -116,6 +125,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/lentil.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -128,6 +138,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/chicken.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -140,6 +151,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/turkey.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -152,6 +164,7 @@
     "min_age_months": 6,
     "is_allergen": true,
     "image": "images/food_images/tofu.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -164,6 +177,7 @@
     "min_age_months": 9,
     "is_allergen": true,
     "image": "images/food_images/egg.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -176,6 +190,7 @@
     "min_age_months": 9,
     "is_allergen": true,
     "image": "images/food_images/pasta.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 },
@@ -188,6 +203,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/blueberry.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 }
@@ -201,6 +217,7 @@
     "min_age_months": 6,
     "is_allergen": false,
     "image": "images/food_images/rice.png",
+    "is_authorised": true,
     "created_by_user": 1
   }
 }
