@@ -44,17 +44,11 @@
             <tr>
                 {% for s in satisfaction_range|slice:"::-1" %}
                 <td>
-                    {% with found=0 %}
                     {% for label in food_stats.labels %}
-                        {% if label.satisfaction == s %}
+                        {% if label.satisfaction == s%}
                             <div class="satisfaction-food">{{ label.name }}</div>
-                            {% with found=1 %}{% endwith %}
                         {% endif %}
                     {% endfor %}
-                    {% if not found %}
-                        <span class="satisfaction-empty">-</span>
-                    {% endif %}
-                    {% endwith %}
                 </td>
                 {% endfor %}
             </tr>

@@ -56,7 +56,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (label.satisfaction === s) {
                     let div = document.createElement('div');
                     div.className = 'satisfaction-food';
-                    div.textContent = label.name;
+                    if (label.image) {
+                        let img = document.createElement('img');
+                        img.src = '/static/' + label.image.replace(/^\/+/, '');
+                        img.alt = label.name;
+                        img.style.maxWidth = '60px';
+                        img.style.maxHeight = '60px';
+                        img.style.display = 'block';
+                        img.style.margin = '0 auto';
+                        div.appendChild(img);
+                    } else {
+                        div.textContent = label.name;
+                        div.style.fontSize = '0.85em';
+                    }
                     cell.appendChild(div);
                     found = true;
                 }

@@ -32,6 +32,7 @@ def statistics_view(request):
         'labels': [
             {
                 'name': f['food__name'],
+                'image': f['food__image'],
                 'satisfaction': int(round(f['avg_satisfaction'] or 0))
             }
             for f in food_counts
