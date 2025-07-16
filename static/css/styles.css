@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 
 :root {
     --primary-font: "Lexend", sans-serif;
@@ -151,7 +151,6 @@ footer a {
     box-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
     transform: scale(1.1);
     opacity: 1;
-
 }
 
 .favourite-toggle[data-selected="true"] .favourite-label {
@@ -187,7 +186,8 @@ footer a {
     border-collapse: separate !important;
     border-spacing: 0;
 }
-.table-bordered th, .table-bordered td {
+.table-bordered th,
+.table-bordered td {
     border: 1px solid #000 !important;
 }
 .table-bordered tr:first-child th {
@@ -196,17 +196,18 @@ footer a {
 .table-bordered tr:last-child td {
     border-bottom: none !important;
 }
-.table-bordered th:first-child, .table-bordered td:first-child {
+.table-bordered th:first-child,
+.table-bordered td:first-child {
     border-left: none !important;
 }
-.table-bordered th:last-child, .table-bordered td:last-child {
+.table-bordered th:last-child,
+.table-bordered td:last-child {
     border-right: none !important;
 }
 
 /* Satisfaction Table Styles */
 .satisfaction-table {
     width: 100%;
-    max-width: 700px;
     margin: 0 auto 1.5rem auto;
     table-layout: fixed;
     background: transparent;
@@ -250,4 +251,18 @@ footer a {
 }
 .satisfaction-empty {
     opacity: 0;
+}
+
+/* BASE */
+@media (max-width: 991.98px) {
+    .navbar-brand,
+    .navbar-nav .nav-link {
+        font-size: 1.1rem !important;
+    }
+}
+@media (max-width: 767.98px) {
+    .navbar-brand,
+    .navbar-nav .nav-link {
+        font-size: 0.9rem !important;
+    }
 }

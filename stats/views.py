@@ -53,10 +53,18 @@ def statistics_view(request):
         .order_by('-count')
     )
     CATEGORY_MAP = dict(FOOD_CATEGORY)
+    category_image_map = {
+        'Fruit': 'images/category_images/fruit.png',
+        'Vegetable': 'images/category_images/vegetable.png',
+        'Starch': 'images/category_images/starch.png',
+        'Dairy': 'images/category_images/dairy.png',
+        'Protein': 'images/category_images/protein.png',
+    }
     category_stats = {
         'labels': [
             {
                 'name': CATEGORY_MAP.get(c['food__category'], 'Unknown'),
+                'image': category_image_map.get(CATEGORY_MAP.get(c['food__category'], 'Unknown'), ''),
                 'satisfaction': int(round(c['avg_satisfaction'] or 0))
             }
             for c in category_counts

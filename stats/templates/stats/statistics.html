@@ -6,8 +6,10 @@
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h1 class="mb-0">Food Statistics for <strong>{{ selected_child.name }}</strong></h1>
         <div class="ms-auto text-center">
-            <button id="toggle-food" class="btn btn-dark me-2 mb-2" type="button">By Food</button>
-            <button id="toggle-category" class="btn btn-outline-dark" type="button">By Category</button>
+            <div class="btn-group mb-2" role="group" aria-label="Toggle chart mode">
+                <button id="toggle-food" class="btn btn-dark" type="button">By Food</button>
+                <button id="toggle-category" class="btn btn-outline-dark" type="button">By Category</button>
+            </div>
         </div>
     </div>
     
@@ -23,20 +25,21 @@
         </div>
     {% endif %}
         <h2 class="mt-4 mb-2 text-center">Satisfaction</h2>
+        <div>
         <table class="table table-bordered text-center my-4 satisfaction-table">
         <thead>
             <tr>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="Love" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="Love" title="Love" height="48">
                 </th>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="Like" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="Like" title="Like" height="48">
                 </th>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="Indifferent" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="Indifferent" title="Indifferent" height="48">
                 </th>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Dislike.png' %}" alt="Dislike" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Dislike.png' %}" alt="Dislike" title="Dislike" height="48">
                 </th>
             </tr>
         </thead>
@@ -54,6 +57,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
             <h2 class="mt-4 mb-2 text-center">Times Eaten</h2>
     <canvas id="foodStatsChart" width="400" height="200"></canvas>
             <h2 class="mt-4 mb-2 text-center">Volume</h2>
