@@ -128,9 +128,6 @@ def food_log_view(request):
         if selected_child else []
     )
 
-    # Make sure this gets ALL foods, not just user-created ones
-    foods = Food.objects.all().order_by('name')
-
     create_food_form = CreateFoodForm()
     context = {
         'selected_child': selected_child,
@@ -154,12 +151,6 @@ def clear_child_selection(request):
 
 @login_required
 def edit_food_log(request, log_id):
-    try:
-        profile = request.user.profile
-    except AttributeError:
-        from profiles.models import Profile
-        profile = Profile.objects.create(user=request.user)
-
     log = get_object_or_404(FoodLog, id=log_id, user=request.user)
 
     if request.method == 'POST':
@@ -173,25 +164,35 @@ def edit_food_log(request, log_id):
             satisfaction_value = form.cleaned_data.get('satisfaction_level')
 
             if consistency_value:
-                consistency_obj, _ = Consistency.objects.get_or_create(label=consistency_value)
+                consistency_obj, _ = Consistency.objects.get_or_create(
+                    label=consistency_value
+                )
                 food_log.consistency = consistency_obj
 
             if preparation_value:
-                preparation_obj, _ = Preparation.objects.get_or_create(label=preparation_value)
+                preparation_obj, _ = Preparation.objects.get_or_create(
+                    label=preparation_value
+                )
                 food_log.preparation = preparation_obj
 
             if feeding_method_value:
-                feeding_method_obj, _ = FeedingMethod.objects.get_or_create(label=feeding_method_value)
+                feeding_method_obj, _ = FeedingMethod.objects.get_or_create(
+                    label=feeding_method_value
+                )
                 food_log.feeding_method = feeding_method_obj
 
             if satisfaction_value:
-                satisfaction_obj, _ = SatisfactionLevel.objects.get_or_create(label=satisfaction_value)
+                satisfaction_obj, _ = SatisfactionLevel.objects.get_or_create(
+                    label=satisfaction_value
+                )
                 food_log.satisfaction_level = satisfaction_obj
 
             food_log.save()
 
             if log_datetime:
-                FoodLog.objects.filter(id=food_log.id).update(logged_at=log_datetime)
+                FoodLog.objects.filter(id=food_log.id).update(
+                    logged_at=log_datetime
+                )
 
             messages.success(request, 'Food log updated successfully!')
             return redirect('logs')
@@ -203,9 +204,13 @@ def edit_food_log(request, log_id):
             'log_datetime': log.logged_at,
             'preparation': log.preparation.label if log.preparation else '',
             'consistency': log.consistency.label if log.consistency else '',
-            'feeding_method': log.feeding_method.label if log.feeding_method else '',
+            'feeding_method': (
+                log.feeding_method.label if log.feeding_method else ''
+            ),
             'volume': log.volume,
-            'satisfaction_level': log.satisfaction_level.label if log.satisfaction_level else '',
+            'satisfaction_level': (
+                log.satisfaction_level.label if log.satisfaction_level else ''
+            ),
             'favourite': log.favourite,
             'notes': log.notes,
         }
@@ -227,10 +232,19 @@ def create_food_ajax(request):
         min_age = request.POST.get('min_age_months')
         is_allergen = request.POST.get('is_allergen') == 'on'
         if not name or not category or not min_age:
-            return JsonResponse({'success': False, 'error': 'All required fields must be filled'})
+            return JsonResponse({
+                'success': False,
+                'error': 'All required fields must be filled'
+            })
 
         if Food.objects.filter(name__iexact=name).exists():
-            return JsonResponse({'success': False, 'error': f'A food with the name "{name}" already exists. Please choose a different name.'})
+            return JsonResponse({
+                'success': False,
+                'error': (
+                    f'A food with the name "{name}" already exists. '
+                    'Please choose a different name.'
+                )
+            })
 
         food = Food.objects.create(
             name=name,
@@ -252,8 +266,20 @@ def create_food_ajax(request):
                 'is_authorised': food.is_authorised,
             }
         })
-        
+
     except Exception as e:
-        if 'duplicate key value' in str(e).lower() or 'unique constraint' in str(e).lower():
-            return JsonResponse({'success': False, 'error': f'A food with the name "{name}" already exists. Please choose a different name.'})
-        return JsonResponse({'success': False, 'error': 'An unexpected error occurred. Please try again.'})
+        if ('duplicate key value' in str(e).lower() or
+                'unique constraint' in str(e).lower()):
+            return JsonResponse({
+                'success': False,
+                'error': (
+                    f'A food with the name "{name}" already exists. '
+                    'Please choose a different name.'
+                )
+            })
+        return JsonResponse({
+            'success': False,
+            'error': (
+                'An unexpected error occurred. Please try again.'
+            )
+        })
