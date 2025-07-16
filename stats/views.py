@@ -2,7 +2,7 @@ from django.shortcuts import render
 from children.models import Child
 from logs.models import FoodLog
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Sum
 from profiles.models import Profile
 
 
@@ -17,12 +17,13 @@ def statistics_view(request):
     food_logs = FoodLog.objects.filter(child_id=selected_child_id) if selected_child_id else FoodLog.objects.none()
     food_counts = (
         food_logs.values('food__name', 'food__image')
-        .annotate(count=Count('id'))
+        .annotate(count=Count('id'), total_volume=Sum('volume'))
         .order_by('-count')
     )
     food_stats = {
         'labels': [f['food__name'] for f in food_counts],
         'counts': [f['count'] for f in food_counts],
+        'volumes': [f['total_volume'] or 0 for f in food_counts],
     }
     return render(request, 'stats/statistics.html', {
         'children': children,
