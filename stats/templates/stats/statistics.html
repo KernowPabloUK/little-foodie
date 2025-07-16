@@ -15,6 +15,10 @@
             {% endfor %}
         </div>
     {% endif %}
+        <div class="mb-3 text-center">
+            <button id="toggle-food" class="btn btn-dark me-2" type="button">By Food</button>
+            <button id="toggle-category" class="btn btn-outline-dark" type="button">By Category</button>
+        </div>
         <table class="table table-bordered text-center my-4 satisfaction-table">
         <thead>
             <tr>
@@ -61,6 +65,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const foodData = {{ food_stats|safe }};
+    const categoryData = {{ category_stats|safe }};
+    let currentMode = 'food';
 </script>
 <script src="{% static 'javascript/statistics.js' %}"></script>
 {% endblock %}

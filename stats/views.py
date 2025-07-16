@@ -4,7 +4,7 @@ from logs.models import FoodLog
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Sum, Avg
 from profiles.models import Profile
-import math
+from foods.models import FOOD_CATEGORY
 
 
 # Create your views here.
@@ -15,7 +15,10 @@ def statistics_view(request):
     selected_child_id = request.GET.get('child_id')
     if not selected_child_id and children.exists():
         selected_child_id = children.first().id
-    food_logs = FoodLog.objects.filter(child_id=selected_child_id) if selected_child_id else FoodLog.objects.none()
+    food_logs = (
+        FoodLog.objects.filter(child_id=selected_child_id)
+        if selected_child_id else FoodLog.objects.none()
+    )
     food_counts = (
         food_logs.values('food__name', 'food__image')
         .annotate(
@@ -37,9 +40,36 @@ def statistics_view(request):
         'volumes': [f['total_volume'] or 0 for f in food_counts],
     }
     satisfaction_range = [0, 1, 2, 3]
+
+    # Category stats
+    category_counts = (
+        food_logs.values('food__category')
+        .annotate(
+            count=Count('id'),
+            total_volume=Sum('volume'),
+            avg_satisfaction=Avg('satisfaction_level__label')
+        )
+        .order_by('-count')
+    )
+    CATEGORY_MAP = dict(FOOD_CATEGORY)
+    category_stats = {
+        'labels': [
+            {
+                'name': CATEGORY_MAP.get(c['food__category'], 'Unknown'),
+                'satisfaction': int(round(c['avg_satisfaction'] or 0))
+            }
+            for c in category_counts
+        ],
+        'counts': [c['count'] for c in category_counts],
+        'volumes': [c['total_volume'] or 0 for c in category_counts],
+    }
+
     return render(request, 'stats/statistics.html', {
         'children': children,
-        'selected_child_id': int(selected_child_id) if selected_child_id else None,
+        'selected_child_id': (
+            int(selected_child_id) if selected_child_id else None
+        ),
         'food_stats': food_stats,
+        'category_stats': category_stats,
         'satisfaction_range': satisfaction_range,
     })
