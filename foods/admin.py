@@ -15,7 +15,9 @@ class HasImageFilter(admin.SimpleListFilter):
 
     def queryset(self, request, queryset):
         if self.value() == 'yes':
-            return queryset.exclude(image__exact='').exclude(image__isnull=True)
+            return (
+                queryset.exclude(image__exact='').exclude(image__isnull=True)
+            )
         if self.value() == 'no':
             return queryset.filter(Q(image__exact='') | Q(image__isnull=True))
         return queryset

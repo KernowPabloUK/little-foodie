@@ -8,7 +8,7 @@ from .models import (
     SATISFACTION,
 )
 from children.models import Child
-from foods.models import Food
+from foods.models import Food, FOOD_CATEGORY
 
 
 class ChildSelectionForm(forms.Form):
@@ -98,7 +98,11 @@ class FoodLogForm(forms.ModelForm):
         initial_time = timezone.now().strftime('%Y-%m-%dT%H:%M')
         self.fields['log_datetime'].initial = initial_time
         self.fields['food'].label_from_instance = (
-            lambda obj: f"{obj.name}    [{obj.get_category_display()}] [{obj.min_age_months}m +]"
+            lambda obj: (
+                f"{obj.name}    "
+                f"[{obj.get_category_display()}] "
+                f"[{obj.min_age_months}m +]"
+            )
         )
 
 
@@ -107,17 +111,30 @@ class CreateFoodForm(forms.ModelForm):
         model = Food
         fields = ['name', 'category', 'min_age_months', 'is_allergen']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'newFoodName'}),
-            'category': forms.Select(attrs={'class': 'form-select', 'id': 'newFoodCategory'}, choices=[
-                ('', 'Select a category'),
-                (0, 'Fruit'),
-                (1, 'Vegetable'),
-                (2, 'Starch'),
-                (3, 'Dairy'),
-                (4, 'Protein'),
-            ]),
-            'min_age_months': forms.NumberInput(attrs={'class': 'form-control', 'id': 'newFoodMinAge', 'min': 0, 'max': 24}),
-            'is_allergen': forms.CheckboxInput(attrs={'class': 'form-check-input', 'id': 'newFoodAllergen'}),
+            'name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'newFoodName'
+                }
+            ),
+            'category': forms.Select(
+                attrs={'class': 'form-select', 'id': 'newFoodCategory'},
+                choices=[('', 'Select a category')] + list(FOOD_CATEGORY)
+            ),
+            'min_age_months': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'newFoodMinAge',
+                    'min': 0,
+                    'max': 24
+                }
+            ),
+            'is_allergen': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-check-input',
+                    'id': 'newFoodAllergen'
+                }
+            ),
         }
         labels = {
             'name': 'Food Name',

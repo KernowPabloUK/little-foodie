@@ -29,7 +29,6 @@ class Food(models.Model):
         related_name="foods"
     )
 
-
     class Meta:
         ordering = ["-name"]
 

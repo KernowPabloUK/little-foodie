@@ -17,14 +17,36 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Food',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                )),
                 ('name', models.CharField(max_length=30, unique=True)),
-                ('category', models.IntegerField(choices=[(0, 'Fruit'), (1, 'Vegetable'), (2, 'Starch'), (3, 'Dairy'), (4, 'Protein')], default=0)),
+                ('category', models.IntegerField(
+                    choices=[
+                        (0, 'Fruit'),
+                        (1, 'Vegetable'),
+                        (2, 'Starch'),
+                        (3, 'Dairy'),
+                        (4, 'Protein')
+                    ],
+                    default=0
+                )),
                 ('min_age_months', models.IntegerField(default=0)),
                 ('is_allergen', models.BooleanField(default=False)),
-                ('image', models.ImageField(blank=True, null=True, upload_to='food_images/')),
+                ('image', models.ImageField(
+                    blank=True,
+                    null=True,
+                    upload_to='food_images/'
+                )),
                 ('is_authorised', models.BooleanField(default=False)),
-                ('created_by_user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='foods', to=settings.AUTH_USER_MODEL)),
+                ('created_by_user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT,
+                    related_name='foods',
+                    to=settings.AUTH_USER_MODEL
+                )),
             ],
             options={
                 'ordering': ['-name'],
