@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: foodData.labels.map(l => l.name ? l.name : l), // support both formats
+            labels: foodData.labels.map(l => l.name ? l.name : l),
             datasets: [{
                 label: 'Times Eaten',
                 data: foodData.counts,

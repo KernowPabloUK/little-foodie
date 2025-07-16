@@ -15,8 +15,45 @@
             {% endfor %}
         </div>
     {% endif %}
+        <table class="table table-bordered text-center my-4 satisfaction-table">
+        <thead>
+            <tr>
+                <th>
+                    <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="Love" height="48">
+                </th>
+                <th>
+                    <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="Like" height="48">
+                </th>
+                <th>
+                    <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="Indifferent" height="48">
+                </th>
+                <th>
+                    <img src="{% static 'images/satisfaction_images/Niblet_Dislike.png' %}" alt="Dislike" height="48">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for s in satisfaction_range|slice:"::-1" %}
+                <td>
+                    {% with found=0 %}
+                    {% for label in food_stats.labels %}
+                        {% if label.satisfaction == s %}
+                            <div class="satisfaction-food">{{ label.name }}</div>
+                            {% with found=1 %}{% endwith %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if not found %}
+                        <span class="satisfaction-empty">-</span>
+                    {% endif %}
+                    {% endwith %}
+                </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
     <canvas id="foodStatsChart" width="400" height="200"></canvas>
-    <canvas id="foodVolumeChart" width="400" height="200" class="mt-4"></canvas>
+    <canvas id="foodVolumeChart" width="400" height="200" class="my-4"></canvas>
 </div>
 {% endblock %}
 
