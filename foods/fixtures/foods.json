@@ -107,7 +107,7 @@
   "model": "foods.food",
   "pk": 9,
   "fields": {
-    "name": "Plain Yoghurt (unsweetened)",
+    "name": "Plain Yoghurt",
     "category": 3,
     "min_age_months": 6,
     "is_allergen": true,
