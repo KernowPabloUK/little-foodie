@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let chart1, chart2;
 
     function renderCharts(data) {
-        // Destroy existing charts if they exist
         if (chart1) chart1.destroy();
         if (chart2) chart2.destroy();
 
@@ -10,19 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
         chart1 = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: data.labels.map(l => l.name),
-                datasets: [{
-                    label: 'Times Eaten',
-                    data: data.counts,
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
-                }]
+            labels: data.labels.map(l => l.name),
+            datasets: [{
+                label: 'Times Eaten',
+                data: data.counts,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+            }]
             },
             options: {
-                indexAxis: 'y',
-                responsive: true,
-                scales: {
-                    x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 } }
-                }
+            indexAxis: 'y',
+            responsive: true,
+            scales: {
+                x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 } }
+            }
             }
         });
 
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: {
                 labels: data.labels.map(l => l.name),
                 datasets: [{
-                    label: 'Total Volume (teaspoons)',
+                    label: '(teaspoons)',
                     data: data.volumes,
                     backgroundColor: 'rgba(255, 159, 64, 0.6)'
                 }]
@@ -72,11 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initial render
     renderCharts(foodData);
     renderSatisfactionTable(foodData);
 
-    // Toggle buttons
     document.getElementById('toggle-food').addEventListener('click', function() {
         renderCharts(foodData);
         renderSatisfactionTable(foodData);

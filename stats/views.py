@@ -64,11 +64,14 @@ def statistics_view(request):
         'volumes': [c['total_volume'] or 0 for c in category_counts],
     }
 
+    selected_child = children.get(id=selected_child_id) if selected_child_id else None
+
     return render(request, 'stats/statistics.html', {
         'children': children,
         'selected_child_id': (
             int(selected_child_id) if selected_child_id else None
         ),
+        'selected_child': selected_child,
         'food_stats': food_stats,
         'category_stats': category_stats,
         'satisfaction_range': satisfaction_range,
