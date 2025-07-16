@@ -9,5 +9,10 @@ urlpatterns = [
         name='clear_child_selection'
     ),
     path('edit/<int:log_id>/', views.edit_food_log, name='edit_food_log'),
+    path(
+        'delete/<int:log_id>/',
+        views.delete_food_log,
+        name='delete_food_log'
+    ),
     path('foods/create/', views.create_food_ajax, name='create_food_ajax'),
     ]

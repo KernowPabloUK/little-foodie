@@ -12,15 +12,15 @@
                     <div class="alert alert-warning">
                         <strong>Warning:</strong> This action cannot be undone!
                         <br>
-                        All food logs for <strong>{{ child.name }}</strong> will be lost!
+                        This Food Log will be lost!
                     </div>
                     
-                    <p>Are you sure you want to delete <strong>{{ child.name }}</strong>?</p>
+                    <p>Are you sure you want to delete this Food Log?</p>
                     
                     <div class="d-flex gap-2 justify-content-center mt-4">
                         <form method="post" style="display: inline;">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Yes, Delete {{ child.name }}</button>
+                            <button type="submit" class="btn btn-danger">Yes, Delete this Food Log</button>
                         </form>
                         <a href="{% url 'profile' %}" class="btn btn-dark">Cancel</a>
                     </div>

@@ -69,7 +69,7 @@
                             <a href="{% url 'stats' %}?child_id={{ child.id }}" class="btn btn-dark">View Statistics for {{ child.name }}</a>
                             <div class="ms-auto">
                                 <form action="{% url 'confirm_delete_child' child.id %}" method="get" style="display:inline;">
-                                    <button type="submit" class="btn btn-outline-dark btn-sm">Delete {{ child.name }}</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete {{ child.name }}</button>
                                 </form>
                             </div>
                         </div>

@@ -283,3 +283,12 @@ def create_food_ajax(request):
                 'An unexpected error occurred. Please try again.'
             )
         })
+
+
+@login_required
+def delete_food_log(request, log_id):
+    log = get_object_or_404(FoodLog, id=log_id, user=request.user)
+    if request.method == "POST":
+        log.delete()
+        return redirect('logs')
+    return render(request, 'logs/delete_food_log.html', {'log': log})
