@@ -2,9 +2,27 @@
 {% load static %}
 
 {% block content %}
-<p>I am on the STATS page</p>
+<div class="container mt-4">
+    <h2>Food Statistics</h2>
+    {% if children|length > 1 %}
+        <div class="mb-3">
+            <label><strong>Select Child:</strong></label>
+            {% for child in children %}
+                <label class="mx-2">
+                    <input type="radio" name="child" value="{{ child.id }}" {% if child.id == selected_child_id %}checked{% endif %}>
+                    {{ child.name }}
+                </label>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <canvas id="foodStatsChart" width="400" height="200"></canvas>
+</div>
 {% endblock %}
 
-{%block copyright%}
-Copyright 2025 - calculatedCode
-{%endblock%}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const foodData = {{ food_stats|safe }};
+</script>
+<script src="{% static 'javascript/statistics.js' %}"></script>
+{% endblock %}
