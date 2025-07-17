@@ -15,7 +15,7 @@
         </div>
     {% endif %}
 
-    <div class="card mb-4">
+    <div class="card my-4">
         <div class="card-header">
             <h1 class="mb-0">Edit Food Log</h1>
             <small class="text-muted">Editing {{ log.food.name }} for {{ log.child.name }}</small>
@@ -116,9 +116,11 @@
                 </div>
             </form>
 
-            <a href="{% url 'delete_food_log' log.id %}" class="btn btn-danger btn-sm ms-auto mt-2 text-end">
-                Delete Food Log
-            </a>
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'delete_food_log' log.id %}" class="btn btn-danger btn-sm mt-2">
+                    Delete Food Log
+                </a>
+            </div>
         </div>
     </div>
 </div>

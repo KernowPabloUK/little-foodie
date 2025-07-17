@@ -3,16 +3,26 @@
 /* Variables */
 :root {
     --primary-font: "Lexend", sans-serif;
+    --primary-color-text: #dc143c;
+    --secondary-color-text: #000;
+    --primary-color-header-footer: #edcb9e;
+    --primary-color-background: #faebd7;
+    --secondary-color-background: #f8f9fa;
+    --satisfaction-selected-bg: rgba(255, 193, 7, 0.8);
+    --satisfaction-selected-border: #ffc107;
+    --satisfaction-selected-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
+    --satisfaction-unselected-bg: rgba(255, 255, 255, 0.3);
+    --satisfaction-unselected-border: #ddd;
+    --satisfaction-favourite-unselected-color: #6c757d;
 }
 
-/* Style Rules - GLOBAL */
 * {
     font-family: var(--primary-font);
 }
 
 /* Style Rules - HOME */
 body {
-    background-color: antiquewhite;
+    background-color: var(--primary-color-background);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -42,17 +52,19 @@ body .container {
 }
 
 #h1-home {
-    color: crimson;
+    color: var(--primary-color-text);
+    font-weight: 685;
 }
 
 #log-food-button-home button {
-    color: black;
+    background-color: var(--secondary-color-background);
+    color: var(--secondary-color-text);
     min-width: 200px;
     font-size: 1.4rem;
 }
 
 #log-food-button-home button:hover {
-    background-color: #edcb9e;
+    background-color: var(--primary-color-header-footer);
     font-weight: bold;
 }
 
@@ -61,13 +73,13 @@ body .container {
 }
 
 #buttons-home button {
-    color: black;
+    color: var(--secondary-color-text);
     min-width: 160px;
     font-size: 1.1rem;
 }
 
 #buttons-home button:hover {
-    background-color: #edcb9e;
+    background-color: var(--primary-color-header-footer);
     font-weight: bold;
 }
 
@@ -76,7 +88,7 @@ body .container {
 }
 
 footer {
-    background-color: #edcb9e;
+    background-color: var(--primary-color-header-footer);
     min-height: 72px;
     color: black;
 }
@@ -87,18 +99,18 @@ footer {
 
 footer a {
     text-decoration: none;
-    color: black;
+    color: var(--secondary-color-text);
     font-size: clamp(0.6rem, 2.3vw, 1.5rem);
 }
 
 /* Style Rules - BASE */
 #navbar-logo-base {
-    max-height: 10rem;
-    max-width: 10rem;
+    max-height: 6rem;
+    max-width: 6rem;
 }
 
 .navbar {
-    background-color: #edcb9e;
+    background-color: var(--primary-color-header-footer);
     font-size: 2rem;
     margin-right: 1.8rem;
 }
@@ -109,7 +121,19 @@ footer a {
     margin-left: 1rem;
 }
 
+.card, .card-header, .modal-header {
+    background-color: var(--primary-color-header-footer);
+}
+
+select, option, .modal-body, .modal-footer {
+    background-color: var(--secondary-color-background);
+}
+
 /* Style Rules - FOOD LOGS */
+.card-body {
+    background-color: var(--secondary-color-background);
+}
+
 .satisfaction-buttons,
 .favourite-buttons {
     display: flex;
@@ -128,12 +152,12 @@ footer a {
 .satisfaction-label,
 .favourite-label {
     padding: 15px 25px;
-    border: 3px solid #ddd;
+    border: 3px solid var(--satisfaction-unselected-border);
     border-radius: 25px;
     font-weight: bold;
     font-size: 18px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--satisfaction-unselected-bg);
     min-width: 120px;
     transition: all 0.3s ease;
     user-select: none;
@@ -147,27 +171,27 @@ footer a {
 }
 
 .satisfaction-option.selected .satisfaction-label {
-    background-color: rgba(255, 193, 7, 0.8);
-    border-color: #ffc107;
-    color: #000;
-    box-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
+    background-color: var(--satisfaction-selected-bg);
+    border-color: var(--satisfaction-selected-border);
+    color: var(--secondary-color-text);
+    box-shadow: var(--satisfaction-selected-shadow);
     transform: scale(1.1);
     opacity: 1;
 }
 
 .favourite-toggle[data-selected="true"] .favourite-label {
-    background-color: rgba(255, 193, 7, 0.8);
-    border-color: #ffc107;
-    color: #000;
+    background-color: var(--satisfaction-selected-bg);
+    border-color: var(--satisfaction-selected-border);
+    color: var(--secondary-color-text);
     opacity: 1;
-    box-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
+    box-shadow: 0 0 20px var(--satisfaction-selected-shadow);
     transform: scale(1.1);
 }
 
 .favourite-toggle[data-selected="false"] .favourite-label {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-color: #ddd;
-    color: #6c757d;
+    background-color: var(--satisfaction-unselected-bg);
+    border-color: var(--satisfaction-unselected-border);
+    color: var(--satisfaction-favourite-unselected-color);
     opacity: 0.6;
 }
 
@@ -190,7 +214,7 @@ footer a {
 }
 .table-bordered th,
 .table-bordered td {
-    border: 1px solid #000 !important;
+    border: 1px solid var(--secondary-color-text) !important;
 }
 .table-bordered tr:first-child th {
     border-top: none !important;
@@ -225,7 +249,7 @@ footer a {
 .satisfaction-table td {
     width: 25%;
     background: transparent !important;
-    border-color: #000 !important;
+    border-color: var(--secondary-color-text) !important;
     vertical-align: top;
     min-height: 60px;
 }

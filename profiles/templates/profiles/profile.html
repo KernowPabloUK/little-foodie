@@ -64,10 +64,10 @@
                         <p class="form-label my-2"><strong>Date of Birth:</strong> {{ child.birthdate|date:'F j, Y' }}</p>
                         <p class="form-label my-2"><strong>Age in months:</strong> {{ child.age_in_months }}</p>
                         <br>
-                        <div class="d-flex gap-2">
-                            <a href="{% url 'logs' %}?child_id={{ child.id }}" class="btn btn-dark">Log Food for {{ child.name }}</a>
-                            <a href="{% url 'stats' %}?child_id={{ child.id }}" class="btn btn-dark">View Statistics for {{ child.name }}</a>
-                            <div class="ms-auto">
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{% url 'logs' %}?child_id={{ child.id }}" class="btn btn-dark mb-2">Log Food for {{ child.name }}</a>
+                            <a href="{% url 'stats' %}?child_id={{ child.id }}" class="btn btn-dark mb-2">View Statistics for {{ child.name }}</a>
+                            <div class="ms-auto mb-2">
                                 <form action="{% url 'confirm_delete_child' child.id %}" method="get" style="display:inline;">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete {{ child.name }}</button>
                                 </form>
