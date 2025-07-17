@@ -1,14 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 
+/* Variables */
 :root {
     --primary-font: "Lexend", sans-serif;
 }
 
+/* Style Rules - GLOBAL */
 * {
     font-family: var(--primary-font);
 }
 
-/* HOME URL */
+/* Style Rules - HOME */
 body {
     background-color: antiquewhite;
     display: flex;
@@ -89,7 +91,7 @@ footer a {
     font-size: clamp(0.6rem, 2.3vw, 1.5rem);
 }
 
-/* BASE URL */
+/* Style Rules - BASE */
 #navbar-logo-base {
     max-height: 10rem;
     max-width: 10rem;
@@ -101,13 +103,13 @@ footer a {
     margin-right: 1.8rem;
 }
 
-/* PROFILE URL */
+/* Style Rules - PROFILE */
 .h2-profile {
     margin-top: 0.72rem;
     margin-left: 1rem;
 }
 
-/* Food Log Styles */
+/* Style Rules - FOOD LOGS */
 .satisfaction-buttons,
 .favourite-buttons {
     display: flex;
@@ -180,7 +182,7 @@ footer a {
     max-height: 80px;
 }
 
-/* Table Styles */
+/* Style Rules - STATS */
 .table-bordered {
     border: none !important;
     border-collapse: separate !important;
@@ -205,7 +207,6 @@ footer a {
     border-right: none !important;
 }
 
-/* Satisfaction Table Styles */
 .satisfaction-table {
     width: 100%;
     margin: 0 auto 1.5rem auto;
@@ -253,7 +254,7 @@ footer a {
     opacity: 0;
 }
 
-/* BASE */
+/* Media Queries - base.html */
 @media (max-width: 991.98px) {
     .navbar-brand,
     .navbar-nav .nav-link {
