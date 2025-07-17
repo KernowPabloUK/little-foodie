@@ -115,6 +115,12 @@ footer a {
     margin-right: 1.8rem;
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1) grayscale(1) brightness(0.3);
+}
+
+
 /* Style Rules - PROFILE */
 .h2-profile {
     margin-top: 0.72rem;

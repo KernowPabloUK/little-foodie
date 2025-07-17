@@ -14,6 +14,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Little Foodie</title>
 
+    <!-- SEO and Google Indexing Meta Tags -->
+    <meta name="description" content="Little Foodie - Baby Weaning Tracker. Track your baby's meals, view stats, and manage weaning logs easily.">
+    <meta name="keywords" content="baby weaning, baby food, meal tracker, weaning log, baby stats, infant nutrition, health, diet">
+    <meta name="author" content="calculatedCode">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'favicons/favicon.ico' %}">
+
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
@@ -92,8 +106,53 @@
         <div class="container py-2">
             <div class="row align-items-center">
                 <div class="col-4">
-                    <a class="footer-icon" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in a new tab)">
-                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>About this app</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#aboutAppModal">
+                        About this app
+                    </a>
+                    <div class="modal fade" id="aboutAppModal" tabindex="-1" aria-labelledby="aboutAppModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="aboutAppModalLabel">How to Use Little Foodie</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="aboutAppCarousel" class="carousel" data-bs-ride="false">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active text-center">
+                                                <img src="https://via.placeholder.com/400x200?text=Step+1" class="d-block mx-auto mb-3" alt="Step 1">
+                                                <h6>Step 1: Create a Profile</h6>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.</p>
+                                            </div>
+                                            <div class="carousel-item text-center">
+                                                <img src="https://via.placeholder.com/400x200?text=Step+2" class="d-block mx-auto mb-3" alt="Step 2">
+                                                <h6>Step 2: Add Your Child</h6>
+                                                <p>Maecenas sit amet tincidunt elit. Etiam nec magna euismod, cursus erat at, dictum erat.</p>
+                                            </div>
+                                            <div class="carousel-item text-center">
+                                                <img src="https://via.placeholder.com/400x200?text=Step+3" class="d-block mx-auto mb-3" alt="Step 3">
+                                                <h6>Step 3: Log Foods</h6>
+                                                <p>Curabitur ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit.</p>
+                                            </div>
+                                            <div class="carousel-item text-center">
+                                                <img src="https://via.placeholder.com/400x200?text=Step+4" class="d-block mx-auto mb-3" alt="Step 4">
+                                                <h6>Step 4: View Stats</h6>
+                                                <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam.</p>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="copyright-home" class="col-4">
                     {% block copyright %}
