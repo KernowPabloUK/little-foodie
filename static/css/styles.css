@@ -90,7 +90,7 @@ body .container {
 footer {
     background-color: var(--primary-color-header-footer);
     min-height: 72px;
-    color: black;
+    color: var(--secondary-color-text);
 }
 
 #copyright-home {

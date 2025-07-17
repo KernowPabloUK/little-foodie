@@ -81,7 +81,7 @@ class FoodLog(models.Model):
     )
     food = models.ForeignKey(
         Food,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name="food_logs",
         null=False,
         blank=False
