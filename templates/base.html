@@ -29,9 +29,9 @@
     <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
     crossorigin="anonymous">
 
     <!-- Custom CSS -->
@@ -147,7 +147,7 @@
                                                         <img src="{% static 'images/about_app_images/about_profile.png' %}" class="mb-3" alt="Profile page preview" style="max-width:100%;height:auto;">
                                                         <h6>Profile Page</h6>
                                                         <p>Edit your profile <small><em>(optional)</em></small> and add your baby's name <small><em>(or use nickname if you prefer)</em></small>
-                                                        <br> 
+                                                        <br>
                                                         The baby's date of birth is required to help us alert you to foods that may be too old for them to try at the current stage of their weaning journey</p>
                                                     </div>
                                                     <div class="carousel-item text-center">
@@ -171,7 +171,7 @@
                                                     <div class="carousel-item text-center">
                                                         <img src="{% static 'images/about_app_images/about_log_food_pending_food.png' %}" class="mb-3" alt="Step 6" style="max-width:100%;height:auto;">
                                                         <h6>New Foods</h6>
-                                                        <p>New foods created by a user will be available to all users of Little Foodie 
+                                                        <p>New foods created by a user will be available to all users of Little Foodie
                                                         <br>
                                                         Please ensure food added is appropriate and take care using these as the information on the food could change once reviewed by the team or even be removed if deemed inappropriate</p>
                                                     </div>
@@ -246,7 +246,7 @@
                                                     It is the responsibility of the parent/care-giver to ensure that all foods given to children are appropriate for their age and free from allergens or ingredients that may cause harm.
                                                 </p>
                                                 <p>
-                                                    Always check for potential allergies and follow age-related food guidelines. 
+                                                    Always check for potential allergies and follow age-related food guidelines.
                                                 </p>
                                                 <p>
                                                     For up-to-date advice, please refer to the <a class="about-external-link" href="https://www.nhs.uk/start-for-life/baby/weaning/" target="_blank" rel="noopener">NHS</a> and the <a class="about-external-link" href="https://www.food.gov.uk/" target="_blank" rel="noopener">Food Standards Agency</a>
@@ -334,45 +334,8 @@
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
 
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var reasonSelect = document.getElementById('contactReason');
-    var detailsGroup = document.getElementById('contactDetailsGroup');
-    var foodErrorOptions = document.getElementById('foodErrorOptions');
-    var contactForm = document.getElementById('contactForm');
-    var contactFormFields = document.getElementById('contactFormFields');
-    var contactThanks = document.getElementById('contactThanks');
-    var contactModal = document.getElementById('contactModal');
-
-    reasonSelect.addEventListener('change', function() {
-        if (this.value) {
-            detailsGroup.style.display = 'block';
-        } else {
-            detailsGroup.style.display = 'none';
-        }
-        if (this.value === 'food') {
-            foodErrorOptions.style.display = 'block';
-        } else {
-            foodErrorOptions.style.display = 'none';
-        }
-    });
-
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        contactFormFields.style.display = 'none';
-        contactThanks.style.display = 'block';
-    });
-
-    contactModal.addEventListener('hidden.bs.modal', function () {
-        contactForm.reset();
-        contactFormFields.style.display = 'block';
-        contactThanks.style.display = 'none';
-        foodErrorOptions.style.display = 'none';
-        detailsGroup.style.display = 'none';
-    });
-});
-</script>
-
+    <script src="{% static 'javascript/error_reporting.js' %}"></script>
+    
     {% block extra_js %}{% endblock %}
 </body>
 </html>
