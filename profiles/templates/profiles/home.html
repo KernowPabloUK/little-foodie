@@ -84,21 +84,228 @@
     </section>
 
     </div>
-    <footer id="contact" class="footer d-flex justify-content-center text-center align-items-center">
+    <footer id="contact" class="footer d-flex mt-auto justify-content-center text-center align-items-center">
         <div class="container py-2">
             <div class="row align-items-center">
                 <div class="col-4">
-                    <a class="footer-icon" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in a new tab)">
-                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>About this app</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#aboutAppModal">
+                        About Little Foodie
+                    </a>
+                    <div class="modal fade" id="aboutAppModal" tabindex="-1" aria-labelledby="aboutAppModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="aboutAppModalLabel">About Little Foodie</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="nav nav-tabs mb-3" id="aboutAppTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="howto-tab" data-bs-toggle="tab" data-bs-target="#howto" type="button" role="tab" aria-controls="howto" aria-selected="true">
+                                                How to use the app
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">
+                                                Information &amp; Sources
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="disclaimer-tab" data-bs-toggle="tab" data-bs-target="#disclaimer" type="button" role="tab" aria-controls="disclaimer" aria-selected="false">
+                                                Disclaimer
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="howto" role="tabpanel" aria-labelledby="howto-tab">
+                                            <div id="aboutAppCarousel" class="carousel about-carousel mx-auto" data-bs-ride="false" style="max-width: 28rem;">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active text-center">
+                                                        <img src="{% static 'images/about_app_images/about_home.png' %}" class="mb-3 img-fluid" alt="Homepage preview" style="max-width:100%;height:auto;">
+                                                        <h6>Homepage</h6>
+                                                        <p>Start your baby's weaning journey here</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_profile.png' %}" class="mb-3" alt="Profile page preview" style="max-width:100%;height:auto;">
+                                                        <h6>Profile Page</h6>
+                                                        <p>Edit your profile <small><em>(optional)</em></small> and add your baby's name <small><em>(or use nickname if you prefer)</em></small>
+                                                        <br>
+                                                        The baby's date of birth is required to help us alert you to foods that may be too old for them to try at the current stage of their weaning journey</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_log_food.png' %}" class="mb-3" alt="Step 3" style="max-width:100%;height:auto;">
+                                                        <h6>Logging Food</h6>
+                                                        <p>Specify the date and time of the feed, select a food from the list <small><em>(or create a new one if we don't have it just yet!)</em></small>, then select the preparation, consistency, feeding method and approx volume eaten</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_log_food_continued.png' %}" class="mb-3" alt="Step 4" style="max-width:100%;height:auto;">
+                                                        <h6>Logging Food</h6>
+                                                        <p>Rate the food based on baby's reaction and also mark as a favourite <small><em>(optional)</em></small>
+                                                        <br>
+                                                        Add notes about the feed <small><em>(optional)</em></small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_log_food_allergens_and_age_warnings.png' %}" class="mb-3" alt="Step 5" style="max-width:100%;height:auto;">
+                                                        <h6>Age &amp; Allergen Warnings</h6>
+                                                        <p>If baby's current age is less than the reccomended age of the selected food or the food is known to contain a common allergen, warning messages will appear. <small><em>(Informational only)</em></small></p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_log_food_pending_food.png' %}" class="mb-3" alt="Step 6" style="max-width:100%;height:auto;">
+                                                        <h6>New Foods</h6>
+                                                        <p>New foods created by a user will be available to all users of Little Foodie
+                                                        <br>
+                                                        Please ensure food added is appropriate and take care using these as the information on the food could change once reviewed by the team or even be removed if deemed inappropriate</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_food_log.png' %}" class="mb-3" alt="Step 7" style="max-width:100%;height:auto;">
+                                                        <h6>Food Logs</h6>
+                                                        <p>View recent food logs recorded with snapshot information</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_food_log_edit.png' %}" class="mb-3" alt="Step 8" style="max-width:100%;height:auto;">
+                                                        <h6>Edit a Food Log</h6>
+                                                        <p>Need to change something on a past log, click edit and adjust where necessary
+                                                        <br>
+                                                        Come back and add notes such as an allergic reaction or another reason for future reference
+                                                        </p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_stats_food.png' %}" class="mb-3" alt="Step 9" style="max-width:100%;height:auto;">
+                                                        <h6>Statistics</h6>
+                                                        <p>See stats for foods they've tried! Satisfaction is shown as an average if they change their mind on different feeds of the same food</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_stats_category.png' %}" class="mb-3" alt="Step 10" style="max-width:100%;height:auto;">
+                                                        <h6>Statistics</h6>
+                                                        <p>Also see stats per Food Category</p>
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                            <div class="p-3 text-start">
+                                                <h3>Information &amp; Sources</h3>
+                                                <p>
+                                                    <strong>Is your baby ready to start weaning?</strong><br>
+                                                    Signs your baby may be ready include: sitting up and holding their head steady, coordinating eyes, hands and mouth, and swallowing food rather than spitting it out.
+                                                    <br>Most babies are ready at around 6 months old.<br>
+                                                    <a class="about-external-link" href="https://www.nhs.uk/start-for-life/baby/weaning/" target="_blank" rel="noopener">Read more on NHS: When to start weaning</a>
+                                                </p>
+                                                <p>
+                                                    <strong>Safe Weaning</strong><br>
+                                                    When introducing potential allergens (like egg or peanut), offer them in the morning or early in the day. This allows you to monitor your baby for any reactions and seek medical help if needed.<br>
+                                                    <a class="about-external-link" href="https://www.nhs.uk/start-for-life/baby/weaning/safe-weaning/food-allergies/" target="_blank" rel="noopener">Read more on NHS: Safe Weaning</a>
+                                                </p>
+                                                <p>
+                                                    <strong>Other points to consider:</strong>
+                                                    <br>
+                                                    Always supervise your baby while eating to prevent choking.<br>
+                                                    Introduce one new food at a time and wait a few days before trying another.<br>
+                                                    Offer a variety of textures and tastes, but avoid adding salt or sugar.<br>
+                                                    Continue to offer breast milk or formula alongside solid foods until at least 12 months
+                                                </p>
+                                                <p>
+                                                    For up-to-date advice, please refer to the <a class="about-external-link" href="https://www.nhs.uk/start-for-life/baby/weaning/" target="_blank" rel="noopener">NHS</a> and the <a class="about-external-link" href="https://www.food.gov.uk/" target="_blank" rel="noopener">Food Standards Agency</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="disclaimer" role="tabpanel" aria-labelledby="disclaimer-tab">
+                                            <div class="p-3 text-start">
+                                                <h4>Disclaimer</h4>
+                                                <p>
+                                                    Little Foodie is designed to help you record and track your little one&#39;s weaning journey. All allergen and age recommendations are sourced from the NHS and the Food Standards Agency.
+                                                </p>
+                                                <p>
+                                                    It is the responsibility of the parent/care-giver to ensure that all foods given to children are appropriate for their age and free from allergens or ingredients that may cause harm.
+                                                </p>
+                                                <p>
+                                                    Always check for potential allergies and follow age-related food guidelines.
+                                                </p>
+                                                <p>
+                                                    For up-to-date advice, please refer to the <a class="about-external-link" href="https://www.nhs.uk/start-for-life/baby/weaning/" target="_blank" rel="noopener">NHS</a> and the <a class="about-external-link" href="https://www.food.gov.uk/" target="_blank" rel="noopener">Food Standards Agency</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="copyright-home" class="col-4">
                     {% block copyright %}
                     Copyright 2025 - calculatedCode
                     {% endblock %}
                 </div>
+
                 <div class="col-4">
-                    <a class="footer-icon" href="https://maps.app.goo.gl/TjEtaQj59vY42m9n8" target="_blank" rel="noopener" aria-label="Visit our Google Maps main training location page (opens in a new tab)">
-                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>Contact Us</a>
+                    <a class="footer-icon" href="#" data-bs-toggle="modal" data-bs-target="#contactModal" aria-label="Open contact modal">
+                    Get In Touch
+                    </a>
+                </div>
+
+                <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="contactModalLabel">Get In Touch</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="min-height:200px;">
+                                <form id="contactForm">
+                                    <div id="contactFormFields">
+                                        <div class="mb-3">
+                                            <label for="contactReason" class="form-label">How can we help?</label>
+                                            <select class="form-select" id="contactReason" required>
+                                                <option value="" selected disabled>Select an option</option>
+                                                <option value="food">Report an Error with a Food</option>
+                                                <option value="stats">Report an Error with Stats</option>
+                                                <option value="logs">Report an Error with Food Logs</option>
+                                                <option value="feature">Feature Request</option>
+                                                <option value="other">Something Else</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3" id="foodErrorOptions" style="display: none;">
+                                            <label class="form-label">What is wrong? Tick all that apply</label>
+                                            <div class="form-check text-start">
+                                                <input class="form-check-input" type="checkbox" value="name" id="foodNameCheck">
+                                                <label class="form-check-label" for="foodNameCheck">Food Name</label>
+                                            </div>
+                                            <div class="form-check text-start">
+                                                <input class="form-check-input" type="checkbox" value="category" id="foodCategoryCheck">
+                                                <label class="form-check-label" for="foodCategoryCheck">Category</label>
+                                            </div>
+                                            <div class="form-check text-start">
+                                                <input class="form-check-input" type="checkbox" value="age" id="foodAgeCheck">
+                                                <label class="form-check-label" for="foodAgeCheck">Recommended Minimum Age</label>
+                                            </div>
+                                            <div class="form-check text-start">
+                                                <input class="form-check-input" type="checkbox" value="allergen" id="foodAllergenCheck">
+                                                <label class="form-check-label" for="foodAllergenCheck">Allergen</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" id="contactDetailsGroup" style="display: none;">
+                                            <label for="contactDetails" class="form-label">Please provide more details</label>
+                                            <textarea class="form-control" id="contactDetails" rows="4" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-dark">Submit</button>
+                                    </div>
+                                    <div id="contactThanks" class="alert alert-success mt-3 text-center" style="display: none;">
+                                        Thanks, we'll look at this shortly and take action if necessary
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,6 +315,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
+
+    <script src="{% static 'javascript/error_reporting.js' %}"></script>
 
 </body>
 </html>
