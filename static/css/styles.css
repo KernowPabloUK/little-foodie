@@ -100,7 +100,7 @@ footer {
 footer a {
     text-decoration: none;
     color: var(--secondary-color-text);
-    font-size: clamp(0.6rem, 2.3vw, 1.5rem);
+    font-size: clamp(0.95rem, 2.3vw, 1.5rem);
 }
 
 /* Style Rules - BASE */
@@ -115,11 +115,23 @@ footer a {
     margin-right: 1.8rem;
 }
 
+#aboutAppModal .nav-tabs .nav-link {
+    background-color: var(--primary-color-background);
+    color: var(--secondary-color-text);
+}
+
+#aboutAppModal .nav-tabs .nav-link.active {
+    background-color: var(--primary-color-header-footer);
+}
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     filter: invert(1) grayscale(1) brightness(0.3);
 }
 
+.about-external-link {
+    font-weight: 700;
+}
 
 /* Style Rules - PROFILE */
 .h2-profile {

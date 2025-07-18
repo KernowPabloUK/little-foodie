@@ -113,41 +113,87 @@
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="aboutAppModalLabel">How to Use Little Foodie</h5>
+                                    <h5 class="modal-title" id="aboutAppModalLabel">About Little Foodie</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="aboutAppCarousel" class="carousel" data-bs-ride="false">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active text-center">
-                                                <img src="https://via.placeholder.com/400x200?text=Step+1" class="d-block mx-auto mb-3" alt="Step 1">
-                                                <h6>Step 1: Create a Profile</h6>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.</p>
-                                            </div>
-                                            <div class="carousel-item text-center">
-                                                <img src="https://via.placeholder.com/400x200?text=Step+2" class="d-block mx-auto mb-3" alt="Step 2">
-                                                <h6>Step 2: Add Your Child</h6>
-                                                <p>Maecenas sit amet tincidunt elit. Etiam nec magna euismod, cursus erat at, dictum erat.</p>
-                                            </div>
-                                            <div class="carousel-item text-center">
-                                                <img src="https://via.placeholder.com/400x200?text=Step+3" class="d-block mx-auto mb-3" alt="Step 3">
-                                                <h6>Step 3: Log Foods</h6>
-                                                <p>Curabitur ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit.</p>
-                                            </div>
-                                            <div class="carousel-item text-center">
-                                                <img src="https://via.placeholder.com/400x200?text=Step+4" class="d-block mx-auto mb-3" alt="Step 4">
-                                                <h6>Step 4: View Stats</h6>
-                                                <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam.</p>
+                                    <ul class="nav nav-tabs mb-3" id="aboutAppTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="howto-tab" data-bs-toggle="tab" data-bs-target="#howto" type="button" role="tab" aria-controls="howto" aria-selected="true">
+                                                How to use the app
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">
+                                                Information &amp; Sources
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="disclaimer-tab" data-bs-toggle="tab" data-bs-target="#disclaimer" type="button" role="tab" aria-controls="disclaimer" aria-selected="false">
+                                                Disclaimer
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="howto" role="tabpanel" aria-labelledby="howto-tab">
+                                            <div id="aboutAppCarousel" class="carousel about-carousel mx-auto" data-bs-ride="false" style="max-width: 28rem;">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active text-center">
+                                                        <img src="https://via.placeholder.com/400x200?text=Step+1" class="mb-3" alt="Step 1">
+                                                        <h6>Step 1: Create a Profile</h6>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="https://via.placeholder.com/400x200?text=Step+2" class="mb-3" alt="Step 2">
+                                                        <h6>Step 2: Add Your Child</h6>
+                                                        <p>Maecenas sit amet tincidunt elit. Etiam nec magna euismod, cursus erat at, dictum erat.</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="https://via.placeholder.com/400x200?text=Step+3" class="mb-3" alt="Step 3">
+                                                        <h6>Step 3: Log Foods</h6>
+                                                        <p>Curabitur ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit.</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="https://via.placeholder.com/400x200?text=Step+4" class="mb-3" alt="Step 4">
+                                                        <h6>Step 4: View Stats</h6>
+                                                        <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam.</p>
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
                                             </div>
                                         </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
+                                        <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                            <div class="p-3">
+                                                <h6>Information &amp; Sources</h6>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod, urna eu tincidunt consectetur, nisi nisl aliquam enim, nec dictum nisi nisl eget sapien.</p>
+                                                <ul>
+                                                    <li>Source 1: Lorem ipsum dolor sit amet</li>
+                                                    <li>Source 2: Pellentesque vitae velit ex</li>
+                                                    <li>Source 3: Etiam nec magna euismod</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="disclaimer" role="tabpanel" aria-labelledby="disclaimer-tab">
+                                            <div class="p-3">
+                                                <h4>Disclaimer</h4>
+                                                <p>
+                                                    It is the responsibility of the parent/care-giver to ensure that all foods given to children are appropriate for their age and free from allergens or ingredients that may cause harm.
+                                                </p>
+                                                <p>
+                                                    Always check for potential allergies and follow age-related food guidelines. 
+                                                </p>
+                                                <p>
+                                                    For up-to-date advice, please refer to the <a class="about-external-link" href="https://www.nhs.uk/start-for-life/baby/weaning/" target="_blank" rel="noopener">NHS</a> and the <a class="about-external-link" href="https://www.food.gov.uk/" target="_blank" rel="noopener">Food Standards Agency</a>.
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
