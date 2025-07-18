@@ -107,7 +107,7 @@
             <div class="row align-items-center">
                 <div class="col-4">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#aboutAppModal">
-                        About this app
+                        About Little Foodie
                     </a>
                     <div class="modal fade" id="aboutAppModal" tabindex="-1" aria-labelledby="aboutAppModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -139,24 +139,64 @@
                                             <div id="aboutAppCarousel" class="carousel about-carousel mx-auto" data-bs-ride="false" style="max-width: 28rem;">
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active text-center">
-                                                        <img src="https://via.placeholder.com/400x200?text=Step+1" class="mb-3" alt="Step 1">
-                                                        <h6>Step 1: Create a Profile</h6>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.</p>
+                                                        <img src="{% static 'images/about_app_images/about_home.png' %}" class="mb-3 img-fluid" alt="Homepage preview" style="max-width:100%;height:auto;">
+                                                        <h6>Homepage</h6>
+                                                        <p>Start your baby's weaning journey here</p>
                                                     </div>
                                                     <div class="carousel-item text-center">
-                                                        <img src="https://via.placeholder.com/400x200?text=Step+2" class="mb-3" alt="Step 2">
-                                                        <h6>Step 2: Add Your Child</h6>
-                                                        <p>Maecenas sit amet tincidunt elit. Etiam nec magna euismod, cursus erat at, dictum erat.</p>
+                                                        <img src="{% static 'images/about_app_images/about_profile.png' %}" class="mb-3" alt="Profile page preview" style="max-width:100%;height:auto;">
+                                                        <h6>Profile Page</h6>
+                                                        <p>Edit your profile <small><em>(optional)</em></small> and add your baby's name <small><em>(or use nickname if you prefer)</em></small>
+                                                        <br> 
+                                                        The baby's date of birth is required to help us alert you to foods that may be too old for them to try at the current stage of their weaning journey</p>
                                                     </div>
                                                     <div class="carousel-item text-center">
-                                                        <img src="https://via.placeholder.com/400x200?text=Step+3" class="mb-3" alt="Step 3">
-                                                        <h6>Step 3: Log Foods</h6>
-                                                        <p>Curabitur ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit.</p>
+                                                        <img src="{% static 'images/about_app_images/about_log_food.png' %}" class="mb-3" alt="Step 3" style="max-width:100%;height:auto;">
+                                                        <h6>Logging Food</h6>
+                                                        <p>Specify the date and time of the feed, select a food from the list <small><em>(or create a new one if we don't have it just yet!)</em></small>, then select the preparation, consistency, feeding method and approx volume eaten</p>
                                                     </div>
                                                     <div class="carousel-item text-center">
-                                                        <img src="https://via.placeholder.com/400x200?text=Step+4" class="mb-3" alt="Step 4">
-                                                        <h6>Step 4: View Stats</h6>
-                                                        <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam.</p>
+                                                        <img src="{% static 'images/about_app_images/about_log_food_continued.png' %}" class="mb-3" alt="Step 4" style="max-width:100%;height:auto;">
+                                                        <h6>Logging Food</h6>
+                                                        <p>Rate the food based on baby's reaction and also mark as a favourite <small><em>(optional)</em></small>
+                                                        <br>
+                                                        Add notes about the feed <small><em>(optional)</em></small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_log_food_allergens_and_age_warnings.png' %}" class="mb-3" alt="Step 5" style="max-width:100%;height:auto;">
+                                                        <h6>Age &amp; Allergen Warnings</h6>
+                                                        <p>If baby's current age is less than the reccomended age of the selected food or the food is known to contain a common allergen, warning messages will appear. <small><em>(Informational only)</em></small></p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_log_food_pending_food.png' %}" class="mb-3" alt="Step 6" style="max-width:100%;height:auto;">
+                                                        <h6>New Foods</h6>
+                                                        <p>New foods created by a user will be available to all users of Little Foodie 
+                                                        <br>
+                                                        Please ensure food added is appropriate and take care using these as the information on the food could change once reviewed by the team or even be removed if deemed inappropriate</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_food_log.png' %}" class="mb-3" alt="Step 7" style="max-width:100%;height:auto;">
+                                                        <h6>Food Logs</h6>
+                                                        <p>View recent food logs recorded with snapshot information</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_food_log_edit.png' %}" class="mb-3" alt="Step 8" style="max-width:100%;height:auto;">
+                                                        <h6>Edit a Food Log</h6>
+                                                        <p>Need to change something on a past log, click edit and adjust where necessary
+                                                        <br>
+                                                        Come back and add notes such as an allergic reaction or another reason for future reference
+                                                        </p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_stats_food.png' %}" class="mb-3" alt="Step 9" style="max-width:100%;height:auto;">
+                                                        <h6>Statistics</h6>
+                                                        <p>See stats for foods they've tried! Satisfaction is shown as an average if they change their mind on different feeds of the same food</p>
+                                                    </div>
+                                                    <div class="carousel-item text-center">
+                                                        <img src="{% static 'images/about_app_images/about_stats_category.png' %}" class="mb-3" alt="Step 10" style="max-width:100%;height:auto;">
+                                                        <h6>Statistics</h6>
+                                                        <p>Also see stats per Food Category</p>
                                                     </div>
                                                 </div>
                                                 <button class="carousel-control-prev" type="button" data-bs-target="#aboutAppCarousel" data-bs-slide="prev">
@@ -174,7 +214,8 @@
                                                 <h3>Information &amp; Sources</h3>
                                                 <p>
                                                     <strong>Is your baby ready to start weaning?</strong><br>
-                                                    Signs your baby may be ready include: sitting up and holding their head steady, coordinating eyes, hands and mouth, and swallowing food rather than spitting it out. Most babies are ready at around 6 months old.<br>
+                                                    Signs your baby may be ready include: sitting up and holding their head steady, coordinating eyes, hands and mouth, and swallowing food rather than spitting it out.
+                                                    <br>Most babies are ready at around 6 months old.<br>
                                                     <a class="about-external-link" href="https://www.nhs.uk/start-for-life/baby/weaning/" target="_blank" rel="noopener">Read more on NHS: When to start weaning</a>
                                                 </p>
                                                 <p>
@@ -198,6 +239,9 @@
                                         <div class="tab-pane fade" id="disclaimer" role="tabpanel" aria-labelledby="disclaimer-tab">
                                             <div class="p-3 text-start">
                                                 <h4>Disclaimer</h4>
+                                                <p>
+                                                    Little Foodie is designed to help you record and track your little one&#39;s weaning journey. All allergen and age recommendations are sourced from the NHS and the Food Standards Agency.
+                                                </p>
                                                 <p>
                                                     It is the responsibility of the parent/care-giver to ensure that all foods given to children are appropriate for their age and free from allergens or ingredients that may cause harm.
                                                 </p>
