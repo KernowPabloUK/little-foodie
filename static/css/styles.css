@@ -130,7 +130,8 @@ footer a {
 }
 
 .about-external-link {
-    font-weight: 700;
+    font-weight: 420;
+    text-decoration: underline;
 }
 
 /* Style Rules - PROFILE */
