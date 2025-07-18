@@ -8,7 +8,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Little Foodie</title>
+    <title>Little Foodie | Track Tiny Tastes, One Bite at a Time</title>
+
+    <!-- SEO and Google Indexing Meta Tags -->
+    <meta name="description" content="Little Foodie - Baby Weaning Tracker. Track your baby's meals, view stats, and manage weaning logs easily.">
+    <meta name="keywords" content="baby weaning, baby food, meal tracker, weaning log, baby stats, infant nutrition, health, diet">
+    <meta name="author" content="calculatedCode">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" 
@@ -24,7 +38,7 @@
 <body>
     <div class="container">
     <section id="brand-home" class="row justify-content-center text-center">
-        <img id="hero-image-home" src="{% static 'images/Logo_Centered_No_Background.png' %}" alt="Hero Image for Little Foodie">
+        <img id="hero-image-home" src="{% static 'images/little_foodie_logo.png' %}" alt="Hero Image for Little Foodie">
         <div id="hero-text-home" class="text-center">
             <h1 id="h1-home">Little
                 <br>
