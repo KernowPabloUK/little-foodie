@@ -42,13 +42,19 @@ class TestLogsForms(TestCase):
         form = CreateFoodForm()
         self.assertEqual(form.fields['name'].label, 'Food Name')
         self.assertEqual(form.fields['category'].label, 'Category')
-        self.assertEqual(form.fields['min_age_months'].label, 'Minimum Age (months)')
-        self.assertEqual(form.fields['is_allergen'].label, 'Contains common allergens')
+        self.assertEqual(
+            form.fields['min_age_months'].label,
+            'Minimum Age (months)'
+            )
+        self.assertEqual(
+            form.fields['is_allergen'].label,
+            'Contains common allergens'
+            )
 
     def test_create_food_form_invalid_category(self):
         """CreateFoodForm is invalid if category is not in FOOD_CATEGORY."""
         data = self.food_data.copy()
-        data['category'] = 999 
+        data['category'] = 999
         form = CreateFoodForm(data=data)
         self.assertFalse(form.is_valid())
         self.assertIn('category', form.errors)
@@ -56,10 +62,18 @@ class TestLogsForms(TestCase):
     def test_create_food_form_widget_types(self):
         """CreateFoodForm uses correct widget types."""
         form = CreateFoodForm()
-        self.assertEqual(form.fields['name'].widget.__class__.__name__, 'TextInput')
-        self.assertEqual(form.fields['category'].widget.__class__.__name__, 'Select')
-        self.assertEqual(form.fields['min_age_months'].widget.__class__.__name__, 'NumberInput')
-        self.assertEqual(form.fields['is_allergen'].widget.__class__.__name__, 'CheckboxInput')
+        self.assertEqual(
+            form.fields['name'].widget.__class__.__name__,
+            'TextInput')
+        self.assertEqual(
+            form.fields['category'].widget.__class__.__name__,
+            'Select')
+        self.assertEqual(
+            form.fields['min_age_months'].widget.__class__.__name__,
+            'NumberInput')
+        self.assertEqual(
+            form.fields['is_allergen'].widget.__class__.__name__,
+            'CheckboxInput')
 
     def test_food_log_form_notes_optional(self):
         """FoodLogForm is valid if notes is omitted (if notes is optional)."""
