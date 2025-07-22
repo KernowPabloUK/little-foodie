@@ -45,7 +45,8 @@ class TestFoodViews(TestCase):
         self.assertTemplateUsed(response, 'foods/food.html')
 
     def test_food_details_api_unauthenticated(self):
-        """Test food_details_api returns correct data for unauthenticated user"""
+        """Test food_details_api returns correct data
+        for unauthenticated user"""
         self.client.logout()
         url = reverse('food_details_api', args=[self.food.id])
         response = self.client.get(url)
