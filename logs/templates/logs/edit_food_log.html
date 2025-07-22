@@ -62,44 +62,44 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label"><strong>Satisfaction Level</strong></label>
+                    <label for="satisfaction_level" class="form-label"><strong>Satisfaction Level</strong></label>
                     <input type="hidden" name="satisfaction_level" id="satisfaction_level" value="{{ log.satisfaction_level.id|default:'' }}">
                     <div class="satisfaction-buttons">
-                        <div class="satisfaction-option {% if log.satisfaction_level.id == 3 %}selected{% endif %}" data-value="3" title="❤️ LOVE">
+                        <div class="satisfaction-option {% if log.satisfaction_level.id == 3 %}selected{% endif %}" data-value="3">
                             <div class="satisfaction-label">
                                 <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="LOVE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                <span class="satisfaction-fallback" style="display: none;">❤️ LOVE</span>
+                                <span class="satisfaction-fallback" style="display: none;">LOVE</span>
                             </div>
                         </div>
-                        <div class="satisfaction-option {% if log.satisfaction_level.id == 2 %}selected{% endif %}" data-value="2" title="😊 LIKE">
+                        <div class="satisfaction-option {% if log.satisfaction_level.id == 2 %}selected{% endif %}" data-value="2">
                             <div class="satisfaction-label">
                                 <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="LIKE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                <span class="satisfaction-fallback" style="display: none;">😊 LIKE</span>
+                                <span class="satisfaction-fallback" style="display: none;">LIKE</span>
                             </div>
                         </div>
-                        <div class="satisfaction-option {% if log.satisfaction_level.id == 1 %}selected{% endif %}" data-value="1" title="😐 OK">
+                        <div class="satisfaction-option {% if log.satisfaction_level.id == 1 %}selected{% endif %}" data-value="1">
                             <div class="satisfaction-label">
                                 <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="INDIFFERENT" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                <span class="satisfaction-fallback" style="display: none;">😐 OK</span>
+                                <span class="satisfaction-fallback" style="display: none;">OK</span>
                             </div>
                         </div>
-                        <div class="satisfaction-option {% if log.satisfaction_level.id == 0 %}selected{% endif %}" data-value="0" title="😞 HATE">
+                        <div class="satisfaction-option {% if log.satisfaction_level.id == 0 %}selected{% endif %}" data-value="0">
                             <div class="satisfaction-label">
                                 <img src="{% static 'images/satisfaction_images/Niblet_Dislike.png' %}" alt="DISLIKE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                <span class="satisfaction-fallback" style="display: none;">😞 DISLIKE</span>
+                                <span class="satisfaction-fallback" style="display: none;">DISLIKE</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label"><strong>Mark as Favourite</strong></label>
+                    <label for="favourite" class="form-label"><strong>Mark as Favourite</strong></label>
                     <input type="hidden" name="favourite" id="favourite" value="{{ log.favourite|yesno:'true,false' }}">
                     <div class="favourite-buttons">
-                        <div class="favourite-toggle" data-selected="{{ log.favourite|yesno:'true,false' }}" title="⭐ Favourite">
+                        <div class="favourite-toggle" data-selected="{{ log.favourite|yesno:'true,false' }}">
                             <div class="favourite-label">
                                 <img src="{% static 'images/satisfaction_images/Favourite.png' %}" alt="FAVOURITE" class="satisfaction-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                <span class="satisfaction-fallback" style="display: none;">⭐ Favourite</span>
+                                <span class="satisfaction-fallback" style="display: none;">Favourite</span>
                             </div>
                         </div>
                     </div>

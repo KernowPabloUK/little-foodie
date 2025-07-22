@@ -34,15 +34,15 @@
                 {% else %}
                     <div class="profile-display">
                         <div class="mb-3">
-                            <label class="form-label"><strong>First Name</strong></label>
+                            <span class="form-label"><strong>First Name</strong></span>
                             <p class="form-control-plaintext">{{ profile.first_name|default:"Not provided" }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label"><strong>Last Name</strong></label>
+                            <span class="form-label"><strong>Last Name</strong></span>
                             <p class="form-control-plaintext">{{ profile.last_name|default:"Not provided" }}</p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label"><strong>Birth Date</strong></label>
+                            <span class="form-label"><strong>Birth Date</strong></span>
                             <p class="form-control-plaintext">{{ profile.birth_date|default:"Not provided" }}</p>
                         </div>
                         <p class="form-label my-2"><strong>Children:</strong> {{ user.profile.children.count|default:'None' }}</p>
