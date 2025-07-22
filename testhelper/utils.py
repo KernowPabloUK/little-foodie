@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from foods.models import Food
 from profiles.models import Profile
 from children.models import Child
 from datetime import date
@@ -31,3 +32,18 @@ def create_test_user_and_child():
         user=profile,
     )
     return user, profile, child
+
+
+def create_test_food(user=None):
+    if user is None:
+        from django.contrib.auth import get_user_model
+        user = get_user_model().objects.first()
+    return Food.objects.create(
+        name='Banana',
+        category=0,
+        min_age_months=6,
+        is_allergen=False,
+        image='banana.png',
+        is_authorised=True,
+        created_by_user_id=user.id,
+    )

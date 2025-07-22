@@ -11,7 +11,7 @@ from logs.models import FoodLog
 @login_required
 def food_view(request):
     """
-    TODO
+    Returns the food view page
     """
     return render(request, 'foods/food.html')
 
