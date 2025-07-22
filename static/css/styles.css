@@ -28,8 +28,8 @@ body {
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     min-height: 100vh;
     width: 100%;
     margin: 0 auto;
@@ -37,8 +37,8 @@ body {
 
 body .container {
     -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
 }
 
 #hero-image-home {
@@ -136,7 +136,7 @@ footer a {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     -webkit-filter: invert(1) grayscale(1) brightness(0.3);
-            filter: invert(1) grayscale(1) brightness(0.3);
+    filter: invert(1) grayscale(1) brightness(0.3);
 }
 
 .about-external-link {
@@ -150,11 +150,16 @@ footer a {
     margin-left: 1rem;
 }
 
-.card, .card-header, .modal-header {
+.card,
+.card-header,
+.modal-header {
     background-color: var(--primary-color-header-footer);
 }
 
-select, option, .modal-body, .modal-footer {
+select,
+option,
+.modal-body,
+.modal-footer {
     background-color: var(--secondary-color-background);
 }
 
@@ -170,12 +175,13 @@ select, option, .modal-body, .modal-footer {
     display: flex;
     gap: 20px;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     margin-top: 10px;
 }
+
 
 .satisfaction-option,
 .favourite-toggle {
@@ -199,9 +205,9 @@ select, option, .modal-body, .modal-footer {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     opacity: 0.6;
 }
 
@@ -209,8 +215,8 @@ select, option, .modal-body, .modal-footer {
 .favourite-toggle:hover .favourite-label {
     opacity: 0.8;
     -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-            transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .satisfaction-option.selected .satisfaction-label {
@@ -218,10 +224,10 @@ select, option, .modal-body, .modal-footer {
     border-color: var(--satisfaction-selected-border);
     color: var(--secondary-color-text);
     -webkit-box-shadow: var(--satisfaction-selected-shadow);
-            box-shadow: var(--satisfaction-selected-shadow);
+    box-shadow: var(--satisfaction-selected-shadow);
     -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-            transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
     opacity: 1;
 }
 
@@ -231,10 +237,10 @@ select, option, .modal-body, .modal-footer {
     color: var(--secondary-color-text);
     opacity: 1;
     -webkit-box-shadow: 0 0 20px var(--satisfaction-selected-shadow);
-            box-shadow: 0 0 20px var(--satisfaction-selected-shadow);
+    box-shadow: 0 0 20px var(--satisfaction-selected-shadow);
     -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-            transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .favourite-toggle[data-selected="false"] .favourite-label {

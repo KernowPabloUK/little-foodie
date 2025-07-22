@@ -161,7 +161,6 @@ function handleFoodSelection() {
                 return response.json();
             })
             .then(data => {
-                console.log('Food data received:', data);
                 document.getElementById('food-category').value = data.category || 'Unknown';
                 
                 const minAgeElement = document.getElementById('min-age');
@@ -185,19 +184,21 @@ function handleFoodSelection() {
                 const foodImageContainer = document.getElementById('food-image-container');
                 const foodImage = document.getElementById('food-image');
                 
-                if (data.image && foodImage) {
-                    foodImage.src = data.image;
-                    foodImage.onerror = function() {
-                        console.log('Image failed to load:', data.image);
-                        foodImageContainer.style.display = 'none';
-                    };
-                    foodImage.onload = function() {
-                        console.log('Image loaded successfully:', data.image);
+                if (foodImage) {
+                    if (!data.image || data.is_authorised === false || data.is_authorised === "false") {
+                        foodImage.src = "/static/images/food_images/non_authorised_food_warning.png";
                         foodImageContainer.style.display = 'block';
-                    };
-                    foodImageContainer.style.display = 'block';
+                    } else {
+                        foodImage.src = data.image;
+                        foodImage.onerror = function() {
+                            foodImageContainer.style.display = 'none';
+                        };
+                        foodImage.onload = function() {
+                            foodImageContainer.style.display = 'block';
+                        };
+                        foodImageContainer.style.display = 'block';
+                    }
                 } else {
-                    console.log('No image URL provided');
                     foodImageContainer.style.display = 'none';
                 }
                 
@@ -215,7 +216,6 @@ function handleFoodSelection() {
                     const isFavourite = data.is_favourite;
                     favouriteToggle.setAttribute('data-selected', isFavourite.toString());
                     document.getElementById('favourite').value = isFavourite.toString();
-                    console.log('Setting favourite status from previous logs:', isFavourite);
                 } else if (favouriteToggle) {
                     favouriteToggle.setAttribute('data-selected', 'false');
                     document.getElementById('favourite').value = 'false';
@@ -233,7 +233,6 @@ function handleFoodSelection() {
                 showFormSections();
             })
             .catch(error => {
-                console.error('Error fetching food details:', error);
                 document.getElementById('food-category').value = 'Error loading category';
                 
                 hideFormSections();
