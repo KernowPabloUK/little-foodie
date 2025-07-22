@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    clearForm;
+    clearForm();
     
     const alerts = document.querySelectorAll(".alert:not(.food-warning)");
     alerts.forEach(function (alert) {

@@ -37,7 +37,7 @@
 
 <body>
     <div class="container">
-    <section id="brand-home" class="row justify-content-center text-center">
+    <div id="brand-home" class="row justify-content-center text-center">
         <img id="hero-image-home" src="{% static 'images/little_foodie_logo.png' %}" alt="Hero Image for Little Foodie">
         <div id="hero-text-home" class="text-center">
             <h1 id="h1-home">Little
@@ -48,21 +48,21 @@
                 One Bite at a Time
             </h2>
             </div>
-    </section>
+    </div>
     {% if user.is_authenticated %}
-    <section id="log-food-button-home" class="row justify-content-center text-center my-2">
-            <a href="{% url 'logs' %}" class="col-sm-8"><button type="button" class="btn btn-light shadow">Log a food</button></a>
-    </section>
+    <div id="log-food-button-home" class="row justify-content-center text-center my-2">
+            <a href="{% url 'logs' %}" class="col-sm-8 btn btn-light shadow">Log a food</a>
+    </div>
     {% endif %}
-    <section id="buttons-home" class="row justify-content-center text-center mt-4">
+    <div id="buttons-home" class="row justify-content-center text-center mt-4">
     {% if user.is_authenticated %}
         {% if user.is_staff %}
-        <a href="{% url 'admin:index' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Admin Panel</button></a>
+        <a href="{% url 'admin:index' %}" class="col-sm-12 col-md-3 col-lg-2 btn btn-light shadow">Admin Panel</a>
         {% endif %}
-        <a href="{% url 'profile' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Profile</button></a>
-        <a href="{% url 'logs' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Food Log</button></a>
-        <a href="{% url 'stats' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Stats</button></a>
-        <a href="{% url 'account_logout' %}" class="col-sm-12 col-md-3 col-lg-2"><button type="button" class="btn btn-light shadow">Logout</button></a>
+        <a href="{% url 'profile' %}" class="col-sm-12 col-md-3 col-lg-2 btn btn-light shadow">Profile</a>
+        <a href="{% url 'logs' %}" class="col-sm-12 col-md-3 col-lg-2 btn btn-light shadow">Food Log</a>
+        <a href="{% url 'stats' %}" class="col-sm-12 col-md-3 col-lg-2 btn btn-light shadow">Stats</a>
+        <a href="{% url 'account_logout' %}" class="col-sm-12 col-md-3 col-lg-2 btn btn-light shadow">Logout</a>
     {% else %}
         <div class="row justify-content-center">
             <div class="col-6 col-md-4 mb-2">
@@ -72,8 +72,8 @@
                 <a href="{% url 'account_signup' %}" class="btn btn-light shadow w-100">Register</a>
             </div>
         </div>
-    </section>
-    <section id="about-home" class="row text-center mt-3">
+    </div>
+    <div id="about-home" class="row text-center mt-3">
         <p>
             Little Foodie helps you track your baby's food journey, log meals, and monitor new tastes.
             <br> 
@@ -81,7 +81,7 @@
             Sign in or create an account to get started and make every bite count!
         </p>
     {% endif %}
-    </section>
+    </div>
 
     </div>
     <footer id="contact" class="footer d-flex mt-auto justify-content-center text-center align-items-center">

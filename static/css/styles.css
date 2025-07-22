@@ -23,15 +23,22 @@
 /* Style Rules - HOME */
 body {
     background-color: var(--primary-color-background);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     min-height: 100vh;
     width: 100%;
     margin: 0 auto;
 }
 
 body .container {
-    flex-grow: 1;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
 }
 
 #hero-image-home {
@@ -56,14 +63,15 @@ body .container {
     font-weight: 685;
 }
 
-#log-food-button-home button {
+#log-food-button-home a {
     background-color: var(--secondary-color-background);
     color: var(--secondary-color-text);
     min-width: 200px;
+    max-width: 200px;
     font-size: 1.4rem;
 }
 
-#log-food-button-home button:hover {
+#log-food-button-home a:hover {
     background-color: var(--primary-color-header-footer);
     font-weight: bold;
 }
@@ -72,13 +80,14 @@ body .container {
     gap: 10px 10px;
 }
 
-#buttons-home button {
+#buttons-home a {
     color: var(--secondary-color-text);
     min-width: 160px;
+    max-width: 200px;
     font-size: 1.1rem;
 }
 
-#buttons-home button:hover {
+#buttons-home a:hover {
     background-color: var(--primary-color-header-footer);
     font-weight: bold;
 }
@@ -126,7 +135,8 @@ footer a {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(1) grayscale(1) brightness(0.3);
+    -webkit-filter: invert(1) grayscale(1) brightness(0.3);
+            filter: invert(1) grayscale(1) brightness(0.3);
 }
 
 .about-external-link {
@@ -155,16 +165,23 @@ select, option, .modal-body, .modal-footer {
 
 .satisfaction-buttons,
 .favourite-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin-top: 10px;
 }
 
 .satisfaction-option,
 .favourite-toggle {
     cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
@@ -178,23 +195,33 @@ select, option, .modal-body, .modal-footer {
     text-align: center;
     background-color: var(--satisfaction-unselected-bg);
     min-width: 120px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     opacity: 0.6;
 }
 
 .satisfaction-option:hover .satisfaction-label,
 .favourite-toggle:hover .favourite-label {
     opacity: 0.8;
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
 }
 
 .satisfaction-option.selected .satisfaction-label {
     background-color: var(--satisfaction-selected-bg);
     border-color: var(--satisfaction-selected-border);
     color: var(--secondary-color-text);
-    box-shadow: var(--satisfaction-selected-shadow);
-    transform: scale(1.1);
+    -webkit-box-shadow: var(--satisfaction-selected-shadow);
+            box-shadow: var(--satisfaction-selected-shadow);
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
     opacity: 1;
 }
 
@@ -203,8 +230,11 @@ select, option, .modal-body, .modal-footer {
     border-color: var(--satisfaction-selected-border);
     color: var(--secondary-color-text);
     opacity: 1;
-    box-shadow: 0 0 20px var(--satisfaction-selected-shadow);
-    transform: scale(1.1);
+    -webkit-box-shadow: 0 0 20px var(--satisfaction-selected-shadow);
+            box-shadow: 0 0 20px var(--satisfaction-selected-shadow);
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
 }
 
 .favourite-toggle[data-selected="false"] .favourite-label {

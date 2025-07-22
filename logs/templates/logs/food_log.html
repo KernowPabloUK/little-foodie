@@ -98,7 +98,7 @@
                             <div class="col-md-6 mb-3">
                                 <div id="food-image-container" style="display: none;">
                                     <div class="d-flex justify-content-center">
-                                        <img id="food-image" src="" alt="Food image" class="img-fluid" style="max-height: 200px;">
+                                        <img id="food-image" src="placeholdertext" alt="Food image" class="img-fluid" style="max-height: 200px;">
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="{{ food_log_form.volume.id_for_label }}" class="form-label"><strong>Volume (teaspoons)</strong></label>
                                 {{ food_log_form.volume }}
-                                <div class="form-text">{{ food_log_form.volume.help_text }}</div>
+                                <div id="id_volume_helptext" class="form-text">{{ food_log_form.volume.help_text }}</div>
                             </div>
                         </div>
 

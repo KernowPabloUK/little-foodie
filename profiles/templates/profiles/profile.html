@@ -57,7 +57,7 @@
 
     {% if user.profile.children.all %}
         {% for child in user.profile.children.all %}
-            <section id="child-window-profile" class="mx-5 my-2">
+            <section class="child-window-profile mx-5 my-2">
                 <div class="card my-2">
                     <h2 class="h2-profile">{{ child.name }}</h2>
                     <div class="card-body">
@@ -79,7 +79,7 @@
         {% endfor %}
     {% endif %}
 
-    <section id="child-window-profile" class="mx-5 my-2">
+    <section id="child-window-profile-add" class="mx-5 my-2">
         <div class="card my-2">
             <h2 class="h2-profile">Add Child</h2>
             <div class="card-body">
