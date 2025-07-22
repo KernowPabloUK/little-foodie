@@ -14,15 +14,15 @@
     </div>
     
     {% if children|length > 1 %}
-        <div class="my-4">
-            <label><small><strong>Select Child:</strong></small></label>
+        <fieldset class="my-4">
+            <legend><small><strong>Select Child:</strong></small></legend>
             {% for child in children %}
                 <label class="mx-2">
                     <input type="radio" name="child" value="{{ child.id }}" {% if child.id == selected_child_id %}checked{% endif %}>
                     {{ child.name }}
                 </label>
             {% endfor %}
-        </div>
+        </fieldset>
     {% endif %}
         <h2 class="mt-4 mb-2 text-center">Satisfaction</h2>
         <div>
@@ -30,16 +30,16 @@
         <thead>
             <tr>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="Love" title="Love" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Love.png' %}" alt="Love" height="48">
                 </th>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="Like" title="Like" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Like.png' %}" alt="Like" height="48">
                 </th>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="Indifferent" title="Indifferent" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Indifferent.png' %}" alt="Indifferent" height="48">
                 </th>
                 <th>
-                    <img src="{% static 'images/satisfaction_images/Niblet_Dislike.png' %}" alt="Dislike" title="Dislike" height="48">
+                    <img src="{% static 'images/satisfaction_images/Niblet_Dislike.png' %}" alt="Dislike" height="48">
                 </th>
             </tr>
         </thead>

@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         let img = document.createElement('img');
                         img.src = '/static/' + label.image.replace(/^\/+/, '');
                         img.alt = label.name;
-                        img.title = label.name;
                         img.style.maxWidth = '60px';
                         img.style.maxHeight = '60px';
                         img.style.display = 'block';
