@@ -11,11 +11,25 @@ from django.utils import timezone
 from testhelper.utils import (
     create_test_user_and_child,
     create_test_food,
-    TEST_DATA)
+    TEST_DATA
+)
 
 
 class TestStatisticsView(TestCase):
+    """
+    Test suite for the statistics view in the stats app.
+
+    This class contains tests to ensure that the statistics view requires
+    authentication, loads correctly for logged-in users, and provides the
+    expected context data.
+    """
+
     def setUp(self):
+        """
+        Set up a test user, profile, child, food, and related objects for use
+        in tests.
+        Creates a sample FoodLog entry for statistics calculations.
+        """
         self.user, self.profile, self.child = create_test_user_and_child()
         self.food = create_test_food(user=self.user)
         self.consistency = Consistency.objects.create(label=1)
@@ -36,14 +50,19 @@ class TestStatisticsView(TestCase):
         )
 
     def test_statistics_view_requires_login(self):
-        """Statistics view should redirect anonymous users to login."""
+        """
+        Test that the statistics view redirects anonymous users to the
+        login page.
+        """
         response = self.client.get(reverse('stats'))
         self.assertNotEqual(response.status_code, 200)
         self.assertIn('/login', response.url)
 
     def test_statistics_view_loads_for_logged_in_user(self):
-        """Statistics view should load for authenticated users
-        and contain expected context."""
+        """
+        Test that the statistics view loads for authenticated users and
+        contains expected context data.
+        """
         self.client.login(
             username=TEST_DATA["USERNAME"], password=TEST_DATA["PASSWORD"]
         )

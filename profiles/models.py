@@ -5,11 +5,14 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     """
-    Stores a user profile entry related to :model:`auth.User`
+    Model representing a user profile.
+
+    Stores additional information about a user, such as first name, last name,
+    and birth date, and is related to the built-in Django User model.
     """
     user = models.OneToOneField(
-        User, 
-        on_delete=models.CASCADE, 
+        User,
+        on_delete=models.CASCADE,
         related_name="profile"
     )
     first_name = models.CharField(max_length=30, blank=True)
@@ -19,7 +22,14 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
+        """
+        Return a string representation of the profile, showing the username.
+        """
         return f"{self.user.username}'s profile"
 
     class Meta:
+        """
+        Meta options for the Profile model.
+        Orders profiles by creation date, newest first.
+        """
         ordering = ['-created_at']

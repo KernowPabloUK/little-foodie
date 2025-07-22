@@ -12,7 +12,11 @@ from foods.models import Food, FOOD_CATEGORY
 
 
 class ChildSelectionForm(forms.Form):
-    """Form for selecting which child to log food for"""
+    """
+    Form for selecting which child to log food for.
+
+    Presents a radio select of all children associated with the user's profile.
+    """
     child = forms.ModelChoiceField(
         queryset=Child.objects.none(),
         widget=forms.RadioSelect,
@@ -20,12 +24,21 @@ class ChildSelectionForm(forms.Form):
     )
 
     def __init__(self, user, *args, **kwargs):
+        """
+        Initialize the form with the user's children as queryset.
+        """
         super().__init__(*args, **kwargs)
         self.fields['child'].queryset = user.profile.children.all()
 
 
 class FoodLogForm(forms.ModelForm):
-    """Form for logging food for a child"""
+    """
+    Form for logging food for a child.
+
+    Collects details about the feeding event, including food, volume,
+    consistency, preparation, feeding method, satisfaction level,
+    favourite status, and notes.
+    """
     log_datetime = forms.DateTimeField(
         label="Date & Time",
         widget=forms.DateTimeInput(attrs={
@@ -90,10 +103,17 @@ class FoodLogForm(forms.ModelForm):
     )
 
     class Meta:
+        """
+        Meta class to specify the model and fields used by the form.
+        """
         model = FoodLog
         fields = ['food', 'volume', 'favourite', 'notes']
 
     def __init__(self, *args, **kwargs):
+        """
+        Initialize the form, setting the initial log_datetime
+        and customizing food labels.
+        """
         super().__init__(*args, **kwargs)
         initial_time = timezone.now().strftime('%Y-%m-%dT%H:%M')
         self.fields['log_datetime'].initial = initial_time
@@ -107,7 +127,17 @@ class FoodLogForm(forms.ModelForm):
 
 
 class CreateFoodForm(forms.ModelForm):
+    """
+    Form for creating a new food item.
+
+    Collects the food's name, category, minimum age, and allergen status.
+    Uses custom widgets and labels for user-friendly input.
+    """
     class Meta:
+        """
+        Meta class to specify the model, fields, widgets,
+        and labels used by the form.
+        """
         model = Food
         fields = ['name', 'category', 'min_age_months', 'is_allergen']
         widgets = {

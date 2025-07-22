@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    /**
+     * Auto-dismisses alert messages after 3 seconds.
+     */
     const alerts = document.querySelectorAll('.messages .alert');
     alerts.forEach(function (alert) {
         setTimeout(function () {

@@ -9,61 +9,88 @@ FEED_METHOD = ((0, "Spoon Fed"), (1, "Self Fed"))
 SATISFACTION = ((0, "Dislike"), (1, "Indifferent"), (2, "Like"), (3, "Love"))
 
 
-# Create your models here.
 class Consistency(models.Model):
     """
-    Stores a consistency entry related to
-    :model:`logs.FoodLog`
+    Model representing the consistency of a food log entry.
+
+    Used to specify how the food was prepared in terms of texture
+    (e.g., purée, mashed).
+    Related to :model:`logs.FoodLog`.
     """
     label = models.IntegerField(choices=CONSISTENCY, default=1)
 
     def __str__(self):
+        """
+        Return the display value of the consistency label.
+        """
         return self.get_label_display()
 
 
 class Preparation(models.Model):
     """
-    Stores a preperation entry related to
-    :model:`logs.FoodLog`
+    Model representing the preparation method of a food log entry.
+
+    Used to specify whether the food was raw or cooked.
+    Related to :model:`logs.FoodLog`.
     """
     label = models.IntegerField(choices=PREPARATION, default=1)
 
     def __str__(self):
+        """
+        Return the display value of the preparation label.
+        """
         return self.get_label_display()
 
 
 class FeedingMethod(models.Model):
     """
-    Stores a feeding method entry related to
-    :model:`logs.FoodLog`
+    Model representing the feeding method of a food log entry.
+
+    Used to specify how the food was fed (e.g., spoon fed, self fed).
+    Related to :model:`logs.FoodLog`.
     """
     label = models.IntegerField(choices=FEED_METHOD, default=1)
 
     def __str__(self):
+        """
+        Return the display value of the feeding method label.
+        """
         return self.get_label_display()
 
 
 class SatisfactionLevel(models.Model):
     """
-    Stores a satisfaction level entry related to
-    :model:`logs.FoodLog`
+    Model representing the satisfaction level of a food log entry.
+
+    Used to specify the child's reaction to the food
+    (e.g., dislike, like, love).
+    Related to :model:`logs.FoodLog`.
     """
     label = models.IntegerField(choices=SATISFACTION, default=1)
 
     def __str__(self):
+        """
+        Return the display value of the satisfaction level label.
+        """
         return self.get_label_display()
 
 
 class FoodLog(models.Model):
     """
-    Stores a food log entry related to
-    :model:`auth.User`,
-    :model:`children.Child`,
-    :model:`foods.Food`,
-    :model:`logs.Consistency`,
-    :model:`logs.Preparation`,
-    :model:`logs.FeedingMethod`
-    :model:`logs.SatisfactionLevel`
+    Model representing a food log entry.
+
+    Stores information about a feeding event, including the user, child, food,
+    consistency, preparation, feeding method, satisfaction level, volume,
+    favourite status, notes, and the date/time the log was created.
+
+    Related to:
+        :model:`auth.User`
+        :model:`children.Child`
+        :model:`foods.Food`
+        :model:`logs.Consistency`
+        :model:`logs.Preparation`
+        :model:`logs.FeedingMethod`
+        :model:`logs.SatisfactionLevel`
     """
     user = models.ForeignKey(
         User,
@@ -120,9 +147,17 @@ class FoodLog(models.Model):
     logged_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        """
+        Meta options for FoodLog model.
+
+        Orders food logs by most recent first.
+        """
         ordering = ["-logged_at"]
 
     def __str__(self):
+        """
+        Return a string representation of the food log entry.
+        """
         return (
             f"{self.child} has tried {self.food}, "
             f"this has been logged at {self.logged_at}"

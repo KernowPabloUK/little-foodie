@@ -7,6 +7,14 @@ from .forms import AddChildForm
 
 @login_required
 def add_child(request):
+    """
+    Handle the addition of a new child to the user's profile.
+
+    If the request is POST, validate and save the new child using AddChildForm.
+    On success, redirect to the profile page with a success message.
+    On GET, display an empty AddChildForm.
+    Ensures the user has a profile; creates one if missing.
+    """
     user = request.user
 
     try:
@@ -41,12 +49,27 @@ def add_child(request):
 
 @login_required
 def confirm_delete_child(request, child_id):
+    """
+    Display a confirmation page and handle deletion of a child.
+
+    If the request is POST, delete the specified child
+    belonging to the user's profile and redirect
+    to the profile page with a success message.
+    On GET, render a confirmation template.
+    """
     child = get_object_or_404(Child, id=child_id, user=request.user.profile)
 
     if request.method == 'POST':
         child_name = child.name
         child.delete()
-        messages.success(request, f'Child {child_name} has been deleted successfully.')
+        messages.success(
+            request,
+            f'Child {child_name} has been deleted successfully.'
+            )
         return redirect('profile')
 
-    return render(request, 'children/confirm_delete_child.html', {'child': child})
+    return render(
+        request,
+        'children/confirm_delete_child.html',
+        {'child': child}
+        )

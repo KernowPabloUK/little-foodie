@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     let chart1, chart2;
 
+    /**
+     * Render bar charts for food or category statistics.
+     * Destroys previous charts before rendering new ones.
+     */
     function renderCharts(data) {
         if (chart1) chart1.destroy();
         if (chart2) chart2.destroy();
@@ -9,19 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
         chart1 = new Chart(ctx, {
             type: 'bar',
             data: {
-            labels: data.labels.map(l => l.name),
-            datasets: [{
-                label: 'Times Eaten',
-                data: data.counts,
-                backgroundColor: 'rgba(54, 162, 235, 0.6)'
-            }]
+                labels: data.labels.map(l => l.name),
+                datasets: [{
+                    label: 'Times Eaten',
+                    data: data.counts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
             },
             options: {
-            indexAxis: 'y',
-            responsive: true,
-            scales: {
-                x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 } }
-            }
+                indexAxis: 'y',
+                responsive: true,
+                scales: {
+                    x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 } }
+                }
             }
         });
 
@@ -46,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    /**
+     * Render the satisfaction table, showing foods by satisfaction level.
+     */
     function renderSatisfactionTable(data) {
         const table = document.querySelector('.satisfaction-table tbody tr');
         table.innerHTML = '';
@@ -86,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderCharts(foodData);
     renderSatisfactionTable(foodData);
 
+    // Toggle between food and category statistics
     document.getElementById('toggle-food').addEventListener('click', function() {
         renderCharts(foodData);
         renderSatisfactionTable(foodData);
@@ -103,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('toggle-food').classList.add('btn-outline-dark');
     });
 
+    // Handle child selection to update statistics for the selected child
     document.querySelectorAll('input[name="child"]').forEach(radio => {
         radio.addEventListener('change', function() {
             window.location.href = '?child_id=' + this.value;

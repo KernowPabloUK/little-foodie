@@ -8,10 +8,14 @@ from logs.models import FoodLog
 
 
 # Create your views here.
+
 @login_required
 def food_view(request):
     """
-    Returns the food view page
+    Render the main food page for authenticated users.
+
+    Returns:
+        HttpResponse: The rendered 'foods/food.html' template.
     """
     return render(request, 'foods/food.html')
 
@@ -19,7 +23,20 @@ def food_view(request):
 @require_http_methods(["GET"])
 def food_details_api(request, food_id):
     """
-    API endpoint to get food details for the food log form
+    API endpoint to retrieve details about a specific food item.
+
+    Returns a JSON response containing food details such as name, category,
+    minimum age, allergen status, image path, favourite status for the
+    selected child, and authorisation status. If the user is authenticated
+    and a selected child is set in the session, checks if there is a recent
+    favourite log for this food and child.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        food_id (int): The primary key of the food item to retrieve.
+
+    Returns:
+        JsonResponse: A JSON object with food details.
     """
     food = get_object_or_404(Food, pk=food_id)
 
@@ -34,7 +51,6 @@ def food_details_api(request, food_id):
             ).order_by('-logged_at').first()
 
             if recent_favourite_log:
-                is_favourite = True
                 is_favourite = True
 
     return JsonResponse({

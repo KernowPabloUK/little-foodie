@@ -5,29 +5,45 @@ from profiles.models import Profile
 
 
 class TestProfileViews(TestCase):
-    """Tests for profile-related views."""
+    """
+    Test suite for profile-related views.
+
+    This class contains tests to ensure that the home and profile views behave
+    as expected, including accessibility for all users, login requirements,
+    correct template rendering and successful profile updates.
+    """
 
     def setUp(self):
-        """Create a test user and profile."""
+        """
+        Create a test user and associated profile for use in the tests.
+        """
         self.user = get_user_model().objects.create_user(
             username='testuser', password='testpass'
         )
         self.profile = Profile.objects.create(user=self.user)
 
     def test_home_view_accessible(self):
-        """Home view should be accessible to all users."""
+        """
+        Ensure the home view is accessible to all users and uses the
+        correct template.
+        """
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profiles/home.html')
 
     def test_profile_view_requires_login(self):
-        """Profile view should redirect anonymous users to login."""
+        """
+        Ensure the profile view redirects anonymous users to the login page.
+        """
         response = self.client.get(reverse('profile'))
         self.assertNotEqual(response.status_code, 200)
         self.assertIn('/login', response.url)
 
     def test_profile_view_loads_for_logged_in_user(self):
-        """Profile view should load for authenticated users."""
+        """
+        Ensure the profile view loads for authenticated users and displays
+        the username.
+        """
         self.client.login(username='testuser', password='testpass')
         response = self.client.get(reverse('profile'))
         self.assertEqual(response.status_code, 200)
@@ -35,11 +51,17 @@ class TestProfileViews(TestCase):
         self.assertContains(response, self.user.username)
 
     def test_profile_update_success(self):
-        """Profile view should update profile on valid POST."""
+        """
+        Ensure the profile view updates the profile on a valid POST request.
+        """
         self.client.login(username='testuser', password='testpass')
         response = self.client.post(
             reverse('profile'),
-            data={'first_name': 'Sam', 'last_name': 'Porter', 'birth_date': '1990-01-01'},
+            data={
+                'first_name': 'Sam',
+                'last_name': 'Porter',
+                'birth_date': '1990-01-01'
+            },
             follow=True
         )
         self.assertEqual(response.status_code, 200)

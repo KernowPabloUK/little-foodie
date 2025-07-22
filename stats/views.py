@@ -8,8 +8,22 @@ from foods.models import FOOD_CATEGORY
 
 
 # Create your views here.
+
 @login_required
 def statistics_view(request):
+    """
+    Display statistics for a user's children and their food logs.
+
+    This view gathers and aggregates food log data for the selected child,
+    including counts, volumes, and average satisfaction for each food and
+    food category. It prepares the data for charting and visualization
+    in the statistics template. If no child is selected, defaults to the
+    first child in the user's profile.
+
+    Returns:
+        HttpResponse: The rendered 'stats/statistics.html' template with
+        statistics context for the selected child.
+    """
     profile = Profile.objects.get(user=request.user)
     children = Child.objects.filter(user=profile)
     selected_child_id = request.GET.get('child_id')
@@ -64,7 +78,13 @@ def statistics_view(request):
         'labels': [
             {
                 'name': CATEGORY_MAP.get(c['food__category'], 'Unknown'),
-                'image': category_image_map.get(CATEGORY_MAP.get(c['food__category'], 'Unknown'), ''),
+                'image': category_image_map.get(
+                    CATEGORY_MAP.get(
+                        c['food__category'],
+                        'Unknown'
+                    ),
+                    ''
+                ),
                 'satisfaction': int(round(c['avg_satisfaction'] or 0))
             }
             for c in category_counts
@@ -73,7 +93,10 @@ def statistics_view(request):
         'volumes': [c['total_volume'] or 0 for c in category_counts],
     }
 
-    selected_child = children.get(id=selected_child_id) if selected_child_id else None
+    selected_child = (
+        children.get(id=selected_child_id)
+        if selected_child_id else None
+    )
 
     return render(request, 'stats/statistics.html', {
         'children': children,

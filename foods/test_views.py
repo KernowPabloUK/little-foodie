@@ -11,12 +11,26 @@ from logs.models import (
     FeedingMethod,
     Preparation,
     SatisfactionLevel,
-    )
+)
 from django.utils import timezone
 
 
 class TestFoodViews(TestCase):
+    """
+    Test suite for the food-related views in the foods app.
+
+    This class contains tests to ensure that food views require authentication,
+    render the correct templates, and that the food details API returns the
+    correct data for both authenticated and unauthenticated users,
+    including favourite status.
+    """
+
     def setUp(self):
+        """
+        Set up a test user, profile, child, and food instance
+        for use in the tests.
+        Logs in the test client.
+        """
         self.user, self.profile, self.child = create_test_user_and_child()
         self.food = create_test_food()
         self.client.login(
@@ -25,28 +39,34 @@ class TestFoodViews(TestCase):
         )
 
     def test_food_view_requires_login(self):
-        """Test that food_view redirects to login
-        for anonymous users and loads for logged in"""
+        """
+        Test that the food view redirects to login for anonymous users
+        and loads successfully for logged-in users.
+        """
         self.client.logout()
         response = self.client.get(reverse('foods'))
         self.assertNotEqual(response.status_code, 200)
         self.client.login(
             username=TEST_DATA["USERNAME"],
             password=TEST_DATA["PASSWORD"]
-            )
+        )
         response = self.client.get(reverse('foods'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'foods/food.html')
 
     def test_food_view_renders_template(self):
-        """Test that food_view returns 200 and uses the correct template"""
+        """
+        Test that the food view returns HTTP 200 and uses the correct template.
+        """
         response = self.client.get(reverse('foods'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'foods/food.html')
 
     def test_food_details_api_unauthenticated(self):
-        """Test food_details_api returns correct data
-        for unauthenticated user"""
+        """
+        Test that the food_details_api returns correct data for
+        unauthenticated users.
+        """
         self.client.logout()
         url = reverse('food_details_api', args=[self.food.id])
         response = self.client.get(url)
@@ -62,8 +82,10 @@ class TestFoodViews(TestCase):
         self.assertTrue(data['is_authorised'])
 
     def test_food_details_api_favourite(self):
-        """Test food_details_api returns is_favourite=True
-        if recent log exists for selected child"""
+        """
+        Test that food_details_api returns is_favourite=True if a recent log
+        exists for the selected child.
+        """
         session = self.client.session
         session['selected_child_id'] = self.child.id
         session.save()
@@ -92,8 +114,10 @@ class TestFoodViews(TestCase):
         self.assertTrue(data['is_favourite'])
 
     def test_food_details_api_authenticated(self):
-        """Test food_details_api returns
-        correct data for authenticated user"""
+        """
+        Test that food_details_api returns correct data for
+        authenticated users.
+        """
         url = reverse('food_details_api', args=[self.food.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)

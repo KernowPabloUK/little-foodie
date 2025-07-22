@@ -7,15 +7,27 @@ FOOD_CATEGORY = (
     (2, "Starch"),
     (3, "Dairy"),
     (4, "Protein")
-    )
+)
 
 
-# Create your models here.
 class Food(models.Model):
     """
-    Stores a food entry related to
-    :model:`auth.User`
-    :model:`logs.FoodLog`
+    Model representing a food item.
+
+    Fields:
+        name (CharField): The name of the food (unique).
+        category (IntegerField): The food category, chosen from FOOD_CATEGORY.
+        min_age_months (IntegerField): Minimum recommended age in months.
+        is_allergen (BooleanField): Whether the food is a common allergen.
+        image (ImageField): Optional image of the food.
+        is_authorised (BooleanField): Whether the food is authorised for use.
+        created_by_user (ForeignKey): The user who created this food entry.
+
+    Meta:
+        ordering: Foods are ordered by name descending.
+
+    Methods:
+        __str__: Returns the food's name as its string representation.
     """
     name = models.CharField(max_length=30, unique=True)
     category = models.IntegerField(choices=FOOD_CATEGORY, default=0)
@@ -30,7 +42,14 @@ class Food(models.Model):
     )
 
     class Meta:
+        """
+        Meta options for the Food model.
+        Foods are ordered by name in descending order.
+        """
         ordering = ["-name"]
 
     def __str__(self):
+        """
+        Return the string representation of the food, which is its name.
+        """
         return self.name

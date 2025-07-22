@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Auto-dismiss alert messages after 3 seconds
     const alerts = document.querySelectorAll('.alert');
     alerts.forEach(function(alert) {
         setTimeout(function() {
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     });
 
+    // Handle satisfaction level selection
     const satisfactionOptions = document.querySelectorAll('.satisfaction-option');
     satisfactionOptions.forEach(option => {
         option.addEventListener('click', function() {
@@ -17,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Handle favourite toggle
     const favouriteToggle = document.querySelector('.favourite-toggle');
     if (favouriteToggle) {
         favouriteToggle.addEventListener('click', function() {

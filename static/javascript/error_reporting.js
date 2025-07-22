@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var contactThanks = document.getElementById('contactThanks');
     var contactModal = document.getElementById('contactModal');
 
+    // Show/hide details and food error options based on reason selection
     reasonSelect.addEventListener('change', function() {
         if (this.value) {
             detailsGroup.style.display = 'block';
@@ -20,12 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Show thank you message on form submit
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         contactFormFields.style.display = 'none';
         contactThanks.style.display = 'block';
     });
 
+    // Reset form and UI state when modal is closed
     contactModal.addEventListener('hidden.bs.modal', function () {
         contactForm.reset();
         contactFormFields.style.display = 'block';

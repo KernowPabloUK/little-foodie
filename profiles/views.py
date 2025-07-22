@@ -5,10 +5,12 @@ from .models import Profile
 from .forms import ProfileForm
 
 
-# Create your views here.
 def home_view(request):
     """
-    Home page view - accessible to all users
+    Render the home page.
+
+    This view is accessible to all users, authenticated or not.
+    Returns the rendered 'profiles/home.html' template.
     """
     return render(request, 'profiles/home.html')
 
@@ -16,7 +18,12 @@ def home_view(request):
 @login_required
 def profile_view(request):
     """
-    Loads the profile page - logged in users only
+    Display and handle updates to the user's profile page.
+
+    Loads the profile page for logged-in users only. Handles GET requests to
+    display the profile and POST requests to update the profile information.
+    If the user does not have a profile, one is created. Displays success or
+    error messages based on form validation.
     """
     user = request.user
     edit_mode = request.GET.get('edit', False)

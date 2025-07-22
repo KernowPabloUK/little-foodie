@@ -19,7 +19,11 @@ from .forms import ChildSelectionForm, FoodLogForm, CreateFoodForm
 @login_required
 def food_log_view(request):
     """
-    Display food logs and handle new food log creation
+    Display food logs for the selected child and handle new food log creation.
+
+    If the user has more than one child, prompts for child selection.
+    Handles form submission for logging new food entries and displays
+    all logs for the selected child.
     """
     user = request.user
 
@@ -143,7 +147,12 @@ def food_log_view(request):
 
 @login_required
 def clear_child_selection(request):
-    """Clear the selected child from session"""
+    """
+    Clear the selected child from the session.
+
+    Removes 'selected_child_id' from the session and
+    redirects to the logs page.
+    """
     if 'selected_child_id' in request.session:
         del request.session['selected_child_id']
     return redirect('logs')
@@ -151,6 +160,12 @@ def clear_child_selection(request):
 
 @login_required
 def edit_food_log(request, log_id):
+    """
+    Edit an existing food log entry.
+
+    Loads the food log for editing, handles form submission, and updates
+    the log with new data if the form is valid.
+    """
     log = get_object_or_404(FoodLog, id=log_id, user=request.user)
 
     if request.method == 'POST':
@@ -225,6 +240,12 @@ def edit_food_log(request, log_id):
 @login_required
 @require_http_methods(["POST"])
 def create_food_ajax(request):
+    """
+    Handle AJAX request to create a new food item.
+
+    Validates input, checks for duplicates, creates the food if valid,
+    and returns a JSON response with the result or error message.
+    """
     try:
         name = request.POST.get('name', '').strip()
         name = name.title()
@@ -287,6 +308,13 @@ def create_food_ajax(request):
 
 @login_required
 def delete_food_log(request, log_id):
+    """
+    Delete a food log entry.
+
+    Handles POST requests to delete the specified food log and
+    redirects to the logs page.
+    On GET, renders a confirmation page.
+    """
     log = get_object_or_404(FoodLog, id=log_id, user=request.user)
     if request.method == "POST":
         log.delete()

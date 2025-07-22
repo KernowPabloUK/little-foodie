@@ -6,7 +6,18 @@ from foods.models import FOOD_CATEGORY
 
 
 class TestLogsForms(TestCase):
+    """
+    Test suite for forms in the logs app.
+
+    This class contains tests to ensure that the FoodLogForm and CreateFoodForm
+    validate input correctly, enforce required fields, use the correct widgets
+    and labels, and properly handle form data.
+    """
+
     def setUp(self):
+        """
+        Set up a test user, profile, child, and food for use in form tests.
+        """
         self.user, self.profile, self.child = create_test_user_and_child()
         self.food = create_test_food(user=self.user)
         self.food_data = {
@@ -17,12 +28,16 @@ class TestLogsForms(TestCase):
         }
 
     def test_create_food_form_valid(self):
-        """CreateFoodForm is valid with all required fields."""
+        """
+        Test that CreateFoodForm is valid with all required fields.
+        """
         form = CreateFoodForm(data=self.food_data)
         self.assertTrue(form.is_valid())
 
     def test_create_food_form_missing_name(self):
-        """CreateFoodForm is invalid if name is missing."""
+        """
+        Test that CreateFoodForm is invalid if name is missing.
+        """
         data = self.food_data.copy()
         data['name'] = ''
         form = CreateFoodForm(data=data)
@@ -30,7 +45,9 @@ class TestLogsForms(TestCase):
         self.assertIn('name', form.errors)
 
     def test_create_food_form_category_choices(self):
-        """CreateFoodForm category field has correct choices."""
+        """
+        Test that CreateFoodForm category field has correct choices.
+        """
         form = CreateFoodForm()
         choices = form.fields['category'].choices
         self.assertEqual(choices[0], FOOD_CATEGORY[0])
@@ -38,21 +55,26 @@ class TestLogsForms(TestCase):
             self.assertIn(cat, choices)
 
     def test_create_food_form_labels(self):
-        """CreateFoodForm uses custom labels."""
+        """
+        Test that CreateFoodForm uses custom labels for its fields.
+        """
         form = CreateFoodForm()
         self.assertEqual(form.fields['name'].label, 'Food Name')
         self.assertEqual(form.fields['category'].label, 'Category')
         self.assertEqual(
             form.fields['min_age_months'].label,
             'Minimum Age (months)'
-            )
+        )
         self.assertEqual(
             form.fields['is_allergen'].label,
             'Contains common allergens'
-            )
+        )
 
     def test_create_food_form_invalid_category(self):
-        """CreateFoodForm is invalid if category is not in FOOD_CATEGORY."""
+        """
+        Test that CreateFoodForm is invalid if category is
+        not in FOOD_CATEGORY.
+        """
         data = self.food_data.copy()
         data['category'] = 999
         form = CreateFoodForm(data=data)
@@ -60,7 +82,9 @@ class TestLogsForms(TestCase):
         self.assertIn('category', form.errors)
 
     def test_create_food_form_widget_types(self):
-        """CreateFoodForm uses correct widget types."""
+        """
+        Test that CreateFoodForm uses the correct widget types for its fields.
+        """
         form = CreateFoodForm()
         self.assertEqual(
             form.fields['name'].widget.__class__.__name__,
@@ -76,7 +100,9 @@ class TestLogsForms(TestCase):
             'CheckboxInput')
 
     def test_food_log_form_notes_optional(self):
-        """FoodLogForm is valid if notes is omitted (if notes is optional)."""
+        """
+        Test that FoodLogForm is valid if notes is omitted (notes is optional).
+        """
         form = FoodLogForm(data={
             'food': self.food.id,
             'volume': 2,
@@ -90,7 +116,9 @@ class TestLogsForms(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_form_valid_data(self):
-        """FoodLogForm is valid with all required fields filled."""
+        """
+        Test that FoodLogForm is valid with all required fields filled.
+        """
         form = FoodLogForm(data={
             'food': self.food.id,
             'volume': 2,
@@ -105,21 +133,28 @@ class TestLogsForms(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_form_missing_required_fields(self):
-        """FoodLogForm is invalid if required fields are missing."""
+        """
+        Test that FoodLogForm is invalid if required fields are missing.
+        """
         form = FoodLogForm(data={})
         self.assertFalse(form.is_valid())
         self.assertIn('food', form.errors)
         self.assertIn('volume', form.errors)
 
     def test_log_datetime_initial_format(self):
-        """FoodLogForm sets log_datetime initial value in correct format."""
+        """
+        Test that FoodLogForm sets log_datetime initial value in
+        correct format.
+        """
         form = FoodLogForm()
         initial = form.fields['log_datetime'].initial
         # YYYY-MM-DDTHH:MM format
         self.assertRegex(initial, r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}')
 
     def test_food_label_from_instance(self):
-        """FoodLogForm food field uses custom label_from_instance."""
+        """
+        Test that FoodLogForm food field uses custom label_from_instance.
+        """
         form = FoodLogForm()
         label = form.fields['food'].label_from_instance(self.food)
         self.assertIn(self.food.name, label)

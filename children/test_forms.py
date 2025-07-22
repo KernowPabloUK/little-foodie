@@ -5,18 +5,33 @@ from testhelper.utils import create_test_user_and_profile, TEST_DATA
 
 
 class TestChildrenForms(TestCase):
+    """
+    Test suite for the AddChildForm in the children app.
+
+    This class contains tests to ensure the AddChildForm validates
+    input correctly, enforces required fields, prevents future birthdates,
+    and properly saves a child instance.
+    """
+
     def setUp(self):
+        """
+        Set up a test user and profile for use in form tests.
+        """
         self.user, self.profile = create_test_user_and_profile()
 
     def test_valid_form(self):
-        """Test AddChildForm is valid"""
+        """
+        Test that AddChildForm is valid with correct data.
+        """
         form = AddChildForm(
             data={'name': TEST_DATA["CHILD_NAME"], 'birthdate': date.today()}
         )
         self.assertTrue(form.is_valid())
 
     def test_name_is_required(self):
-        """Test name field"""
+        """
+        Test that the name field is required.
+        """
         form = AddChildForm(
             data={'name': '', 'birthdate': date.today()}
         )
@@ -24,7 +39,9 @@ class TestChildrenForms(TestCase):
         self.assertIn('name', form.errors)
 
     def test_birthdate_is_required(self):
-        """Test birthdate field"""
+        """
+        Test that the birthdate field is required.
+        """
         form = AddChildForm(
             data={'name': TEST_DATA["CHILD_NAME"], 'birthdate': ''}
         )
@@ -32,7 +49,9 @@ class TestChildrenForms(TestCase):
         self.assertIn('birthdate', form.errors)
 
     def test_future_birthdate_invalid(self):
-        """Test birthdate field validity"""
+        """
+        Test that a future birthdate is considered invalid.
+        """
         future_date = date.today() + timedelta(days=1)
         form = AddChildForm(
             data={'name': TEST_DATA["CHILD_NAME"], 'birthdate': future_date}
@@ -42,7 +61,9 @@ class TestChildrenForms(TestCase):
         )
 
     def test_form_save_creates_child(self):
-        """Test AddChildForm creates a child"""
+        """
+        Test that AddChildForm creates and saves a child instance correctly.
+        """
         form = AddChildForm(
             data={'name': TEST_DATA["CHILD_NAME"], 'birthdate': date.today()}
         )

@@ -16,7 +16,20 @@ from testhelper.utils import (
 
 
 class TestLogsViews(TestCase):
+    """
+    Test suite for the logs app views.
+
+    This class contains tests to ensure that food log deletion and AJAX food
+    creation behave as expected, including correct template rendering,
+    database changes, and JSON responses for AJAX requests.
+    """
+
     def setUp(self):
+        """
+        Set up a test user, profile, child, food, and related objects for
+        use in tests.
+        Logs in the test client and creates a sample FoodLog entry.
+        """
         self.client = Client()
         self.user, self.profile, self.child = create_test_user_and_child()
         self.food = create_test_food(user=self.user)
@@ -42,7 +55,13 @@ class TestLogsViews(TestCase):
         )
 
     def test_delete_food_log_get(self):
-        """GET request to delete_food_log renders confirmation page."""
+        """
+        Test that a GET request to delete_food_log renders the
+        confirmation page.
+
+        Ensures the correct template is used and the confirmation message
+        is present.
+        """
         url = reverse('delete_food_log', args=[self.food_log.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
@@ -53,14 +72,25 @@ class TestLogsViews(TestCase):
             )
 
     def test_delete_food_log_post(self):
-        """POST request to delete_food_log deletes the log and redirects."""
+        """
+        Test that a POST request to delete_food_log deletes the log
+        and redirects.
+
+        Ensures the FoodLog is removed from the database and the user
+        is redirected.
+        """
         url = reverse('delete_food_log', args=[self.food_log.id])
         response = self.client.post(url)
         self.assertRedirects(response, reverse('logs'))
         self.assertFalse(FoodLog.objects.filter(id=self.food_log.id).exists())
 
     def test_create_food_ajax_success(self):
-        """create_food_ajax creates a new food and returns success JSON."""
+        """
+        Test that create_food_ajax creates a new food and
+        returns a success JSON response.
+
+        Ensures the food is created and the response contains the correct data.
+        """
         url = reverse('create_food_ajax')
         data = {
             'name': 'Pear',
@@ -80,7 +110,12 @@ class TestLogsViews(TestCase):
         self.assertEqual(json_data['food']['category'], 'Fruit')
 
     def test_create_food_ajax_missing_fields(self):
-        """create_food_ajax returns error if required fields are missing."""
+        """
+        Test that create_food_ajax returns an error if required fields
+        are missing.
+
+        Ensures the response contains an error message and success is False.
+        """
         url = reverse('create_food_ajax')
         data = {'name': '', 'category': '', 'min_age_months': ''}
         response = self.client.post(
@@ -94,7 +129,12 @@ class TestLogsViews(TestCase):
         self.assertIn('error', json_data)
 
     def test_create_food_ajax_duplicate(self):
-        """create_food_ajax returns error if food name already exists."""
+        """
+        Test that create_food_ajax returns an error if the food name
+        already exists.
+
+        Ensures the response contains an error message about duplication.
+        """
         url = reverse('create_food_ajax')
         data = {
             'name': self.food.name,
