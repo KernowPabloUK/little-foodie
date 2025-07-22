@@ -16,9 +16,7 @@ from testhelper.utils import (
 
 class TestStatisticsView(TestCase):
     def setUp(self):
-        self.user, self.profile, self.child = create_test_user_and_child(
-            username=TEST_DATA["USERNAME"], password=TEST_DATA["PASSWORD"]
-        )
+        self.user, self.profile, self.child = create_test_user_and_child()
         self.food = create_test_food(user=self.user)
         self.consistency = Consistency.objects.create(label=1)
         self.feeding_method = FeedingMethod.objects.create(label=1)
