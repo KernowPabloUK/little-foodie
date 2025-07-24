@@ -2,7 +2,7 @@
 
 A baby weaning & tracking full stack web application - Capstone Project for Code Institute
 
-![Responsive design preview]() //TODO - image
+![Responsive design preview](./static/images/readme_images/responsive_site_little_foodie.png)
 
 **Author:** Paul Morgan - calculatedCode
 
@@ -53,20 +53,29 @@ The site will be deployed using Heroku using the following steps.
 - AI used to refine unit tests
 - AI used to enhance existing docstrings
 
-## Documents //TODO - writeup and headers
+## Documents
 
+The wireframing and initial design of the website was done with a mobile first approach, especially as parents will most likely have limited time to record the food entry so a mobile phone is the most convenient manner to access Little Foodie.
+
+Homepage
 ![Wireframe Design - Homepage](./static/images/readme_images/little_foodie_-_wireframe_-_homepage.png)
-![Wireframe Design - Account/Profile Page](./static/images/readme_images/little_foodie_-_wireframe_-_account_page.png)
-![Wireframe Design - Food Log Page](./static/images/readme_images/little_foodie_-_wireframe_-_log_page.png)
-![Wireframe Design - History / Stats Page](./static/images/readme_images/little_foodie_-_wireframe_-_history_stats_page.png)
 
-### Colours & Typography //TODO - images and writeup
+Profile Page
+![Wireframe Design - Profile Page](./static/images/readme_images/little_foodie_-_wireframe_-_account_page.png)
+
+Food Log Page
+![Wireframe Design - Food Log Page](./static/images/readme_images/little_foodie_-_wireframe_-_log_page.png)
+
+Stats Page
+![Wireframe Design - Stats Page](./static/images/readme_images/little_foodie_-_wireframe_-_history_stats_page.png)
+
+### Colours & Typography
 
 #### Colours //TODO - images and writeup
 
 #### Typography//TODO - images and writeup
 
-### Testing & Validation //TODO - images and write up
+### Testing & Validation
 
 #### Unit Tests //TODO - writeup
 
@@ -96,7 +105,8 @@ The site will be deployed using Heroku using the following steps.
 
 #### Python Verification //TODO - writeup
 
-![Python Linting Verification](./static/images/readme_images/)
+![Python Linting Verification](./static/images/readme_images/python_linting_verification_vscode.png)
+![Python Linting Verification](./static/images/readme_images/python_linting_verification_copilot.png)
 
 #### Lighthouse tests //TODO - images and writeup
 
@@ -106,19 +116,56 @@ The site will be deployed using Heroku using the following steps.
 
 ![WAVE accessibility tests]()
 
-### Webpage preview //TODO - images and writeup
+### Webpage preview
 
-#### Homepage Screenshot - User Not Logged In
+#### Homepage - User Not Logged In
 
-#### Homepage Screenshot - User Logged In
+#### Homepage - User Logged In
 
-#### Homepage Screenshot - Profile Page
+#### Profile Page
 
-#### Homepage Screenshot - Food Log Page
+#### Profile Page - Add Child
 
-#### Homepage Screenshot - Stats Page
+#### Food Log Page - Food Log
 
-### Future Features //TODO - images and writeup
+#### Food Log Page - Add Food Log 1/2
+
+#### Food Log Page - Add Food Log 2/2
+
+#### Food Log Page - New Food
+
+#### Food Log Page - Edit Food Log
+
+#### Stats Page - Food View
+
+#### Stats Page - Category View
+
+#### About Modal - How To Use the App
+
+#### About Modal - Information & Sources
+
+#### About Modal - Disclaimer
+
+#### Get In Touch Modal - Error Reporting
+
+#### Get In Touch Modal - Feature Request/Contact
+
+### Future Features
+
+- Add a timeline filter to the statistics page
+- Adapt the statistics graphs to use visuals in place of standard bar charts utilising site imagery
+- Feeding tips based on log data for each user
+- Onboarding experience/guide on user sign up
+- Allow users to add a meal/feeding image to a log for posterity
+- Multi-user collaboration, to allow co-parents to record for their shared child and view said childs logs collectively
+- Recipe suggestions based on food selection/favourites
+- Add allergen association to a childs record (and additionally a filter to exclude foods which are related to the recorded allergen when creating a food log record)
+- 3rd party/Social signup
+- Site emails the site owner/admin when a new user signs up
+- Site emails the site owner/admin when a new food is created by a user
+- Site emails the site owner/admin when a user sends an error report/feature request
+- Multi-language support (set a default language in user profile and use this a variable for all site text - German, Polish)
+- Add image upload to error reporting/feature request to assist site owner better in respone to users query
 
 ### Credits //TODO - links and writeup
 
