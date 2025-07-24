@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    /**
-     * Auto-dismisses alert messages after 3 seconds.
-     */
+    // Auto-dismisses alert messages after 3 seconds.
     const alerts = document.querySelectorAll(".alert:not(.food-warning)");
     alerts.forEach(function (alert) {
         setTimeout(function () {
@@ -10,17 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     });
 
-    /**
-     * Attach change event to food select to fetch and display food details.
-     */
+    // Attach change event to food select to fetch and display food details.
     const foodSelect = document.getElementById('food-select');
     if (foodSelect) {
         foodSelect.addEventListener('change', handleFoodSelection);
     }
 
-    /**
-     * Handle satisfaction level selection by updating UI and hidden input.
-     */
+    // Handle satisfaction level selection by updating UI and hidden input.
     const satisfactionOptions = document.querySelectorAll('.satisfaction-option');
     satisfactionOptions.forEach(option => {
         option.addEventListener('click', function() {
@@ -31,9 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    /**
-     * Handle favourite toggle button and update hidden input.
-     */
+    // Handle favourite toggle button and update hidden input.
     const favouriteToggle = document.querySelector('.favourite-toggle');
     if (favouriteToggle) {
         favouriteToggle.addEventListener('click', function() {
@@ -44,17 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /**
-     * Attach clear form button to reset the form and UI.
-     */
+    // Attach clear form button to reset the form and UI.
     const clearFormBtn = document.getElementById('clear-form-btn');
     if (clearFormBtn) {
         clearFormBtn.addEventListener('click', clearForm);
     }
 
-    /**
-     * Handle new food creation via AJAX and update the food select.
-     */
+    // Handle new food creation via AJAX and update the food select.
     const saveFoodBtn = document.getElementById('saveFoodBtn');
     const newFoodForm = document.getElementById('newFoodForm');
     
@@ -109,9 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    /**
-     * Show a Bootstrap alert message at the top of the container.
-     */
+    // Show a Bootstrap alert message at the top of the container.
     function showAlert(message, type) {
         const alertDiv = document.createElement('div');
         alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
@@ -130,9 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/**
- * Show all relevant form sections when a food is selected.
- */
+// Show all relevant form sections when a food is selected.
 function showFormSections() {
     const sectionsToShow = [
         'food-details',
@@ -151,9 +135,7 @@ function showFormSections() {
     });
 }
 
-/**
- * Hide all form sections, used when no food is selected or on form clear.
- */
+// Hide all form sections, used when no food is selected or on form clear.
 function hideFormSections() {
     const sectionsToHide = [
         'food-details',
@@ -173,11 +155,9 @@ function hideFormSections() {
     });
 }
 
-/**
- * Handle food selection changes.
- * Fetches food details from the API and updates the UI accordingly.
- * Shows/hides warnings and updates image, category, and favourite state.
- */
+// Handle food selection changes.
+// Fetches food details from the API and updates the UI accordingly.
+// Shows/hides warnings and updates image, category, and favourite state.
 function handleFoodSelection() {
     const foodSelect = document.getElementById('food-select');
     const selectedOption = foodSelect.options[foodSelect.selectedIndex];
@@ -276,9 +256,7 @@ function handleFoodSelection() {
     }
 }
 
-/**
- * Clear the food log form and reset all UI elements to their default state.
- */
+// Clear the food log form and reset all UI elements to their default state.
 function clearForm() {
     if (confirm('Are you sure you want to clear the form?')) {
         document.getElementById('food-log-form').reset();

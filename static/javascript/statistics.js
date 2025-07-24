@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     let chart1, chart2;
 
-    /**
-     * Render bar charts for food or category statistics.
-     * Destroys previous charts before rendering new ones.
-     */
+    // Render bar charts for food or category statistics.
+    // Destroys previous charts before rendering new ones.
     function renderCharts(data) {
         if (chart1) chart1.destroy();
         if (chart2) chart2.destroy();
@@ -50,9 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /**
-     * Render the satisfaction table, showing foods by satisfaction level.
-     */
+    // Render the satisfaction table, showing foods by satisfaction level.
     function renderSatisfactionTable(data) {
         const table = document.querySelector('.satisfaction-table tbody tr');
         table.innerHTML = '';
