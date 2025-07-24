@@ -110,9 +110,28 @@ Stats Page
 
 #### Lighthouse tests //TODO - images and writeup
 
-![Lighthouse tests]()
+Homepage
+![Lighthouse tests](./static/images/readme_images/lighthouse_homepage.png)
 
-#### WAVE accessibility tests //TODO - images and writeup
+Homepage - performance potential savings
+![Lighthouse tests](./static/images/readme_images/lighthouse_homepage_savings_performance.png)
+
+Food Log
+![Lighthouse tests](./static/images/readme_images/lighthouse_food_log_initial_run.png)
+
+Edit Food Log
+![Lighthouse tests](./static/images/readme_images/lighthouse_edit_log.png)
+
+Food Logs Post Fix to errors
+![Lighthouse tests](./static/images/readme_images/lighthouse_food_logs_post_fix.png)
+
+Statistics
+![Lighthouse tests](./static/images/readme_images/lighthouse_stats.png)
+
+Statistics - performance potential savings
+![Lighthouse tests](./static/images/readme_images/lighthouse_stats_savings_performance.png)
+
+#### WAVE accessibility tests //TODO - writeup
 
 ![WAVE accessibility tests]()
 
