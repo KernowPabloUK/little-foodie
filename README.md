@@ -2,7 +2,7 @@
 
 A baby weaning & tracking full stack web application - Capstone Project for Code Institute
 
-![Responsive design preview]() //TODO
+![Responsive design preview]() //TODO - image
 
 **Author:** Paul Morgan - calculatedCode
 
@@ -34,107 +34,93 @@ Informational sources are taken from [NHS](https://www.nhs.uk/start-for-life/bab
     1. Food Statistics
     2. Category Statistics
 
-## Deployment Procedure //TODO
+## Deployment Procedure //TODO - writeup
 
 The site will be deployed using Heroku using the following steps.
 
+## How to View the Project
 
-## How to View the Project //TODO
+- [View the deployed website](https://little-foodie-3451586f5ac7.herokuapp.com/)
 
-- [View the deployed website]()
-
-## AI Usage Within the Project //TODO
+## AI Usage Within the Project //TODO - writeup
 
 - AI used to refine user stories into tasks and acceptance criteria.
 - AI used to generate all images and logo design.
 - AI used to verify ERD functionality
 - AI used to generate description and meta keywords for SEO within "< head >".
+- AI used to create AJAX API function call for Food Log
+- AI used to generate code for Graphs on statistics page
+- AI used to refine unit tests
+- AI used to enhance existing docstrings
 
-## Documents //TODO
+## Documents //TODO - writeup and headers
 
-[Link to Wireframe of initial design - Mobile]()
-[Link to Wireframe of initial design - Tablet]()
-[Link to Wireframe of initial design - Desktop]()
+![Wireframe Design - Homepage](./static/images/readme_images/little_foodie_-_wireframe_-_homepage.png)
+![Wireframe Design - Account/Profile Page](./static/images/readme_images/little_foodie_-_wireframe_-_account_page.png)
+![Wireframe Design - Food Log Page](./static/images/readme_images/little_foodie_-_wireframe_-_log_page.png)
+![Wireframe Design - History / Stats Page](./static/images/readme_images/little_foodie_-_wireframe_-_history_stats_page.png)
 
-### Colours & Typography //TODO
+### Colours & Typography //TODO - images and writeup
 
-#### Colours //TODO
+#### Colours //TODO - images and writeup
 
-#### Typography//TODO
+#### Typography//TODO - images and writeup
 
-### Testing & Validation //TODO
+### Testing & Validation //TODO - images and write up
 
-#### Unit Tests //TODO
+#### Unit Tests //TODO - writeup
 
-![Unit Tests]()
+![Unit Tests](./static/images/readme_images/unit_tests.png/)
 
-#### UI Tests //TODO
+#### UI Tests //TODO - images and writeup
 
-![UI Tests]()
+![UI Tests](./static/images/readme_images/)
 
-#### HTML Verification //TODO
+#### HTML Verification //TODO - writeup
 
-![HTML Verification]()
+![HTML Verification](./static/images/readme_images/html_verification.png)
 
-#### HTML warnings present upon Verification //TODO
+#### CSS warnings present upon Verification //TODO - writeup
 
-![HTML warnings present upon Verification]()
+![CSS warnings present upon Verification](./static/images/readme_images/css_warnings.png)
 
-#### HTML Verification post adjustments //TODO
+#### CSS Verification post adjustments //TODO - writeup
 
-![HTML Verification post adjustments]()
+![CSS Verification post adjustments](./static/images/readme_images/css_verification.png)
 
-#### CSS Verification //TODO
+#### Javascript Verification //TODO - writeup
 
-![CSS Verification]()
+![Javascript Verification](./static/images/readme_images/javascript_verification.png)
 
-#### CSS warnings present upon Verification //TODO
+#### Javascript Manual Testing //TODO - images and writeup
 
-![CSS warnings present upon Verification]()
+#### Python Verification //TODO - writeup
 
-#### CSS Verification post adjustments //TODO
+![Python Linting Verification](./static/images/readme_images/)
 
-![CSS Verification post adjustments]()
-
-#### Javascript Verification //TODO
-
-![Javascript Verification]()
-
-#### Javascript warnings present upon Verification //TODO
-
-![Javascript warnings present upon Verification]()
-
-#### Javascript Verification post adjustments //TODO
-
-![Javascript Verification post adjustments]()
-
-#### Python Verification //TODO
-
-![Python Verification]()
-
-#### Python warnings present upon Verification //TODO
-
-![Python warnings present upon Verification]()
-
-#### Python Verification post adjustments //TODO
-
-![Python Verification post adjustments]()
-
-#### Lighthouse tests //TODO
+#### Lighthouse tests //TODO - images and writeup
 
 ![Lighthouse tests]()
 
-#### WAVE accessibility tests //TODO
+#### WAVE accessibility tests //TODO - images and writeup
 
 ![WAVE accessibility tests]()
 
-### Webpage preview //TODO
+### Webpage preview //TODO - images and writeup
 
-#### Homepage Screenshot
+#### Homepage Screenshot - User Not Logged In
 
-### Future Features //TODO
+#### Homepage Screenshot - User Logged In
 
-### Credits //TODO
+#### Homepage Screenshot - Profile Page
+
+#### Homepage Screenshot - Food Log Page
+
+#### Homepage Screenshot - Stats Page
+
+### Future Features //TODO - images and writeup
+
+### Credits //TODO - links and writeup
 
 - [Google Fonts](https://fonts.google.com/) for typography.
 - [Coolors.co](https://coolors.co/) for palette selection.
