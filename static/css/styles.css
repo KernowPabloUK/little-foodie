@@ -168,6 +168,11 @@ option,
     background-color: var(--secondary-color-background);
 }
 
+.pagination a {
+    margin: 0 14px;
+    color: var(--secondary-color-text);
+}
+
 .satisfaction-buttons,
 .favourite-buttons {
     display: -webkit-box;

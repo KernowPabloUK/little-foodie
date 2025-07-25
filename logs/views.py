@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.core.paginator import Paginator
 
 from children.models import Child
 from .models import (
@@ -132,13 +133,17 @@ def food_log_view(request):
         if selected_child else []
     )
 
+    paginator = Paginator(food_logs, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     create_food_form = CreateFoodForm()
     context = {
         'selected_child': selected_child,
         'children': children,
         'food_log_form': food_log_form,
         'create_food_form': create_food_form,
-        'food_logs': food_logs,
+        'food_logs': page_obj,
         'show_child_selection': False
     }
 

@@ -287,6 +287,22 @@
                                 </div>
                             </div>
                         {% endfor %}
+
+                        <div class="pagination mt-3 mx-2">
+                            {% if food_logs.has_other_pages %}
+                                {% if food_logs.has_previous %}
+                                    <a href="?page=1">&laquo; First</a>
+                                    <a href="?page={{ food_logs.previous_page_number }}">Previous</a>
+                                {% endif %}
+
+                                <span>Page {{ food_logs.number }} of {{ food_logs.paginator.num_pages }}</span>
+
+                                {% if food_logs.has_next %}
+                                    <a href="?page={{ food_logs.next_page_number }}">Next</a>
+                                    <a href="?page={{ food_logs.paginator.num_pages }}">Last &raquo;</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             {% endif %}
