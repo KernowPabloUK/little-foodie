@@ -6,6 +6,8 @@ A baby weaning & tracking full stack web application - Capstone Project for Code
 
 **Author:** Paul Morgan - calculatedCode
 
+***For Magda & Matilda***
+
 ## Description
 
 The purpose of this full stack web application is to allow parents and caregivers to record and monitor their babies weaning journey.
@@ -40,7 +42,7 @@ The site will be deployed using Heroku using the following steps.
 
 ## How to View the Project
 
-- [View the deployed website](https://little-foodie-3451586f5ac7.herokuapp.com/)
+- [View the deployed website - Little Foodie](https://little-foodie-3451586f5ac7.herokuapp.com/)
 
 ## AI Usage Within the Project //TODO - writeup
 
@@ -186,13 +188,17 @@ Statistics - performance potential savings
 - Multi-language support (set a default language in user profile and use this a variable for all site text - German, Polish)
 - Add image upload to error reporting/feature request to assist site owner better in respone to users query
 
-### Credits //TODO - links and writeup
+### Credits
 
 - [Google Fonts](https://fonts.google.com/) for typography.
-- [Coolors.co](https://coolors.co/) for palette selection.
-- [Favicon.io](https://favicon.io/) for converting logo image to favicon.
-- [Pixelcut.ai](https://www.pixelcut.ai/) for removing the background from the logo.
-- [Stack Overflow](https://stackoverflow.com/) for random problem solving/syntax remembrance.
-- [Microsoft Copilot](https://copilot.microsoft.com/) for image generation.
-- [Bootstrap](https://getbootstrap.com/) for the CSS framework to be built upon.
+- [Favicon.io](https://favicon.io/) for converting logo image to favicons.
+- [Pixelcut.ai](https://www.pixelcut.ai/) for removing the background from the logo and images.
+- [Stack Overflow](https://stackoverflow.com/) for problem solving/syntax remembrance.
+- [Microsoft Copilot](https://copilot.microsoft.com/) for image generation, code support and rubber ducking.
+- [Bootstrap](https://getbootstrap.com/) for the CSS framework.
+- [Django](https://www.djangoproject.com/) for the full-stack framework.
 - [Am I Responsive](https://ui.dev/amiresponsive) for the multi device image on this README.
+- [NHS - Start for Life](https://www.nhs.uk/start-for-life/baby/weaning/) & [Food Standards Agency](https://www.food.gov.uk/) for information and sources on allergens and recommended ages in regards to weaning.
+- Alexander Tastad, Mark Briscoe & Roman Rakic from [Code Institute](https://codeinstitute.net/) for their support and guidance throughout the project
+- Magda for the idea of [Little Foodie](https://little-foodie-3451586f5ac7.herokuapp.com/), the constant support outside of code, being "market research" and letting me "rubber duck".
+- Matilda for the inspiration of the project and the inspiration of the [Little Foodie](https://little-foodie-3451586f5ac7.herokuapp.com/) logo!
