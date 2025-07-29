@@ -36,9 +36,33 @@ Informational sources are taken from [NHS](https://www.nhs.uk/start-for-life/bab
     1. Food Statistics
     2. Category Statistics
 
-## Deployment Procedure //TODO - writeup
+## Deployment Procedure
 
-The site will be deployed using Heroku using the following steps.
+The site is deployed on [Heroku](https://www.heroku.com/) using the following steps:
+
+1. **Set Up Heroku Account & App**
+    - Create a Heroku account and a new app via the Heroku dashboard.
+
+2. **Prepare the Project for Deployment**
+    - Ensure all dependencies are listed in `requirements.txt` (use `pip freeze > requirements.txt`).
+    - Add a `Procfile` with the line
+    - Set `ALLOWED_HOSTS` in `settings.py` to include the Heroku app domain.
+    - Configure static files using `whitenoise` or similar.
+
+3. **Configure Environment Variables**
+    - Set environment variables (e.g., `SECRET_KEY`, `DEBUG`, `DATABASE_URL`) in the Heroku dashboard under Settings > Config Vars.
+
+4. **Set Up the Database**
+
+5. **Push Code to Heroku**
+    - Initialize a git repository if not already done.
+
+6. **Run Migrations & Collect Static Files**
+
+7. **Verify Deployment**
+    - Visit the Heroku app URL to confirm the site is live and functioning.
+
+**Note:** For local development, use environment variables or a `.env` file to manage sensitive settings. Always disable `DEBUG` in production.
 
 ## How to View the Project
 
@@ -143,27 +167,27 @@ Of these, all 27 `Must Haves` were completed creating an MVP, 4 `Should Haves` a
 
 Manual UI Testing was conducted against the `Must Have` User Stories to ensure that the MVP criteria was achieved.
 
-| User Story - MUST HAVE                                                                                                                         | Status  |
-|------------------------------------------------------------------------------------------------------------------------------------|---------|
-| As a parent, I want to create an account and log in securely, so that I can access my data from any device.                        | PASSED  |
-| As a parent, I want to add one or more children to my profile, so that I can track food intake for each child individually.         | PASSED  |
-| As a parent, I want to input my baby’s birthdate, so that the app can calculate their current age in months automatically.          | PASSED  |
-| As a parent, I want to select which child I am logging food for, so that the log is correctly attributed.                          | PASSED  |
-| As a parent, I want to search and select from a list of foods, so that I can quickly log what my child ate.                        | PASSED  |
-| As a parent, I want to see all foods regardless of age suitability, so that I have full control over what I log.                   | PASSED  |
-| As a parent, I want to add custom foods to the database, so that I can log meals that aren’t already listed.                       | PASSED  |
-| As a parent, I want to specify the consistency of the food (e.g., purée, mashed, finger food), so that I can track texture exposure.| PASSED  |
-| As a parent, I want to indicate whether the food was raw or cooked, so that I can monitor preparation methods.                     | PASSED  |
-| As a parent, I want to note how my baby was fed (e.g., spoon-fed or self-fed), so that I can track feeding methods.                | PASSED  |
-| As a parent, I want to record the approximate volume of food eaten, so that I can understand their intake over time.                | PASSED  |
-| As a parent, I want to select how much my baby liked the food (e.g., hated it, liked it), so that I can spot patterns in preferences.| PASSED  |
-| As a parent, I want to see a history of foods my baby has eaten, so that I can revisit and compare past logs.                      | PASSED  |
-| As a parent, I want to see which foods are eaten most frequently, so that I can spot favorites or overused options.                | PASSED  |
-| As a parent, I want to see total volume eaten per food, so that I can monitor growth in intake.                                    | PASSED  |
-| As a user I wish to have a profile page so that I can add children to my profile at a later date                                   | PASSED  |
-| As a site owner, I want users to land on a home/landing page when they visit the site so that they can sign in/register            | PASSED  |
-| As a user, I want to click a button in the footer so that I can see how the application works                                      | PASSED  |
-| As a user, i want to be able to report an error on the site, so that it is fixed by the site owner                                 | PASSED  |
+| User Story - MUST HAVE                                                                                                                                            | Status  |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| As a parent, I want to create an account and log in securely, so that I can access my data from any device.                                                       | PASSED  |
+| As a parent, I want to add one or more children to my profile, so that I can track food intake for each child individually.                                       | PASSED  |
+| As a parent, I want to input my baby’s birthdate, so that the app can calculate their current age in months automatically.                                        | PASSED  |
+| As a parent, I want to select which child I am logging food for, so that the log is correctly attributed.                                                         | PASSED  |
+| As a parent, I want to search and select from a list of foods, so that I can quickly log what my child ate.                                                       | PASSED  |
+| As a parent, I want to see all foods regardless of age suitability, so that I have full control over what I log.                                                  | PASSED  |
+| As a parent, I want to add custom foods to the database, so that I can log meals that aren’t already listed.                                                      | PASSED  |
+| As a parent, I want to specify the consistency of the food (e.g., purée, mashed, finger food), so that I can track texture exposure.                              | PASSED  |
+| As a parent, I want to indicate whether the food was raw or cooked, so that I can monitor preparation methods.                                                    | PASSED  |
+| As a parent, I want to note how my baby was fed (e.g., spoon-fed or self-fed), so that I can track feeding methods.                                               | PASSED  |
+| As a parent, I want to record the approximate volume of food eaten, so that I can understand their intake over time.                                              | PASSED  |
+| As a parent, I want to select how much my baby liked the food (e.g., hated it, liked it), so that I can spot patterns in preferences.                             | PASSED  |
+| As a parent, I want to see a history of foods my baby has eaten, so that I can revisit and compare past logs.                                                     | PASSED  |
+| As a parent, I want to see which foods are eaten most frequently, so that I can spot favorites or overused options.                                               | PASSED  |
+| As a parent, I want to see total volume eaten per food, so that I can monitor growth in intake.                                                                   | PASSED  |
+| As a user I wish to have a profile page so that I can add children to my profile at a later date                                                                  | PASSED  |
+| As a site owner, I want users to land on a home/landing page when they visit the site so that they can sign in/register                                           | PASSED  |
+| As a user, I want to click a button in the footer so that I can see how the application works                                                                     | PASSED  |
+| As a user, i want to be able to report an error on the site, so that it is fixed by the site owner                                                                | PASSED  |
 | As a site owner, I wish to display the sources of information (NHS, FSA) to the user to forfeit any liability on information given regarding allergens and advice | PASSED  |
 
 #### HTML Verification
@@ -188,7 +212,32 @@ JavaScript was verified using JSHint. There were four 'undefined variables': `bo
 
 ![Javascript Verification](./static/images/readme_images/javascript_verification.png)
 
-#### Javascript Manual Testing //TODO - images and writeup
+#### Javascript Manual Testing
+
+| JavaScript File         | Function                                                           | Expected Result                                                                                                                                                        | Result   |
+|-------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| `profile.js`            | Auto dismiss alerts                                                | Alerts dismiss after 3 seconds                                                                                                                                         | PASS     |
+| `error_reporting.js`    | Show/hide details and food error options based on reason selection | Show/hide details and food error options based on reason selection                                                                                                     | PASS     |
+| `error_reporting.js`    | Show thank you message                                             | Show thank you message on form submit                                                                                                                                  | PASS     |
+| `error_reporting.js`    | Reset form and UI state                                            | Reset form and UI state when modal is closed                                                                                                                           | PASS     |
+| `food_log.js`           | Auto dismiss alerts                                                | Alerts dismiss after 3 seconds                                                                                                                                         | PASS     |
+| `food_log.js`           | Attach change event to food select                                 | Fetch and display food details                                                                                                                                         | PASS     |
+| `food_log.js`           | Handle satisfaction level selection                                | Update UI and hidden input                                                                                                                                             | PASS     |
+| `food_log.js`           | Handle favourite toggle button                                     | Update UI and hidden input                                                                                                                                             | PASS     |
+| `food_log.js`           | Attach clear form button to reset the form                         | Reset the form and UI                                                                                                                                                  | PASS     |
+| `food_log.js`           | Handle new food creation via AJAX and update the food select       | Handle new food creation via AJAX and update the food select                                                                                                           | PASS     |
+| `food_log.js`           | `showAlert()`                                                      | Show a Bootstrap alert message at the top of the container                                                                                                             | PASS     |
+| `food_log.js`           | `showFormSections()`                                               | Show all relevant form sections when a food is selected                                                                                                                | PASS     |
+| `food_log.js`           | `hideFormSections()`                                               | Hide all form sections, used when no food is selected or on form clear                                                                                                 | PASS     |
+| `food_log.js`           | `handleFoodSelection()`                                            | Handle food selection changes, Fetches food details from the API and updates the UI accordingly, Shows/hides warnings and updates image, category, and favourite state | PASS     |
+| `food_log.js`           | `clearForm()`                                                      | Clear the food log form and reset all UI elements to their default state                                                                                               | PASS     |
+| `edit_food_log.js`      | Auto dismiss alerts                                                | Alerts dismiss after 3 seconds                                                                                                                                         | PASS     |
+| `edit_food_log.js`      | Handle satisfaction level selection                                | Update UI and hidden input                                                                                                                                             | PASS     |
+| `edit_food_log.js`      | Handle favourite toggle button                                     | Update UI and hidden input                                                                                                                                             | PASS     |
+| `statistics.js`         | `renderCharts()`                                                   | Render bar charts for food or category statistics, Destroys previous charts before rendering new ones                                                                  | PASS     |
+| `statistics.js`         | `renderSatisfactionTable()`                                        | Render the satisfaction table, showing foods by satisfaction level                                                                                                     | PASS     |
+| `statistics.js`         | Toggle between Food & Category                                     | Toggle between food and category statistics                                                                                                                            | PASS     |
+| `statistics.js`         | Handle child selection                                             | Handle child selection to update statistics for the selected child                                                                                                     | PASS     |
 
 #### Python Verification
 
@@ -256,45 +305,83 @@ See Alert below
 - AI used to refine user stories into tasks and acceptance criteria.
 - AI used to generate all images and logo design.
 - AI used to verify ERD functionality
-- AI used to generate description and meta keywords for SEO within "< head >".
+- AI used to generate description and meta keywords for SEO.
+- AI used to refine the models post creation.
 - AI used to create AJAX API function call for Food Log
-- AI used to generate code for Graphs on statistics page
+- AI used to generate JS code for Graphs on statistics page
 - AI used to refine unit tests
 - AI used to enhance existing docstrings
+- AI used to review solution for errors and also for any exposed secrets as a fall back.
 
-### Webpage preview - TODO
+### Webpage preview
 
 #### Homepage - User Not Logged In
 
+![Homepage - User Not Logged In](./static/images/readme_images/lf_homepage_logged_out.png)
+
 #### Homepage - User Logged In
+
+![Homepage - User Logged In](./static/images/readme_images/lf_homepage_logged_in.png)
 
 #### Profile Page
 
+![Profile Page](./static/images/readme_images/lf_profile.png)
+
 #### Profile Page - Add Child
+
+![Profile Page - Add Child](./static/images/readme_images/lf_add_child.png)
+
+#### Food Log Page - Child Selection
+
+![Food Log Page - Child Selection](./static/images/readme_images/lf_select_child.png)
 
 #### Food Log Page - Food Log
 
-#### Food Log Page - Add Food Log 1/2
+![Food Log Page - Food Log](./static/images/readme_images/lf_food_logs.png)
 
-#### Food Log Page - Add Food Log 2/2
+#### Food Log Page - Add Food Log - Authorised Food
+
+![Food Log Page - Add Food Log - Authorised Food](./static/images/readme_images/lf_log_food_authorised.png)
+
+#### Food Log Page - Add Food Log - Unauthorised Food
+
+![Food Log Page - Add Food Log - Unauthorised Food](./static/images/readme_images/lf_log_food_unauthorised.png)
 
 #### Food Log Page - New Food
 
+![Food Log Page - New Food](./static/images/readme_images/lf_add_new_food.png)
+
 #### Food Log Page - Edit Food Log
+
+![Food Log Page - Edit Food Log](./static/images/readme_images/lf_edit_food_log.png)
 
 #### Stats Page - Food View
 
+![Stats Page - Food View](./static/images/readme_images/lf_stats_food.png)
+
 #### Stats Page - Category View
+
+![Stats Page - Category View](./static/images/readme_images/lf_stats_category.png)
 
 #### About Modal - How To Use the App
 
+![About Modal - How To Use the App](./static/images/readme_images/lf_about_modal.png)
+
 #### About Modal - Information & Sources
+
+![About Modal - Information & Sources](./static/images/readme_images/lf_info.png)
 
 #### About Modal - Disclaimer
 
+![About Modal - Disclaimer](./static/images/readme_images/lf_disclaimer.png)
+
 #### Get In Touch Modal - Error Reporting
 
+![Get In Touch Modal - Error Reporting](./static/images/readme_images/lf_error_reporting.png)
+
 #### Get In Touch Modal - Feature Request/Contact
+
+![Get In Touch Modal - Feature Request/Contact](./static/images/readme_images/lf_feature_request.png)
 
 ### Future Features
 
