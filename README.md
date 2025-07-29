@@ -44,18 +44,62 @@ The site will be deployed using Heroku using the following steps.
 
 - [View the deployed website - Little Foodie](https://little-foodie-3451586f5ac7.herokuapp.com/)
 
-## AI Usage Within the Project //TODO - writeup
-
-- AI used to refine user stories into tasks and acceptance criteria.
-- AI used to generate all images and logo design.
-- AI used to verify ERD functionality
-- AI used to generate description and meta keywords for SEO within "< head >".
-- AI used to create AJAX API function call for Food Log
-- AI used to generate code for Graphs on statistics page
-- AI used to refine unit tests
-- AI used to enhance existing docstrings
-
 ## Documents
+
+### ERD
+
+I designed my own ERD and then used CoPilot to verify the ERD was sufficient and that there were not any missing links or orphaned tables, I then created my ERD using [dbdiagram.io](https://dbdiagram.io/)
+
+![ERD](./static/images/readme_images/erd.png)
+
+- **Profile**
+  - `id` (PK)
+  - `user` (OneToOne to User (Django))
+  - `first_name`
+  - `last_name`
+  - `birth_date`
+  - `created_at`
+  - `updated_at`
+- **Child**
+  - `id` (PK)
+  - `user` (FK to Profile)
+  - `name`
+  - `birthdate`
+- **Food**
+  - `id` (PK)
+  - `name`
+  - `category`
+  - `min_age_months`
+  - `is_allergen`
+  - `image`
+  - `is_authorised`
+  - `created_by_user` (FK to User(Django))
+- **Consistency**
+  - `id` (PK)
+  - `label`
+- **Preparation**
+  - `id` (PK)
+  - `label`
+- **FeedingMethod**
+  - `id` (PK)
+  - `label`
+- **SatisfactionLevel**
+  - `id` (PK)
+  - `label`
+- **FoodLog**
+  - `id` (PK)
+  - `child` (FK to Child)
+  - `food` (FK to Food)
+  - `consistency` (FK to Consistency)
+  - `preparation` (FK to Preparation)
+  - `feeding_method` (FK to FeedingMethod)
+  - `satisfaction_level` (FK to SatisfactionLevel)
+  - `volume`
+  - `favourite`
+  - `notes`
+  - `logged_at`
+
+### Wireframes / UX Design
 
 The wireframing and initial design of the website was done with a mobile first approach, especially as parents will most likely have limited time to record the food entry so a mobile phone is the most convenient manner to access Little Foodie.
 
@@ -207,6 +251,17 @@ See Alert below
 ![WAVE accessibility tests](./static/images/readme_images/wave_delete_food_log.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_stats.png)
 
+## AI Usage Within the Project //TODO - writeup
+
+- AI used to refine user stories into tasks and acceptance criteria.
+- AI used to generate all images and logo design.
+- AI used to verify ERD functionality
+- AI used to generate description and meta keywords for SEO within "< head >".
+- AI used to create AJAX API function call for Food Log
+- AI used to generate code for Graphs on statistics page
+- AI used to refine unit tests
+- AI used to enhance existing docstrings
+
 ### Webpage preview - TODO
 
 #### Homepage - User Not Logged In
@@ -265,6 +320,7 @@ See Alert below
 - [Google Fonts](https://fonts.google.com/) for typography.
 - [Favicon.io](https://favicon.io/) for converting logo image to favicons.
 - [Pixelcut.ai](https://www.pixelcut.ai/) for removing the background from the logo and images.
+- [dbdiagram.io](https://dbdiagram.io/) for the visual representation of the ERD.
 - [Autoprefixer CSS Online](https://autoprefixer.github.io/) for generating stylesheet multi-browser compatibility rules.
 - [JSHint](https://jshint.com/) for verifying my Javascript files.
 - [WAVE](https://wave.webaim.org/) for the web accessibility evaluation tool.
