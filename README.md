@@ -300,7 +300,7 @@ See Alert below
 ![WAVE accessibility tests](./static/images/readme_images/wave_delete_food_log.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_stats.png)
 
-## AI Usage Within the Project //TODO - writeup
+## AI Usage Within the Project
 
 - AI used to refine user stories into tasks and acceptance criteria.
 - AI used to generate all images and logo design.
