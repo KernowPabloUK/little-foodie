@@ -8,6 +8,31 @@ A baby weaning & tracking full stack web application - Capstone Project for Code
 
 ***For Magda & Matilda***
 
+## Table of Contents
+
+- [Description](#description)
+- [Features](#features)
+- [Deployment Procedure](#deployment-procedure)
+- [How to View the Project](#how-to-view-the-project)
+- [Documents](#documents)
+  - [ERD](#erd)
+  - [Wireframes / UX Design](#wireframes--ux-design)
+  - [Colours & Typography](#colours--typography)
+- [Testing & Validation](#testing--validation)
+  - [Unit Tests](#unit-tests)
+  - [UI/User Story Tests](#uiuser-story-tests)
+  - [HTML Verification](#html-verification)
+  - [CSS Verification](#css-verification)
+  - [Javascript Verification](#javascript-verification)
+  - [Javascript Manual Testing](#javascript-manual-testing)
+  - [Python Verification](#python-verification)
+  - [Lighthouse tests](#lighthouse-tests)
+  - [WAVE accessibility tests](#wave-accessibility-tests)
+- [AI Usage Within the Project](#ai-usage-within-the-project)
+- [Webpage preview](#webpage-preview)
+- [Future Features](#future-features)
+- [Credits](#credits)
+
 ## Description
 
 The purpose of this full stack web application is to allow parents and caregivers to record and monitor their babies weaning journey.
@@ -299,6 +324,39 @@ See Alert below
 ![WAVE accessibility tests](./static/images/readme_images/wave_edit_food_log.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_delete_food_log.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_stats.png)
+
+## CRUD Functionality
+
+CRUD (Create, Read, Update, Delete) operations are fundamental to the Little Foodie application and are implemented throughout the application to allow users to manage their data efficiently. Here’s how CRUD is applied across the main features:
+
+### 1. Profile & Children Management
+
+- **Create:** Users can create a profile upon registration and add one or more children to their profile.
+- **Read:** Users can view their profile details and see a list of all children associated with their account.
+- **Update:** Users can edit their profile information and update details for each child (e.g., name, birthdate).
+- **Delete:** Users can remove a child from their profile if needed.
+
+### 2. Food Log
+
+- **Create:** Users can log new food entries for a selected child, specifying details such as food, preparation, volume, satisfaction, and notes.
+- **Read:** Users can view a history of all food logs for each child, including detailed information for each entry.
+- **Update:** Users can edit existing food log entries to correct or update information.
+- **Delete:** Users can delete food log entries if they were added in error or are no longer relevant.
+
+### 3. Food Database
+
+- **Create:** Users can add new foods to the database if a food is not already listed.
+- **Read:** Users can browse and search the list of available foods, including details like category, minimum age, and allergen status.
+- **Update:** Admins can update food details, such as authorisation status or category.
+- **Delete:** Admins can remove foods from the database if they are inappropriate or no longer needed.
+
+### 4. Statistics & Analytics
+
+- **Read:** Users can view aggregated statistics (read-only) based on their food logs, such as most frequently eaten foods, satisfaction levels, and total volume consumed.
+
+### Summary
+
+CRUD operations are integrated into the user experience, allowing parents and caregivers to fully manage their profiles, children, food logs, and custom foods. Admins have additional CRUD capabilities for managing the food database, ensuring the application remains accurate and user-friendly.
 
 ## AI Usage Within the Project
 
