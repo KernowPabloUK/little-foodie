@@ -24,7 +24,7 @@ def statistics_view(request):
         HttpResponse: The rendered 'stats/statistics.html' template with
         statistics context for the selected child.
     """
-    profile = Profile.objects.get(user=request.user)
+    profile, _ = Profile.objects.get_or_create(user=request.user)
     children = Child.objects.filter(user=profile)
     if not children.exists():
         return redirect('add_child')
