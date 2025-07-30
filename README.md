@@ -26,10 +26,11 @@ A baby weaning & tracking full stack web application - Capstone Project for Code
   - [Javascript Verification](#javascript-verification)
   - [Javascript Manual Testing](#javascript-manual-testing)
   - [Python Verification](#python-verification)
-  - [Lighthouse tests](#lighthouse-tests)
-  - [WAVE accessibility tests](#wave-accessibility-tests)
+  - [Lighthouse Tests](#lighthouse-tests)
+  - [WAVE Accessibility Tests](#wave-accessibility-tests)
+- [CRUD Functionality](#crud-functionality)
 - [AI Usage Within the Project](#ai-usage-within-the-project)
-- [Webpage preview](#webpage-preview)
+- [Webpage Preview](#webpage-preview)
 - [Future Features](#future-features)
 - [Credits](#credits)
 
@@ -101,6 +102,9 @@ I designed my own ERD and then used CoPilot to verify the ERD was sufficient and
 
 ![ERD](./static/images/readme_images/erd.png)
 
+<details>
+  <summary>Show Entity Relationship Diagram (ERD) Details</summary>
+
 - **Profile**
   - `id` (PK)
   - `user` (OneToOne to User (Django))
@@ -148,6 +152,8 @@ I designed my own ERD and then used CoPilot to verify the ERD was sufficient and
   - `notes`
   - `logged_at`
 
+</details>
+
 ### Wireframes / UX Design
 
 The wireframing and initial design of the website was done with a mobile first approach, especially as parents will most likely have limited time to record the food entry so a mobile phone is the most convenient manner to access Little Foodie.
@@ -188,7 +194,13 @@ There were a total of 49 user stories sorted using MoSCoW prioritisation, 27 `Mu
 
 Of these, all 27 `Must Haves` were completed creating an MVP, 4 `Should Haves` and 1 `Could Have` - with 15 `Could Haves` and 2 `Should Haves` currently in progress and in the backlog for future features
 
+<details>
+  <summary>Show User Stories Image</summary>
+
 ![User Stories](./static/images/readme_images/user_stories.png)
+
+</details>
+<br>
 
 Manual UI Testing was conducted against the `Must Have` User Stories to ensure that the MVP criteria was achieved.
 
@@ -219,23 +231,41 @@ Manual UI Testing was conducted against the `Must Have` User Stories to ensure t
 
 HTML verification had a few semantic errors on initial testing, but these were easily rectified and mainly related to sequential headings and button elements not being able to be a descendant of an anchor element.
 
+<details>
+  <summary>Show HTML Verification Image</summary>
+
 ![HTML Verification](./static/images/readme_images/html_verification.png)
 
-#### CSS warnings present upon Verification
-
-CSS verification contained no errors, but there were warnings present. These however related to external sources (Google Fonts) and also the useage of CSS Autoprefixer which is used to allow style rule compatibility across all major browsers.
-
-![CSS warnings present upon Verification](./static/images/readme_images/css_warnings.png)
+</details>
 
 #### CSS Verification
 
+CSS verification contained no errors, but there were warnings present. These however related to external sources (Google Fonts) and also the useage of CSS Autoprefixer which is used to allow style rule compatibility across all major browsers.
+
+<details>
+  <summary>Show CSS Warnings Image</summary>
+
+![CSS warnings present upon Verification](./static/images/readme_images/css_warnings.png)
+
+</details>
+
+<details>
+  <summary>Show CSS Verification Image</summary>
+
 ![CSS Verification post adjustments](./static/images/readme_images/css_verification.png)
+
+</details>
 
 #### Javascript Verification
 
 JavaScript was verified using JSHint. There were four 'undefined variables': `bootstrap`, `Chart`, `foodData`, and `categoryData`. These are technically unnecessary as they are provided globally or by Bootstrap and could be removed without affecting the code's functionality. However, I chose to maintain their presence to improve code readability.
 
+<details>
+  <summary>Show Javascript Verification Image</summary>
+
 ![Javascript Verification](./static/images/readme_images/javascript_verification.png)
+
+</details>
 
 #### Javascript Manual Testing
 
@@ -268,8 +298,13 @@ JavaScript was verified using JSHint. There were four 'undefined variables': `bo
 
 Any issues in respect of Python linting were resolved during the course of the development, utilising the `PROBLEMS` window in vsCode. I also performed a final check asking AI to review the whole solution and see if there were any issues also but returned a positive 0 response.
 
-![Python Linting Verification](./static/images/readme_images/python_linting_verification_vscode.png)
-![Python Linting Verification](./static/images/readme_images/python_linting_verification_copilot.png)
+<details>
+  <summary>Show Python Linting Verification Images</summary>
+
+![Python Linting Verification - VSCode](./static/images/readme_images/python_linting_verification_vscode.png)
+![Python Linting Verification - Copilot](./static/images/readme_images/python_linting_verification_copilot.png)
+
+</details>
 
 #### Lighthouse tests
 
@@ -277,37 +312,62 @@ Any issues in respect of Python linting were resolved during the course of the d
 
 Potential savings on this page (and across the site) that would boost the Performance score mainly come from using .png extension image files, these could be improved by converting to .webp file extension formats
 
+<details>
+  <summary>Show Lighthouse Test Images (Homepage)</summary>
+
 ![Lighthouse tests](./static/images/readme_images/lighthouse_homepage.png)
-
-##### Homepage - performance potential savings
-
 ![Lighthouse tests](./static/images/readme_images/lighthouse_homepage_savings_performance.png)
+
+</details>
 
 ##### Food Log
 
 Initially Accessibility scored 98 and Best Practice 96 due to unsequential headers and javascript still logging to the console.
 
+<details>
+  <summary>Show Lighthouse Test Image (Food Log - Initial Run)</summary>
+
 ![Lighthouse tests](./static/images/readme_images/lighthouse_food_log_initial_run.png)
+
+</details>
 
 ##### Food Logs Post Fix to errors
 
 These above errors were then rectified with brought scores back up to 100, the performance score then dropped from 99 to 82, however this is also influenced by network speed and server load, so this 'drop' in performance is not a true representation as the score can increase and decrease at different times of the day and is partially out of my control due to the external factors that affect this metric.
 
+<details>
+  <summary>Show Lighthouse Test Image (Food Logs Post Fix to errors)</summary>
+
 ![Lighthouse tests](./static/images/readme_images/lighthouse_food_logs_post_fix.png)
+
+</details>
 
 ##### Edit Food Log
 
+<details>
+  <summary>Show Lighthouse Test Image (Edit Food Log)</summary>
+
 ![Lighthouse tests](./static/images/readme_images/lighthouse_edit_log.png)
+
+</details>
 
 ##### Statistics
 
+<details>
+  <summary>Show Lighthouse Test Image (Statistics)</summary>
+
 ![Lighthouse tests](./static/images/readme_images/lighthouse_stats.png)
 
-##### Statistics - Performance Potential Savings
+</details>
 
 The main issue with performance on the Statistics page is down to the images in the dynamic Satisfaction table and the graphs that are rendered. I plan to look at performance saving fixes in a future release to increase this score and load timing.
 
+<details>
+  <summary>Show Lighthouse Test Image (Statistics - Performance Savings)</summary>
+
 ![Lighthouse tests](./static/images/readme_images/lighthouse_stats_savings_performance.png)
+
+</details>
 
 #### WAVE accessibility tests
 
@@ -315,15 +375,20 @@ All pages were checked using WAVE for accessibility and semantic errors (such as
 
 One alert still remains on the Food Log page when creating a new food, the alt text of the food image is generic to all images ("Food Image") so I will be looking into generating this alternative text dynamically in a future release to satisfy this test, however the test alert is an advisement so does not impact the site or it's presentation.
 
+<details>
+  <summary>Show WAVE Accessibility Test Images</summary>
+
 ![WAVE accessibility tests](./static/images/readme_images/wave_homepage.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_profile.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_add_child.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_delete_child.png)
-See Alert below
+See Alert below  
 ![WAVE accessibility tests](./static/images/readme_images/wave_food_log.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_edit_food_log.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_delete_food_log.png)
 ![WAVE accessibility tests](./static/images/readme_images/wave_stats.png)
+
+</details>
 
 ## CRUD Functionality
 
@@ -378,73 +443,124 @@ Without its assistance the project would have taken a considerable amount of tim
 
 ### Webpage preview
 
-#### Homepage - User Not Logged In
+<details>
+  <summary>Homepage - User Not Logged In</summary>
 
 ![Homepage - User Not Logged In](./static/images/readme_images/lf_homepage_logged_out.png)
 
-#### Homepage - User Logged In
+</details>
+
+<details>
+  <summary>Homepage - User Logged In</summary>
 
 ![Homepage - User Logged In](./static/images/readme_images/lf_homepage_logged_in.png)
 
-#### Profile Page
+</details>
+
+<details>
+  <summary>Profile Page</summary>
 
 ![Profile Page](./static/images/readme_images/lf_profile.png)
 
-#### Profile Page - Add Child
+</details>
+
+<details>
+  <summary>Profile Page - Add Child</summary>
 
 ![Profile Page - Add Child](./static/images/readme_images/lf_add_child.png)
 
-#### Food Log Page - Child Selection
+</details>
+
+<details>
+  <summary>Food Log Page - Child Selection</summary>
 
 ![Food Log Page - Child Selection](./static/images/readme_images/lf_select_child.png)
 
-#### Food Log Page - Food Log
+</details>
+
+<details>
+  <summary>Food Log Page - Food Log</summary>
 
 ![Food Log Page - Food Log](./static/images/readme_images/lf_food_logs.png)
 
-#### Food Log Page - Add Food Log - Authorised Food
+</details>
+
+<details>
+  <summary>Food Log Page - Add Food Log - Authorised Food</summary>
 
 ![Food Log Page - Add Food Log - Authorised Food](./static/images/readme_images/lf_log_food_authorised.png)
 
-#### Food Log Page - Add Food Log - Unauthorised Food
+</details>
+
+<details>
+  <summary>Food Log Page - Add Food Log - Unauthorised Food</summary>
 
 ![Food Log Page - Add Food Log - Unauthorised Food](./static/images/readme_images/lf_log_food_unauthorised.png)
 
-#### Food Log Page - New Food
+</details>
+
+<details>
+  <summary>Food Log Page - New Food</summary>
 
 ![Food Log Page - New Food](./static/images/readme_images/lf_add_new_food.png)
 
-#### Food Log Page - Edit Food Log
+</details>
+
+<details>
+  <summary>Food Log Page - Edit Food Log</summary>
 
 ![Food Log Page - Edit Food Log](./static/images/readme_images/lf_edit_food_log.png)
 
-#### Stats Page - Food View
+</details>
+
+<details>
+  <summary>Stats Page - Food View</summary>
 
 ![Stats Page - Food View](./static/images/readme_images/lf_stats_food.png)
 
-#### Stats Page - Category View
+</details>
+
+<details>
+  <summary>Stats Page - Category View</summary>
 
 ![Stats Page - Category View](./static/images/readme_images/lf_stats_category.png)
 
-#### About Modal - How To Use the App
+</details>
+
+<details>
+  <summary>About Modal - How To Use the App</summary>
 
 ![About Modal - How To Use the App](./static/images/readme_images/lf_about_modal.png)
 
-#### About Modal - Information & Sources
+</details>
+
+<details>
+  <summary>About Modal - Information & Sources</summary>
 
 ![About Modal - Information & Sources](./static/images/readme_images/lf_info.png)
 
-#### About Modal - Disclaimer
+</details>
+
+<details>
+  <summary>About Modal - Disclaimer</summary>
 
 ![About Modal - Disclaimer](./static/images/readme_images/lf_disclaimer.png)
 
-#### Get In Touch Modal - Error Reporting
+</details>
+
+<details>
+  <summary>Get In Touch Modal - Error Reporting</summary>
 
 ![Get In Touch Modal - Error Reporting](./static/images/readme_images/lf_error_reporting.png)
 
-#### Get In Touch Modal - Feature Request/Contact
+</details>
+
+<details>
+  <summary>Get In Touch Modal - Feature Request/Contact</summary>
 
 ![Get In Touch Modal - Feature Request/Contact](./static/images/readme_images/lf_feature_request.png)
+
+</details>
 
 ### Future Features
 
@@ -463,7 +579,12 @@ Without its assistance the project would have taken a considerable amount of tim
 - Multi-language support (set a default language in user profile and use this a variable for all site text - German, Polish).
 - Add image upload to error reporting/feature request to assist site owner better in respone to users query.
 
+<details>
+  <summary>Show Future Features - KANBAN Board</summary>
+
 ![Future Features - KANBAN Board](./static/images/readme_images/future_features.png)
+
+</details>
 
 ### Credits
 
