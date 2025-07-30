@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from children.models import Child
 from logs.models import FoodLog
 from django.contrib.auth.decorators import login_required
@@ -26,6 +26,9 @@ def statistics_view(request):
     """
     profile = Profile.objects.get(user=request.user)
     children = Child.objects.filter(user=profile)
+    if not children.exists():
+        return redirect('add_child')
+
     selected_child_id = request.GET.get('child_id')
     if not selected_child_id and children.exists():
         selected_child_id = children.first().id
